@@ -1,9 +1,0 @@
-[debug] [2026-05-03T17:01:16.833Z] ----------------------------------------------------------------------
-[debug] [2026-05-03T17:01:16.835Z] Command:       /usr/local/bin/node /Users/thorarinnhjalmarsson/.npm/_npx/7750544ccf494d8b/node_modules/.bin/firebase deploy --only firestore:rules
-[debug] [2026-05-03T17:01:16.835Z] CLI Version:   15.16.0
-[debug] [2026-05-03T17:01:16.835Z] Platform:      darwin
-[debug] [2026-05-03T17:01:16.835Z] Node Version:  v22.19.0
-[debug] [2026-05-03T17:01:16.835Z] Time:          Sun May 03 2026 17:01:16 GMT+0000 (Greenwich Mean Time)
-[debug] [2026-05-03T17:01:16.835Z] ----------------------------------------------------------------------
-[debug] 
-[debug] [2026-05-03T17:01:16.836Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]

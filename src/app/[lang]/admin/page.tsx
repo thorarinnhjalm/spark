@@ -50,16 +50,22 @@ export default function AdminDashboard() {
   // 2. Fetch Data
   const fetchAdminData = async () => {
     try {
-      const [parentsSnap, childrenSnap] = await Promise.all([
+      const [parentsResult, childrenResult] = await Promise.allSettled([
         getDocs(collection(db, 'parents')),
         getDocs(collection(db, 'children'))
       ]);
       
-      const parentsData = parentsSnap.docs.map(d => ({ id: d.id, ...d.data() }));
-      const childrenData = childrenSnap.docs.map(d => ({ id: d.id, ...d.data() }));
-      
-      setParents(parentsData);
-      setChildren(childrenData);
+      if (parentsResult.status === 'fulfilled') {
+        setParents(parentsResult.value.docs.map(d => ({ id: d.id, ...d.data() })));
+      } else {
+        console.error('Error fetching parents:', parentsResult.reason);
+      }
+
+      if (childrenResult.status === 'fulfilled') {
+        setChildren(childrenResult.value.docs.map(d => ({ id: d.id, ...d.data() })));
+      } else {
+        console.error('Error fetching children:', childrenResult.reason);
+      }
     } catch (error) {
       console.error('Error fetching admin data:', error);
     } finally {
