@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+/* Force Vercel rebuild for Tailwind v4 cache */
 @theme {
   --color-primary-fixed: #e9ddff;
   --color-on-tertiary-container: #fffbff;
