@@ -56,9 +56,9 @@ export async function POST(req: Request) {
 
     const activeLang = language === 'en' ? 'English' : 'Icelandic';
 
-    // Kalla í Gemini 3.1 Flash með Spark Prompt Layer
+    // Kalla í Gemini 2.5 Flash með Spark Prompt Layer
     const response = await ai.models.generateContent({
-      model: 'gemini-3.1-flash',
+      model: 'gemini-2.5-flash',
       contents: contents,
       config: {
         systemInstruction: `You are Spark, an AI assistant in a children's learning game (ages 10-14). 
@@ -89,8 +89,8 @@ Mission context: ${systemPrompt}`,
     const replyText = response.text || 'Gat ekki svarað. Prófaðu aftur!';
 
     return NextResponse.json({ reply: replyText });
-  } catch (error: unknown) {
-    console.error('Gemini API Error:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  } catch (error: any) {
+    console.error('Gemini API Error:', error?.message || error);
+    return NextResponse.json({ error: error?.message || 'Internal Server Error' }, { status: 500 });
   }
 }
