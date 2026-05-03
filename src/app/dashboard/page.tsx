@@ -7,6 +7,8 @@ import { db, auth } from '@/lib/firebase';
 import { doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
 
+import Link from 'next/link';
+
 export default function DashboardPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
@@ -90,7 +92,9 @@ export default function DashboardPage() {
                     <strong style={{ fontSize: '1.2rem' }}>{child.displayName}</strong>
                     <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Stig: {child.xp} XP • Titill: {child.rank}</div>
                   </div>
-                  <button className="btn-outline" style={{ padding: '8px 16px' }}>Skoða framvindu</button>
+                  <Link href={`/dashboard/${child.id}`} className="btn-outline" style={{ padding: '8px 16px', textDecoration: 'none', display: 'inline-block' }}>
+                    Skoða framvindu
+                  </Link>
                 </li>
               ))}
             </ul>
