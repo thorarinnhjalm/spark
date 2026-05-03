@@ -7,6 +7,8 @@ import { auth } from '@/lib/firebase';
 import { createParentDocument } from '@/lib/db';
 import { useAuth } from '@/context/AuthContext';
 import Link from 'next/link';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { useTranslation } from '@/components/DictionaryProvider';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -15,12 +17,13 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const router = useRouter();
   const { user, loading } = useAuth();
+  const { t, lang } = useTranslation();
 
   useEffect(() => {
     if (!loading && user) {
-      router.push('/dashboard');
+      router.push(`/${lang}/dashboard`);
     }
-  }, [user, loading, router]);
+  }, [user, loading, router, lang]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,12 +36,12 @@ export default function LoginPage() {
       } else {
         await signInWithEmailAndPassword(auth, email, password);
       }
-      router.push('/dashboard');
+      router.push(`/${lang}/dashboard`);
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message);
       } else {
-        setError('Villa kom upp við innskráningu.');
+        setError(t.common.error);
       }
     }
   };
@@ -46,7 +49,7 @@ export default function LoginPage() {
   if (loading || user) {
     return (
       <div className="flex items-center justify-center min-h-[calc(100vh-80px)]">
-        <span className="text-outline">Hleður...</span>
+        <span className="text-outline">{t.common.loading}</span>
       </div>
     );
   }
@@ -56,9 +59,10 @@ export default function LoginPage() {
       {/* Top Navigation (Shell Implementation) */}
       <header className="bg-white/70 backdrop-blur-xl dark:bg-slate-900/70 border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto sticky top-0 z-50">
         <div className="text-2xl font-black tracking-tighter text-violet-600 dark:text-violet-400">Spark AI</div>
-        <div className="flex gap-4">
-          <Link href="/join" className="text-slate-500 dark:text-slate-400 font-semibold text-sm hover:text-violet-500 transition-all flex items-center">
-            Börn: Nýskráning
+        <div className="flex gap-4 items-center">
+          <LanguageSwitcher />
+          <Link href={`/${lang}/join`} className="text-slate-500 dark:text-slate-400 font-semibold text-sm hover:text-violet-500 transition-all flex items-center">
+            {t.nav.childJoin}
           </Link>
         </div>
       </header>
@@ -96,8 +100,8 @@ export default function LoginPage() {
             
             <div className="relative z-10">
               <div className="text-center mb-xl">
-                <h1 className="font-h2 text-h2 text-primary mb-xs">Velkomin(n)</h1>
-                <p className="font-body-md text-on-surface-variant">Fylgstu með framförum barnsins þíns</p>
+                <h1 className="font-h2 text-h2 text-primary mb-xs">{t.login.title}</h1>
+                <p className="font-body-md text-on-surface-variant">{t.login.subtitle}</p>
               </div>
 
               {/* Toggle Switch */}
@@ -110,13 +114,13 @@ export default function LoginPage() {
                   onClick={() => setIsRegistering(false)}
                   className={`flex-1 py-2 text-label-caps font-label-caps rounded-full z-10 transition-colors ${!isRegistering ? 'text-primary' : 'text-on-surface-variant hover:text-primary'}`}
                 >
-                  Innskráning
+                  {t.login.loginTab}
                 </button>
                 <button 
                   onClick={() => setIsRegistering(true)}
                   className={`flex-1 py-2 text-label-caps font-label-caps rounded-full z-10 transition-colors ${isRegistering ? 'text-primary' : 'text-on-surface-variant hover:text-primary'}`}
                 >
-                  Nýskráning
+                  {t.login.registerTab}
                 </button>
               </div>
 
@@ -129,12 +133,12 @@ export default function LoginPage() {
               <form onSubmit={handleSubmit} className="space-y-md">
                 {/* Email Field */}
                 <div className="space-y-xs">
-                  <label className="font-label-caps text-label-caps text-on-surface-variant ml-1">Netfang</label>
+                  <label className="font-label-caps text-label-caps text-on-surface-variant ml-1">{t.login.email}</label>
                   <div className="relative">
                     <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-[20px]">mail</span>
                     <input 
                       className="w-full pl-12 pr-4 py-4 bg-white/50 border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary-container focus:border-transparent outline-none transition-all placeholder:text-outline/50" 
-                      placeholder="nafn@dæmi.is" 
+                      placeholder={t.login.emailPlaceholder}
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -145,12 +149,12 @@ export default function LoginPage() {
 
                 {/* Password Field */}
                 <div className="space-y-xs">
-                  <label className="font-label-caps text-label-caps text-on-surface-variant ml-1">Lykilorð</label>
+                  <label className="font-label-caps text-label-caps text-on-surface-variant ml-1">{t.login.password}</label>
                   <div className="relative">
                     <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-[20px]">lock</span>
                     <input 
                       className="w-full pl-12 pr-4 py-4 bg-white/50 border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary-container focus:border-transparent outline-none transition-all placeholder:text-outline/50" 
-                      placeholder="••••••••" 
+                      placeholder={t.login.passwordPlaceholder}
                       type="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
@@ -161,7 +165,7 @@ export default function LoginPage() {
 
                 {!isRegistering && (
                   <div className="flex justify-end">
-                    <a className="text-label-caps font-label-caps text-primary hover:underline underline-offset-4" href="#">Gleymt lykilorð?</a>
+                    <a className="text-label-caps font-label-caps text-primary hover:underline underline-offset-4" href="#">{t.login.forgotPassword}</a>
                   </div>
                 )}
 
@@ -170,14 +174,14 @@ export default function LoginPage() {
                   className="w-full vibrant-gradient text-on-primary py-4 rounded-xl font-h3 text-body-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-base" 
                   type="submit"
                 >
-                  {isRegistering ? 'Stofna Aðgang' : 'Innskráning'}
+                  {isRegistering ? t.login.registerBtn : t.login.loginBtn}
                   <span className="material-symbols-outlined">arrow_forward</span>
                 </button>
               </form>
 
               <div className="mt-xl flex items-center gap-base">
                 <div className="h-[1px] flex-1 bg-outline-variant"></div>
-                <span className="text-label-caps font-label-caps text-outline">Eða nota</span>
+                <span className="text-label-caps font-label-caps text-outline">{t.login.orUse}</span>
                 <div className="h-[1px] flex-1 bg-outline-variant"></div>
               </div>
 
@@ -197,10 +201,10 @@ export default function LoginPage() {
 
           {/* Footer Message */}
           <p className="mt-lg text-center font-body-md text-on-surface-variant px-md">
-            Með því að skrá þig samþykkir þú {' '}
-            <a className="text-primary font-semibold hover:underline" href="#">skilmála okkar</a> 
+            {t.login.termsText} {' '}
+            <a className="text-primary font-semibold hover:underline" href="#">{t.login.termsLink}</a> 
             {' '}og{' '}
-            <a className="text-primary font-semibold hover:underline" href="#">persónuverndarstefnu</a>.
+            <a className="text-primary font-semibold hover:underline" href="#">{t.login.privacyLink}</a>.
           </p>
         </div>
       </main>

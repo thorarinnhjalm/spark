@@ -6,6 +6,8 @@ import { useAuth } from '@/context/AuthContext';
 import { missionsData } from '@/lib/missionsData';
 import { saveMissionProgress } from '@/lib/db';
 import Link from 'next/link';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { useTranslation } from '@/components/DictionaryProvider';
 
 type Phase = 'hook' | 'lab' | 'reflection' | 'success';
 
@@ -14,6 +16,7 @@ export default function ActiveMissionPage() {
   const router = useRouter();
   const params = useParams();
   const missionId = params.id as string;
+  const { t, lang } = useTranslation();
   
   const mission = missionsData.find(m => m.missionId === missionId) || null;
   const [phase, setPhase] = useState<Phase>('hook');
@@ -31,15 +34,15 @@ export default function ActiveMissionPage() {
   
   // Auth Check
   useEffect(() => {
-    if (!loading && !user) router.push('/join');
-  }, [user, loading, router]);
+    if (!loading && !user) router.push(`/${lang}/join`);
+  }, [user, loading, router, lang]);
 
   // If mission not found
   useEffect(() => {
     if (!mission && !loading) {
-      router.push('/missions');
+      router.push(`/${lang}/missions`);
     }
-  }, [mission, loading, router]);
+  }, [mission, loading, router, lang]);
 
   useEffect(() => {
     // Scroll down on new messages
@@ -67,7 +70,8 @@ export default function ActiveMissionPage() {
         body: JSON.stringify({
           missionId: mission?.missionId,
           history: chatHistory,
-          message: userMessage
+          message: userMessage,
+          language: lang // Pass the active language to the AI
         })
       });
       
@@ -75,10 +79,10 @@ export default function ActiveMissionPage() {
       if (data.reply) {
         setChatHistory([...newHistory, { role: 'ai', text: data.reply }]);
       } else {
-        setChatHistory([...newHistory, { role: 'ai', text: 'Úbbs, sambandsleysi! Prófaðu aftur.' }]);
+        setChatHistory([...newHistory, { role: 'ai', text: t.common.error }]);
       }
     } catch {
-      setChatHistory([...newHistory, { role: 'ai', text: 'Villa kom upp í kerfinu.' }]);
+      setChatHistory([...newHistory, { role: 'ai', text: t.common.error }]);
     } finally {
       setIsChatLoading(false);
     }
@@ -95,7 +99,7 @@ export default function ActiveMissionPage() {
       setPhase('success');
     } catch (error) {
       console.error("Gat ekki vistað:", error);
-      alert('Tókst ekki að vista. Prófaðu aftur.');
+      alert(t.common.error);
       setIsSaving(false);
     }
   };
@@ -103,7 +107,7 @@ export default function ActiveMissionPage() {
   if (loading || !mission || !user) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <span className="text-outline">Hleður verkefni...</span>
+        <span className="text-outline">{t.common.loading}</span>
       </div>
     );
   }
@@ -114,13 +118,13 @@ export default function ActiveMissionPage() {
         <div className="glass-card rounded-[32px] p-xl text-center shadow-[0_20px_50px_rgba(16,185,129,0.2)] border-2 border-emerald-400 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-tr from-emerald-400/10 to-teal-400/10 pointer-events-none"></div>
           <div className="text-6xl mb-6 relative z-10">🎉</div>
-          <h1 className="font-h1 text-emerald-500 mb-4 relative z-10">Vel Gert!</h1>
-          <p className="font-body-lg text-on-surface mb-8 relative z-10">Þú fékkst <strong className="text-emerald-600">{mission.xpReward} XP</strong> fyrir að klára {mission.title}!</p>
+          <h1 className="font-h1 text-emerald-500 mb-4 relative z-10">{t.lab.wellDone}</h1>
+          <p className="font-body-lg text-on-surface mb-8 relative z-10">{t.lab.youGotXp} <strong className="text-emerald-600">{mission.xpReward} XP</strong> {t.lab.forCompleting} {mission.title}!</p>
           <button 
-            onClick={() => router.push('/missions')}
+            onClick={() => router.push(`/${lang}/missions`)}
             className="px-8 py-4 bg-emerald-500 text-white rounded-2xl font-bold hover:scale-105 transition-transform shadow-lg relative z-10"
           >
-            Aftur í Ævintýrakortið
+            {t.lab.backToMap}
           </button>
         </div>
       </div>
@@ -140,10 +144,11 @@ export default function ActiveMissionPage() {
         <nav className="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
           <div className="text-2xl font-black tracking-tighter text-violet-600 dark:text-violet-400">Spark AI</div>
           <div className="hidden md:flex gap-8 items-center">
-            <Link href="/missions" className="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-violet-700 dark:text-violet-300 border-b-2 border-violet-500 pb-1">Missions</Link>
+            <Link href={`/${lang}/missions`} className="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-violet-700 dark:text-violet-300 border-b-2 border-violet-500 pb-1">{t.nav.missions}</Link>
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/missions" className="hidden md:block bg-surface-variant text-on-surface-variant px-4 py-2 rounded-xl font-semibold scale-95 active:scale-90 transition-transform">Hætta</Link>
+            <LanguageSwitcher />
+            <Link href={`/${lang}/missions`} className="hidden md:block bg-surface-variant text-on-surface-variant px-4 py-2 rounded-xl font-semibold scale-95 active:scale-90 transition-transform">{t.lab.quit}</Link>
             <div className="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white font-bold overflow-hidden border-2 border-white">
               {user.email?.charAt(0).toUpperCase()}
             </div>
@@ -176,7 +181,7 @@ export default function ActiveMissionPage() {
               <div className="w-12 h-12 bg-primary-fixed rounded-xl flex items-center justify-center text-primary">
                 <span className="material-symbols-outlined">rocket_launch</span>
               </div>
-              <h2 className="font-h3 text-h3">Hvað gerist næst?</h2>
+              <h2 className="font-h3 text-h3">{t.lab.whatHappensNext}</h2>
             </div>
             <p className="font-body-lg text-body-lg text-on-surface-variant">{mission.phases.hook.scenarioText}</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-sm">
@@ -213,7 +218,7 @@ export default function ActiveMissionPage() {
                   onClick={handleFinishLab}
                   className="bg-secondary-container text-white px-4 py-1.5 rounded-full text-xs font-bold hover:scale-105 transition-transform"
                 >
-                  Ég er tilbúin(n)
+                  {t.lab.imReady}
                 </button>
               )}
             </div>
@@ -222,12 +227,12 @@ export default function ActiveMissionPage() {
               {/* Objective Banner */}
               <div className="bg-surface-container-low p-4 rounded-xl border border-surface-variant text-sm font-medium text-on-surface-variant flex items-start gap-2 mb-4">
                 <span className="material-symbols-outlined text-primary-container text-lg">flag</span>
-                <span><strong>Markmið:</strong> {mission.phases.lab.goalText}</span>
+                <span><strong>{t.lab.objective}</strong> {mission.phases.lab.goalText}</span>
               </div>
 
               {chatHistory.length === 0 && (
                 <div className="text-center text-outline italic my-8">
-                  Sendu fyrstu skilaboðin til að byrja...
+                  {t.lab.firstMessagePrompt}
                 </div>
               )}
 
@@ -261,7 +266,7 @@ export default function ActiveMissionPage() {
               <form onSubmit={handleSendMessage} className="flex gap-sm bg-white rounded-full p-2 border border-outline-variant focus-within:ring-2 ring-primary-fixed transition-all">
                 <input 
                   className="flex-1 bg-transparent border-none focus:ring-0 px-4 font-medium outline-none disabled:opacity-50" 
-                  placeholder="Skrifaðu svar hér..." 
+                  placeholder={t.lab.typeAnswer}
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
@@ -285,7 +290,7 @@ export default function ActiveMissionPage() {
               <div className="w-12 h-12 bg-secondary-fixed rounded-xl flex items-center justify-center text-secondary">
                 <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>military_tech</span>
               </div>
-              <h2 className="font-h3 text-h3">Lokaverkefni</h2>
+              <h2 className="font-h3 text-h3">{t.lab.finalTask}</h2>
             </div>
             
             <div className="space-y-sm relative">
@@ -294,7 +299,7 @@ export default function ActiveMissionPage() {
               </label>
               <textarea 
                 className="w-full min-h-[120px] rounded-xl border border-outline-variant bg-surface-container-low p-md font-body-md focus:border-primary focus:ring-primary-container focus:ring-2 transition-all outline-none" 
-                placeholder="Skrifaðu þínar hugsanir hér..."
+                placeholder={t.lab.writeThoughts}
                 value={reflectionAnswer}
                 onChange={(e) => setReflectionAnswer(e.target.value)}
               ></textarea>
@@ -306,7 +311,7 @@ export default function ActiveMissionPage() {
               className="w-full bg-gradient-to-r from-primary to-secondary-container text-white font-h3 py-4 rounded-2xl shadow-lg hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 disabled:hover:scale-100"
               style={{ boxShadow: '0 0 40px rgba(132, 85, 239, 0.4)' }}
             >
-              {isSaving ? 'Vistar...' : 'Klára Verkefni'}
+              {isSaving ? t.common.saving : t.lab.finishMission}
             </button>
           </section>
 

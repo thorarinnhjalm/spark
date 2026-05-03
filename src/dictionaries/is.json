@@ -1,0 +1,87 @@
+{
+  "common": {
+    "loading": "Hleður...",
+    "error": "Villa kom upp. Vinsamlegast reyndu aftur.",
+    "save": "Vista",
+    "saving": "Vistar...",
+    "logout": "Útskrá"
+  },
+  "nav": {
+    "dashboard": "Mælaborð",
+    "missions": "Missions",
+    "library": "Library",
+    "explore": "Explore",
+    "startLearning": "Start Learning",
+    "childJoin": "Börn: Nýskráning"
+  },
+  "login": {
+    "title": "Velkomin(n)",
+    "subtitle": "Fylgstu með framförum barnsins þíns",
+    "loginTab": "Innskráning",
+    "registerTab": "Nýskráning",
+    "email": "Netfang",
+    "emailPlaceholder": "nafn@dæmi.is",
+    "password": "Lykilorð",
+    "passwordPlaceholder": "••••••••",
+    "forgotPassword": "Gleymt lykilorð?",
+    "loginBtn": "Innskráning",
+    "registerBtn": "Stofna Aðgang",
+    "orUse": "Eða nota",
+    "termsText": "Með því að skrá þig samþykkir þú",
+    "termsLink": "skilmála okkar",
+    "privacyLink": "persónuverndarstefnu"
+  },
+  "join": {
+    "brandSubtitle": "Búðu til þinn eigin heim með gervigreind!",
+    "title": "Skráðu þig inn",
+    "subtitle": "Notaðu kódann sem foreldri þitt fékk.",
+    "inviteCode": "Boðskóði",
+    "inviteCodePlaceholder": "DÆMI: SPARK-123",
+    "nickname": "Gælunafn",
+    "nicknamePlaceholder": "Hvað heitir þú í leiknum?",
+    "secretPassword": "Leyniorð",
+    "secretPasswordPlaceholder": "••••••••",
+    "startBtn": "Hefja leik!",
+    "areYouParent": "Ertu foreldri?",
+    "goToDashboard": "Fara í mælaborð"
+  },
+  "dashboard": {
+    "welcome": "Velkomin(n) aftur",
+    "subtitle": "Hér er yfirlit yfir námsframvindu barna þinna í Spark AI.",
+    "inviteCodeTitle": "Boðskóði",
+    "inviteCodeDesc": "Deildu þessum kóða með börnum þínum til að tengja þau við aðganginn þinn.",
+    "copyCode": "Afrita kóða",
+    "myChildren": "Mín Börn",
+    "connected": "Tengd",
+    "xp": "Námstign (XP)",
+    "viewProgress": "Skoða framvindu",
+    "addChild": "Bæta við barni",
+    "addChildDesc": "Notaðu boðskóðann á innskráningarsíðu barns"
+  },
+  "missions": {
+    "heroTag": "Ævintýrið Bíður",
+    "title": "Verkefnakortið Þitt",
+    "subtitle": "Kannaðu heim gervigreindar í gegnum spennandi verkefni. Safnaðu XP og opnaðu nýja hæfileika!",
+    "totalXp": "XP Samtals",
+    "completed": "Lokið",
+    "allMissions": "Öll Verkefni",
+    "missionCompleted": "Lokið",
+    "missionOpen": "Opið",
+    "startNow": "Byrja Núna"
+  },
+  "lab": {
+    "objective": "Markmið:",
+    "imReady": "Ég er tilbúin(n)",
+    "firstMessagePrompt": "Sendu fyrstu skilaboðin til að byrja...",
+    "typeAnswer": "Skrifaðu svar hér...",
+    "whatHappensNext": "Hvað gerist næst?",
+    "finalTask": "Lokaverkefni",
+    "writeThoughts": "Skrifaðu þínar hugsanir hér...",
+    "finishMission": "Klára Verkefni",
+    "quit": "Hætta",
+    "wellDone": "Vel Gert!",
+    "youGotXp": "Þú fékkst",
+    "forCompleting": "fyrir að klára",
+    "backToMap": "Aftur í Ævintýrakortið"
+  }
+}

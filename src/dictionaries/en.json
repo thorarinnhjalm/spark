@@ -1,0 +1,87 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred. Please try again.",
+    "save": "Save",
+    "saving": "Saving...",
+    "logout": "Sign Out"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "missions": "Missions",
+    "library": "Library",
+    "explore": "Explore",
+    "startLearning": "Start Learning",
+    "childJoin": "Kids: Join Here"
+  },
+  "login": {
+    "title": "Welcome",
+    "subtitle": "Track your child's progress",
+    "loginTab": "Log In",
+    "registerTab": "Register",
+    "email": "Email",
+    "emailPlaceholder": "name@example.com",
+    "password": "Password",
+    "passwordPlaceholder": "••••••••",
+    "forgotPassword": "Forgot password?",
+    "loginBtn": "Log In",
+    "registerBtn": "Create Account",
+    "orUse": "Or use",
+    "termsText": "By signing up, you agree to our",
+    "termsLink": "Terms of Service",
+    "privacyLink": "Privacy Policy"
+  },
+  "join": {
+    "brandSubtitle": "Build your own world with AI!",
+    "title": "Sign In",
+    "subtitle": "Use the code your parent gave you.",
+    "inviteCode": "Invite Code",
+    "inviteCodePlaceholder": "EXAMPLE: SPARK-123",
+    "nickname": "Nickname",
+    "nicknamePlaceholder": "What is your player name?",
+    "secretPassword": "Secret Password",
+    "secretPasswordPlaceholder": "••••••••",
+    "startBtn": "Start Game!",
+    "areYouParent": "Are you a parent?",
+    "goToDashboard": "Go to Dashboard"
+  },
+  "dashboard": {
+    "welcome": "Welcome back",
+    "subtitle": "Here is an overview of your child's progress in Spark AI.",
+    "inviteCodeTitle": "Invite Code",
+    "inviteCodeDesc": "Share this code with your children to connect them to your account.",
+    "copyCode": "Copy Code",
+    "myChildren": "My Children",
+    "connected": "Connected",
+    "xp": "Experience (XP)",
+    "viewProgress": "View Progress",
+    "addChild": "Add Child",
+    "addChildDesc": "Use the invite code on the child login page"
+  },
+  "missions": {
+    "heroTag": "Adventure Awaits",
+    "title": "Your Mission Map",
+    "subtitle": "Explore the world of AI through exciting missions. Collect XP and unlock new abilities!",
+    "totalXp": "Total XP",
+    "completed": "Completed",
+    "allMissions": "All Missions",
+    "missionCompleted": "Done",
+    "missionOpen": "Open",
+    "startNow": "Start Now"
+  },
+  "lab": {
+    "objective": "Objective:",
+    "imReady": "I'm Ready",
+    "firstMessagePrompt": "Send the first message to begin...",
+    "typeAnswer": "Type your answer here...",
+    "whatHappensNext": "What happens next?",
+    "finalTask": "Final Task",
+    "writeThoughts": "Write your thoughts here...",
+    "finishMission": "Finish Mission",
+    "quit": "Quit",
+    "wellDone": "Well Done!",
+    "youGotXp": "You earned",
+    "forCompleting": "for completing",
+    "backToMap": "Back to Mission Map"
+  }
+}

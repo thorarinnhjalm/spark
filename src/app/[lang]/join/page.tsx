@@ -6,6 +6,8 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { verifyInviteCode, createChildDocument } from '@/lib/db';
 import Link from 'next/link';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { useTranslation } from '@/components/DictionaryProvider';
 
 export default function JoinPage() {
   const [inviteCode, setInviteCode] = useState('');
@@ -14,6 +16,7 @@ export default function JoinPage() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const { t, lang } = useTranslation();
 
   const handleJoin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,7 +26,7 @@ export default function JoinPage() {
     try {
       const parentUid = await verifyInviteCode(inviteCode);
       if (!parentUid) {
-        throw new Error('Þessi kóði er ekki til! Spurðu foreldri þitt aftur.');
+        throw new Error(t.common.error); // We can add a specific error later
       }
 
       const sanitizedNickname = nickname.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -33,12 +36,12 @@ export default function JoinPage() {
 
       await createChildDocument(userCredential.user.uid, parentUid, nickname);
 
-      router.push('/missions'); 
+      router.push(`/${lang}/missions`); 
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message);
       } else {
-        setError('Villa kom upp. Gakktu úr skugga um að kóðinn sé réttur.');
+        setError(t.common.error);
       }
     } finally {
       setIsLoading(false);
@@ -46,12 +49,18 @@ export default function JoinPage() {
   };
 
   return (
-    <div className="bg-surface font-body-md text-on-background selection:bg-primary-fixed flex flex-col items-center justify-center p-gutter min-h-screen">
+    <div className="bg-surface font-body-md text-on-background selection:bg-primary-fixed flex flex-col items-center justify-center p-gutter min-h-screen relative">
+      
+      {/* Absolute positioned language switcher */}
+      <div className="absolute top-6 right-6 z-50">
+        <LanguageSwitcher />
+      </div>
+
       <main className="w-full max-w-lg flex flex-col items-center">
         {/* Brand Logo for Onboarding */}
         <div className="mb-lg text-center">
           <span className="font-h1 text-primary-container tracking-tighter block mb-2">Spark AI</span>
-          <p className="font-body-lg text-on-surface-variant px-md">Búðu til þinn eigin heim með gervigreind!</p>
+          <p className="font-body-lg text-on-surface-variant px-md">{t.join.brandSubtitle}</p>
         </div>
 
         {/* Main Onboarding Card */}
@@ -63,8 +72,8 @@ export default function JoinPage() {
           <div className="relative z-10 space-y-6">
             {/* Header */}
             <div className="text-center space-y-2">
-              <h2 className="font-h2 text-on-surface">Skráðu þig inn</h2>
-              <p className="font-body-md text-on-surface-variant">Notaðu kódann sem foreldri þitt fékk.</p>
+              <h2 className="font-h2 text-on-surface">{t.join.title}</h2>
+              <p className="font-body-md text-on-surface-variant">{t.join.subtitle}</p>
             </div>
 
             {error && (
@@ -78,12 +87,12 @@ export default function JoinPage() {
               <div className="space-y-gutter">
                 {/* Invite Code */}
                 <div className="group">
-                  <label className="font-label-caps text-primary-container ml-2 mb-2 block">Boðskóði</label>
+                  <label className="font-label-caps text-primary-container ml-2 mb-2 block">{t.join.inviteCode}</label>
                   <div className="relative">
                     <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary-container">key</span>
                     <input 
                       className="w-full pl-12 pr-4 py-5 rounded-2xl bg-white border-2 border-surface-variant focus:border-primary-container focus:ring-0 transition-all text-h3 text-on-surface placeholder:text-surface-variant font-h3 tracking-widest uppercase" 
-                      placeholder="DÆMI: SPARK-123" 
+                      placeholder={t.join.inviteCodePlaceholder}
                       type="text"
                       value={inviteCode}
                       onChange={(e) => setInviteCode(e.target.value.toUpperCase())}
@@ -94,12 +103,12 @@ export default function JoinPage() {
 
                 {/* Nickname */}
                 <div className="group">
-                  <label className="font-label-caps text-primary-container ml-2 mb-2 block">Gælunafn</label>
+                  <label className="font-label-caps text-primary-container ml-2 mb-2 block">{t.join.nickname}</label>
                   <div className="relative">
                     <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary-container">face</span>
                     <input 
                       className="w-full pl-12 pr-4 py-5 rounded-2xl bg-white border-2 border-surface-variant focus:border-primary-container focus:ring-0 transition-all text-body-lg text-on-surface placeholder:text-surface-variant font-semibold" 
-                      placeholder="Hvað heitir þú í leiknum?" 
+                      placeholder={t.join.nicknamePlaceholder}
                       type="text"
                       value={nickname}
                       onChange={(e) => setNickname(e.target.value)}
@@ -110,12 +119,12 @@ export default function JoinPage() {
 
                 {/* Secret Password */}
                 <div className="group">
-                  <label className="font-label-caps text-primary-container ml-2 mb-2 block">Leyniorð</label>
+                  <label className="font-label-caps text-primary-container ml-2 mb-2 block">{t.join.secretPassword}</label>
                   <div className="relative">
                     <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary-container" style={{ fontVariationSettings: "'FILL' 1" }}>lock</span>
                     <input 
                       className="w-full pl-12 pr-4 py-5 rounded-2xl bg-white border-2 border-surface-variant focus:border-primary-container focus:ring-0 transition-all text-body-lg text-on-surface placeholder:text-surface-variant" 
-                      placeholder="••••••••" 
+                      placeholder={t.join.secretPasswordPlaceholder}
                       type="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
@@ -132,7 +141,7 @@ export default function JoinPage() {
                 disabled={isLoading}
                 className="w-full py-6 rounded-[24px] bg-gradient-to-r from-primary-container to-secondary-container text-white font-h2 shadow-lg shadow-primary-fixed hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4 group disabled:opacity-50"
               >
-                <span>{isLoading ? 'Hleður...' : 'Hefja leik!'}</span>
+                <span>{isLoading ? t.common.loading : t.join.startBtn}</span>
                 {!isLoading && <span className="material-symbols-outlined group-hover:translate-x-2 transition-transform" style={{ fontVariationSettings: "'FILL' 1" }}>rocket_launch</span>}
               </button>
             </form>
@@ -141,9 +150,9 @@ export default function JoinPage() {
 
         {/* Secondary Navigation for the screen */}
         <div className="mt-lg flex flex-col items-center gap-4">
-          <p className="font-body-md text-on-surface-variant">Ertu foreldri?</p>
+          <p className="font-body-md text-on-surface-variant">{t.join.areYouParent}</p>
           <div className="flex gap-gutter">
-            <Link href="/login" className="font-label-caps text-primary-container hover:underline py-2 px-4 glass-card rounded-full">Fara í mælaborð</Link>
+            <Link href={`/${lang}/login`} className="font-label-caps text-primary-container hover:underline py-2 px-4 glass-card rounded-full">{t.join.goToDashboard}</Link>
           </div>
         </div>
 

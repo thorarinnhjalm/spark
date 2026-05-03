@@ -7,18 +7,21 @@ import { db, auth } from '@/lib/firebase';
 import { doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
 import Link from 'next/link';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { useTranslation } from '@/components/DictionaryProvider';
 
 export default function DashboardPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
+  const { t, lang } = useTranslation();
   const [inviteCode, setInviteCode] = useState<string | null>(null);
   const [children, setChildren] = useState<{id: string, displayName: string, xp: number, rank: string}[]>([]);
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push('/login');
+      router.push(`/${lang}/login`);
     }
-  }, [user, loading, router]);
+  }, [user, loading, router, lang]);
 
   useEffect(() => {
     async function fetchParentData() {
@@ -49,7 +52,7 @@ export default function DashboardPage() {
   if (loading || !user) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <span className="text-outline">Hleður...</span>
+        <span className="text-outline">{t.common.loading}</span>
       </div>
     );
   }
@@ -61,14 +64,15 @@ export default function DashboardPage() {
         <div className="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
           <div className="text-2xl font-black tracking-tighter text-violet-600 dark:text-violet-400">Spark AI</div>
           <nav className="hidden md:flex items-center gap-8">
-            <Link href="/dashboard" className="text-violet-700 dark:text-violet-300 border-b-2 border-violet-500 pb-1 font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight">Mælaborð</Link>
+            <Link href={`/${lang}/dashboard`} className="text-violet-700 dark:text-violet-300 border-b-2 border-violet-500 pb-1 font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight">{t.nav.dashboard}</Link>
           </nav>
           <div className="flex items-center gap-4">
+            <LanguageSwitcher />
             <button 
               onClick={() => signOut(auth)}
               className="scale-95 active:scale-90 transition-transform px-4 py-2 bg-surface-container-high text-primary rounded-xl font-semibold text-sm hover:bg-surface-container"
             >
-              Útskrá
+              {t.common.logout}
             </button>
             <div className="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold">
               {user.email?.charAt(0).toUpperCase()}
@@ -80,8 +84,8 @@ export default function DashboardPage() {
       <main className="max-w-7xl mx-auto px-6 py-10 md:py-16">
         {/* Dashboard Header */}
         <div className="mb-12">
-          <h1 className="font-h1 text-h1 text-on-surface mb-2">Velkomin(n) aftur</h1>
-          <p className="text-on-surface-variant font-body-lg text-body-lg">Hér er yfirlit yfir námsframvindu barna þinna í Spark AI.</p>
+          <h1 className="font-h1 text-h1 text-on-surface mb-2">{t.dashboard.welcome}</h1>
+          <p className="text-on-surface-variant font-body-lg text-body-lg">{t.dashboard.subtitle}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
@@ -92,10 +96,10 @@ export default function DashboardPage() {
                 <div className="w-10 h-10 bg-primary-fixed rounded-xl flex items-center justify-center text-primary">
                   <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24" }}>person_add</span>
                 </div>
-                <h3 className="font-h3 text-h3 leading-none">Boðskóði</h3>
+                <h3 className="font-h3 text-h3 leading-none">{t.dashboard.inviteCodeTitle}</h3>
               </div>
               <p className="text-sm text-on-surface-variant leading-relaxed">
-                Deildu þessum kóða með börnum þínum til að tengja þau við aðganginn þinn.
+                {t.dashboard.inviteCodeDesc}
               </p>
               
               <div className="relative group">
@@ -103,7 +107,7 @@ export default function DashboardPage() {
                   {/* Decorative blur inside code card */}
                   <div className="absolute -top-10 -right-10 w-24 h-24 bg-white/20 rounded-full blur-2xl"></div>
                   <span className="text-2xl font-black tracking-widest text-white relative z-10">
-                    {inviteCode || 'Hleður...'}
+                    {inviteCode || t.common.loading}
                   </span>
                 </div>
               </div>
@@ -113,7 +117,7 @@ export default function DashboardPage() {
                 className="w-full py-3 px-4 rounded-xl border-2 border-outline-variant font-semibold text-sm flex items-center justify-center gap-2 hover:bg-surface-container-low transition-colors active:scale-95 text-on-surface"
               >
                 <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 0" }}>content_copy</span>
-                Afrita kóða
+                {t.dashboard.copyCode}
               </button>
             </div>
           </div>
@@ -121,9 +125,9 @@ export default function DashboardPage() {
           {/* Right Column: My Children Grid */}
           <div className="md:col-span-8 lg:col-span-9 space-y-gutter">
             <div className="flex items-center justify-between">
-              <h2 className="font-h2 text-h2 text-on-surface">Mín Börn</h2>
+              <h2 className="font-h2 text-h2 text-on-surface">{t.dashboard.myChildren}</h2>
               <span className="px-3 py-1 bg-surface-container-high text-primary rounded-full text-xs font-bold uppercase tracking-wider">
-                {children.length} Tengd
+                {children.length} {t.dashboard.connected}
               </span>
             </div>
 
@@ -160,7 +164,7 @@ export default function DashboardPage() {
                       
                       <div className="space-y-2">
                         <div className="flex justify-between text-xs font-bold text-on-surface-variant">
-                          <span>Námstign (XP)</span>
+                          <span>{t.dashboard.xp}</span>
                           <span>{child.xp} XP</span>
                         </div>
                         <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
@@ -172,10 +176,10 @@ export default function DashboardPage() {
                       </div>
                       
                       <Link 
-                        href={`/dashboard/${child.id}`}
+                        href={`/${lang}/dashboard/${child.id}`}
                         className="mt-2 w-full py-3 bg-surface-container-low text-primary font-bold rounded-xl border border-primary/10 hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2"
                       >
-                        Skoða framvindu
+                        {t.dashboard.viewProgress}
                         <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
                       </Link>
                     </div>
@@ -184,13 +188,13 @@ export default function DashboardPage() {
               })}
 
               {/* Empty State / Add New Logic */}
-              <Link href="/join" className="border-2 border-dashed border-outline-variant rounded-2xl p-6 flex flex-col items-center justify-center text-center gap-4 hover:border-primary/50 hover:bg-primary-fixed/20 transition-all cursor-pointer group">
+              <Link href={`/${lang}/join`} className="border-2 border-dashed border-outline-variant rounded-2xl p-6 flex flex-col items-center justify-center text-center gap-4 hover:border-primary/50 hover:bg-primary-fixed/20 transition-all cursor-pointer group">
                 <div className="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-slate-400 group-hover:bg-primary group-hover:text-white transition-all">
                   <span className="material-symbols-outlined text-[32px]">add</span>
                 </div>
                 <div>
-                  <p className="font-bold text-on-surface">Bæta við barni</p>
-                  <p className="text-xs text-on-surface-variant">Notaðu boðskóðann á innskráningarsíðu barns</p>
+                  <p className="font-bold text-on-surface">{t.dashboard.addChild}</p>
+                  <p className="text-xs text-on-surface-variant">{t.dashboard.addChildDesc}</p>
                 </div>
               </Link>
 
