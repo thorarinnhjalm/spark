@@ -83,5 +83,28 @@
     "youGotXp": "You earned",
     "forCompleting": "for completing",
     "backToMap": "Back to Mission Map"
+  },
+  "landing": {
+    "forKids": "✨ For kids aged 10-14",
+    "heroTitle1": "Learn to ",
+    "heroTitleHighlight": "think",
+    "heroTitle2": " with AI",
+    "heroDesc": "Don't just use it. Spark is an adventure-driven environment where kids learn to control, understand, and evaluate AI responsibly.",
+    "tryFree": "Try for Free",
+    "readMore": "Read more",
+    "frameworkTitle": "The 4D AI Fluency Framework™",
+    "frameworkD1Title": "Discover",
+    "frameworkD1Desc": "Learn to see opportunities where AI can help.",
+    "frameworkD2Title": "Design",
+    "frameworkD2Desc": "Write clear instructions and prompts to get precise answers.",
+    "frameworkD3Title": "Develop",
+    "frameworkD3Desc": "Use the answers to create, write, and build solutions.",
+    "frameworkD4Title": "Diligence",
+    "frameworkD4Desc": "Learn to critically evaluate answers, look for errors, and correct them.",
+    "ctaTitle": "Ready to start?",
+    "ctaDesc": "Register your child today and open the door to the future. The first mission is free.",
+    "registerParent": "Register as a parent",
+    "viewForSchools": "View for schools",
+    "footer": "© 2026 Spark by Antigravity. All rights reserved."
   }
 }

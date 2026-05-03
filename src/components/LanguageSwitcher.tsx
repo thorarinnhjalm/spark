@@ -18,11 +18,11 @@ export default function LanguageSwitcher() {
   return (
     <button
       onClick={toggleLanguage}
-      className="flex items-center justify-center w-10 h-10 rounded-full bg-surface-variant hover:bg-surface-dim transition-colors shadow-sm border border-surface-container-highest"
+      className="flex items-center justify-center px-3 py-1.5 rounded-full bg-surface-variant hover:bg-surface-dim transition-colors shadow-sm border border-surface-container-highest"
       title="Skipta um tungumál / Change language"
     >
-      <span className="text-xl leading-none" role="img" aria-label={lang === 'is' ? 'Icelandic' : 'English'}>
-        {lang === 'is' ? '🇮🇸' : '🇬🇧'}
+      <span className="text-sm font-bold text-on-surface-variant tracking-wider">
+        {lang === 'is' ? 'IS' : 'ENG'}
       </span>
     </button>
   );

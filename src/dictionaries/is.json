@@ -83,5 +83,28 @@
     "youGotXp": "Þú fékkst",
     "forCompleting": "fyrir að klára",
     "backToMap": "Aftur í Ævintýrakortið"
+  },
+  "landing": {
+    "forKids": "✨ Fyrir krakka 10-14 ára",
+    "heroTitle1": "Lærðu að ",
+    "heroTitleHighlight": "hugsa",
+    "heroTitle2": " með gervigreind",
+    "heroDesc": "Ekki bara nota hana. Spark er ævintýradrifið umhverfi þar sem börn læra að stjórna, skilja og meta gervigreind á ábyrgan hátt.",
+    "tryFree": "Prófa Frítt",
+    "readMore": "Lesa meira",
+    "frameworkTitle": "The 4D AI Fluency Framework™",
+    "frameworkD1Title": "Uppgötva (Discover)",
+    "frameworkD1Desc": "Lærðu að sjá tækifæri þar sem gervigreind getur hjálpað.",
+    "frameworkD2Title": "Hanna (Design)",
+    "frameworkD2Desc": "Skrifaðu skýrar leiðbeiningar og prompt til að fá nákvæm svör.",
+    "frameworkD3Title": "Þróa (Develop)",
+    "frameworkD3Desc": "Nýttu svörin til að skapa, skrifa og búa til lausnir.",
+    "frameworkD4Title": "Skoða (Diligence)",
+    "frameworkD4Desc": "Lærðu að meta svörin gagnrýnt, leita að villum og leiðrétta.",
+    "ctaTitle": "Tilbúin að byrja?",
+    "ctaDesc": "Skráðu barnið þitt í dag og opnaðu dyr að framtíðinni. Fyrsta ævintýrið er frítt.",
+    "registerParent": "Skrá sem foreldri",
+    "viewForSchools": "Skoða fyrir skóla",
+    "footer": "© 2026 Spark by Antigravity. Öll réttindi áskilin."
   }
 }

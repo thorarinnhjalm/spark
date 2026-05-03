@@ -2,30 +2,35 @@
 
 import React from 'react';
 import { useAuth } from '@/context/AuthContext';
+import Link from 'next/link';
+import { useTranslation } from './DictionaryProvider';
+import LanguageSwitcher from './LanguageSwitcher';
 
 export default function TopBar() {
   const { user, loading } = useAuth();
+  const { t, lang } = useTranslation();
 
   return (
-    <header style={{ padding: 'var(--spacing-sm) 0', borderBottom: '1px solid var(--surface-border)' }}>
-      <div className="container flex-between">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <div style={{
-            width: '32px', height: '32px', borderRadius: '8px',
-            background: 'linear-gradient(135deg, var(--primary-color), var(--secondary-color))',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold'
-          }}>
+    <header className="py-4 border-b border-surface-variant bg-white/70 backdrop-blur-xl sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <Link href={`/${lang}`} className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary-container flex items-center justify-center font-bold text-white shadow-sm">
             S
           </div>
-          <span style={{ fontSize: '1.25rem', fontWeight: '700', letterSpacing: '1px' }}>SPARK</span>
-        </div>
-        <nav>
+          <span className="text-xl font-bold tracking-wide text-primary">SPARK</span>
+        </Link>
+        <nav className="flex items-center gap-4">
+          <LanguageSwitcher />
           {loading ? (
-            <button className="btn-outline" style={{ opacity: 0.5 }}>Hleður...</button>
+            <span className="text-outline text-sm font-medium opacity-50">{t.common.loading}</span>
           ) : user ? (
-            <button className="btn-outline">Mælaborð</button>
+            <Link href={`/${lang}/dashboard`} className="bg-surface-variant text-on-surface-variant px-4 py-2 rounded-xl font-semibold hover:bg-surface-dim transition-colors text-sm">
+              {t.nav.dashboard}
+            </Link>
           ) : (
-            <button className="btn-outline">Foreldrar: Innskráning</button>
+            <Link href={`/${lang}/login`} className="bg-primary text-white px-4 py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors shadow-sm text-sm">
+              {t.login.loginBtn}
+            </Link>
           )}
         </nav>
       </div>
