@@ -96,7 +96,7 @@ export default function LoginPage() {
           </div>
         </div>
 
-        <div className="w-full max-w-xl relative z-10">
+        <div className="w-full max-w-2xl relative z-10">
           {/* Glassmorphic Auth Card */}
           <div className="glass-card rounded-[24px] p-8 md:p-12 shadow-[0_20px_50px_rgba(139,92,246,0.1)] relative overflow-hidden">
             {/* Decorative background elements */}

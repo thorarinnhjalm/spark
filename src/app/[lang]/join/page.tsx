@@ -63,7 +63,7 @@ export default function JoinPage() {
         <LanguageSwitcher />
       </div>
 
-      <main className="w-full max-w-xl flex flex-col items-center">
+      <main className="w-full max-w-2xl flex flex-col items-center">
         {/* Brand Logo */}
         <div className="mb-10 text-center">
           <div className="flex items-center justify-center gap-3 mb-3">
