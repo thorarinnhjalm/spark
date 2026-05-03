@@ -340,7 +340,7 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
             {/* Brand Column */}
             <div className="md:col-span-5">
               <div className="flex items-center gap-2 mb-6">
-                <img src="/logo.png" alt="Spark" className="h-8 w-auto object-contain" />
+                <img src="/logo.png" alt="Spark" className="h-12 w-auto object-contain" />
               </div>
               <p className="text-on-surface-variant text-sm pr-8 leading-relaxed">
                 {t.footerMission}
