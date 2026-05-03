@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="light" lang="is">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#e9ddff",
+                        "on-tertiary-container": "#fffbff",
+                        "primary-container": "#8455ef",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#fef7ff",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "on-secondary-fixed": "#3e0022",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#d0bcff",
+                        "secondary-container": "#fd56a7",
+                        "surface-container-high": "#ede5f3",
+                        "secondary-fixed": "#ffd9e4",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#fffbff",
+                        "on-secondary-container": "#600037",
+                        "surface-tint": "#6d3bd7",
+                        "on-primary-fixed": "#23005c",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#a76500",
+                        "secondary-fixed-dim": "#ffb0cd",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#322f39",
+                        "outline": "#7b7486",
+                        "primary": "#6b38d4",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e7e0ed",
+                        "on-surface": "#1d1a23",
+                        "tertiary-fixed": "#ffdcbb",
+                        "surface-container-highest": "#e7e0ed",
+                        "inverse-on-surface": "#f5eefb",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#ffb869",
+                        "tertiary": "#855000",
+                        "surface-container": "#f3ebf8",
+                        "surface-dim": "#ded7e4",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#cbc3d7",
+                        "on-secondary-fixed-variant": "#8c0053",
+                        "surface-container-low": "#f8f1fe",
+                        "primary-fixed-dim": "#d0bcff",
+                        "on-background": "#1d1a23",
+                        "surface": "#fef7ff",
+                        "on-surface-variant": "#494454",
+                        "on-primary-fixed-variant": "#5516be",
+                        "secondary": "#b4136d",
+                        "on-tertiary-fixed": "#2c1700",
+                        "background": "#fef7ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "48px",
+                        "xl": "64px",
+                        "sm": "12px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "gutter": "16px",
+                        "margin-page": "32px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "h3": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "h1": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "h2": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "h3": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "h1": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.1);
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 16px;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="bg-background font-body-md text-on-background min-h-screen pb-24 md:pb-0">
+    <!-- Top Navigation Shell -->
+    <nav
+        class="bg-white/70 backdrop-blur-xl border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto sticky top-0 z-50">
+        <div class="text-2xl font-black tracking-tighter text-violet-600">Spark AI</div>
+        <div class="hidden md:flex gap-8 items-center">
+            <a class="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 hover:text-violet-500 transition-all duration-300"
+                href="#">Missions</a>
+            <a class="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 hover:text-violet-500 transition-all duration-300"
+                href="#">Dashboard</a>
+            <a class="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 hover:text-violet-500 transition-all duration-300"
+                href="#">Library</a>
+            <a class="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 hover:text-violet-500 transition-all duration-300"
+                href="#">Explore</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <button
+                class="hidden md:block px-6 py-2 bg-primary text-on-primary rounded-full font-semibold text-sm transition-transform scale-95 active:scale-90">Start
+                Learning</button>
+            <div class="w-10 h-10 rounded-full border-2 border-primary overflow-hidden">
+                <img alt="User profile" class="w-full h-full object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMljqgmNTE414gmbpbWBqUFaSjMTo3zdTeNQ_dJF-cByQw8e8UJ2dX9Fr4_i30ChkQfGelzkCMM-BdrFnT8Fu-eWhNHpx8KejZ9s-vGM6ThSRda171oo_1jcOIyj22FeC6BqWb8AezDFpC0StXyxm07kxHt-w-Y1KHSuolpfla_2OxSo9qQyGvXlk_FJPUF3LCJDaR4OD2v8WtvObxxcU8Ew9QiIwFd8bRS_g3Vc4vkMTnKCWEJ1O1xpaNTL8FgmgBQJADIJR2tmdz" />
+            </div>
+        </div>
+    </nav>
+    <main class="max-w-7xl mx-auto px-6 py-8">
+        <!-- Profile Header Section -->
+        <header
+            class="mb-12 flex flex-col md:flex-row items-center gap-8 bg-gradient-to-r from-primary-fixed to-surface-bright p-8 rounded-[32px] shadow-sm">
+            <div class="relative group">
+                <div
+                    class="w-32 h-32 md:w-48 md:h-48 rounded-full border-8 border-white shadow-xl overflow-hidden bg-white">
+                    <img class="w-full h-full object-cover"
+                        data-alt="A friendly, high-quality 3D render of a cute robot avatar designed for children. The robot is metallic white with soft violet accents and large, glowing expressive blue eyes. It is positioned in a brightly lit, ethereal digital workspace with soft purple and pink lighting, creating a magical and encouraging atmosphere for young learners."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAen4xfDyba94ulqxUKJyoGEVOQnaGmB3VDfmADwWX5gnpQKrgDJWyhgy5AIe1LnNwRPQe_qLfdN0qNXIiqNEw0thRZe3_0fpJXo203wtjpG87MWxDPF97je2sdNBft-xcz5_X2i3XZ1OMNsQtYgjP6aSnpq4mTccAk0zn6iEPvePTKw-VGk1qZME4HhcWGf25D9FY9EB5dWwOpPgPn5hTFiHDnSXYI6gmoumOEv5gEyQLJTvgNHhW5XjL18yN13V-Jc42b6SxHSnxs" />
+                </div>
+                <button
+                    class="absolute bottom-2 right-2 bg-secondary text-white p-3 rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center">
+                    <span class="material-symbols-outlined" data-icon="edit">edit</span>
+                </button>
+            </div>
+            <div class="text-center md:text-left flex-1">
+                <div class="flex flex-col md:flex-row items-center gap-4 mb-2">
+                    <h1 class="font-h1 text-h1 text-primary">Góðan dag, Eldhugi!</h1>
+                    <span
+                        class="px-4 py-1 bg-secondary-container text-on-secondary-container rounded-full font-label-caps text-label-caps uppercase tracking-widest">Nýliði</span>
+                </div>
+                <p class="font-body-lg text-body-lg text-on-surface-variant mb-6">Tilbúinn í næsta ævintýri?</p>
+                <div class="max-w-md">
+                    <label class="block text-xs font-bold uppercase text-slate-500 mb-2 ml-1">Gælunafn</label>
+                    <div class="relative">
+                        <input
+                            class="w-full bg-white border-none rounded-2xl px-6 py-4 text-h3 font-h3 text-primary shadow-inner focus:ring-4 focus:ring-primary-container/20 transition-all"
+                            type="text" value="Eldhugi_2024" />
+                        <span
+                            class="absolute right-4 top-1/2 -translate-y-1/2 text-primary/40 material-symbols-outlined"
+                            data-icon="auto_fix_high">auto_fix_high</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Bento Grid Dashboard -->
+        <div class="bento-grid">
+            <!-- XP Progress Card -->
+            <div class="col-span-12 md:col-span-8 glass-card rounded-[24px] p-8 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-end mb-6">
+                        <div>
+                            <h2 class="font-h2 text-h2 text-primary mb-1">XP Samtals</h2>
+                            <p class="text-slate-500 font-semibold uppercase tracking-wider text-xs">Næsta stig: 2,500
+                                XP</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-4xl font-black text-primary">1,840</span>
+                            <span class="text-slate-400 font-bold"> / 2,500</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-8 bg-slate-100 rounded-full overflow-hidden relative">
+                        <div
+                            class="h-full bg-gradient-to-r from-primary to-secondary w-[74%] rounded-full shadow-[0_0_20px_rgba(139,92,246,0.5)]">
+                        </div>
+                        <div class="absolute inset-0 bg-white/10 backdrop-blur-[1px] opacity-20"></div>
+                    </div>
+                </div>
+                <div class="mt-8 flex gap-4 overflow-x-auto pb-2">
+                    <div
+                        class="flex-shrink-0 bg-white/50 px-4 py-3 rounded-2xl flex items-center gap-3 border border-white">
+                        <span class="material-symbols-outlined text-amber-500" data-icon="local_fire_department"
+                            style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+                        <span class="font-bold text-slate-700">5 Daga Runa</span>
+                    </div>
+                    <div
+                        class="flex-shrink-0 bg-white/50 px-4 py-3 rounded-2xl flex items-center gap-3 border border-white">
+                        <span class="material-symbols-outlined text-blue-500" data-icon="star"
+                            style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="font-bold text-slate-700">12 Verkefni</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Rank Badge Card -->
+            <div
+                class="col-span-12 md:col-span-4 bg-primary text-white rounded-[24px] p-8 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+                <div
+                    class="w-32 h-32 mb-6 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border-4 border-white/40 shadow-2xl">
+                    <span class="material-symbols-outlined text-6xl" data-icon="military_tech"
+                        style="font-variation-settings: 'FILL' 1;">military_tech</span>
+                </div>
+                <h3 class="font-h3 text-h3 mb-2">Núverandi Staða</h3>
+                <p class="font-bold text-xl uppercase tracking-widest text-primary-fixed">Nýliði</p>
+                <button
+                    class="mt-6 px-6 py-2 bg-white text-primary rounded-full font-bold text-sm shadow-lg hover:scale-105 transition-transform">Sjá
+                    öll merki</button>
+            </div>
+            <!-- Recent Achievements -->
+            <div class="col-span-12 md:col-span-6 glass-card rounded-[24px] p-8">
+                <h3 class="font-h3 text-h3 text-on-surface mb-6 flex items-center gap-3">
+                    <span class="material-symbols-outlined text-secondary" data-icon="emoji_events">emoji_events</span>
+                    Nýjustu Verðlaun
+                </h3>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4 p-4 bg-white/40 rounded-2xl border border-white/60">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center text-amber-600">
+                            <span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-bold text-on-surface">Snillingur</p>
+                            <p class="text-xs text-slate-500">Lokið 5 málfræði verkefnum</p>
+                        </div>
+                        <span class="material-symbols-outlined text-emerald-500" data-icon="check_circle"
+                            style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    </div>
+                    <div class="flex items-center gap-4 p-4 bg-white/40 rounded-2xl border border-white/60">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600">
+                            <span class="material-symbols-outlined" data-icon="rocket">rocket</span>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-bold text-on-surface">Geimfari</p>
+                            <p class="text-xs text-slate-500">Fyrsta AI samræðan</p>
+                        </div>
+                        <span class="material-symbols-outlined text-emerald-500" data-icon="check_circle"
+                            style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Skills Analysis -->
+            <div class="col-span-12 md:col-span-6 glass-card rounded-[24px] p-8 overflow-hidden relative">
+                <h3 class="font-h3 text-h3 text-on-surface mb-6">Hæfni þín</h3>
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-bold text-slate-600">Skapandi hugsun</span>
+                            <span class="text-primary font-bold">85%</span>
+                        </div>
+                        <div class="h-3 bg-slate-100 rounded-full">
+                            <div class="h-full bg-primary-container rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-bold text-slate-600">Rökfræði</span>
+                            <span class="text-secondary font-bold">60%</span>
+                        </div>
+                        <div class="h-3 bg-slate-100 rounded-full">
+                            <div class="h-full bg-secondary-container rounded-full" style="width: 60%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-bold text-slate-600">Málskilningur</span>
+                            <span class="text-amber-500 font-bold">92%</span>
+                        </div>
+                        <div class="h-3 bg-slate-100 rounded-full">
+                            <div class="h-full bg-amber-400 rounded-full" style="width: 92%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-slate-50 border-t border-slate-200 py-12 mt-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto px-8">
+            <div>
+                <p class="text-lg font-bold text-slate-900 mb-2">Spark AI</p>
+                <p class="font-['Plus_Jakarta_Sans'] text-xs text-slate-500">© 2024 Spark AI Fluency. Empowering the
+                    next generation.</p>
+            </div>
+            <div class="flex gap-6 md:justify-end">
+                <a class="text-slate-400 hover:text-violet-500 transition-colors underline decoration-violet-500/30 underline-offset-4 font-['Plus_Jakarta_Sans'] text-xs"
+                    href="#">Privacy Policy</a>
+                <a class="text-slate-400 hover:text-violet-500 transition-colors underline decoration-violet-500/30 underline-offset-4 font-['Plus_Jakarta_Sans'] text-xs"
+                    href="#">Terms of Service</a>
+                <a class="text-slate-400 hover:text-violet-500 transition-colors underline decoration-violet-500/30 underline-offset-4 font-['Plus_Jakarta_Sans'] text-xs"
+                    href="#">Parent Guide</a>
+            </div>
+        </div>
+    </footer>
+    <!-- Bottom Navigation (Mobile Only) -->
+    <nav
+        class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 md:hidden bg-white/80 backdrop-blur-2xl border-t border-white/20 shadow-[0_-8px_30px_rgba(139,92,246,0.15)] rounded-t-[24px]">
+        <a class="flex flex-col items-center justify-center text-slate-400 p-2" href="#">
+            <span class="material-symbols-outlined" data-icon="rocket_launch">rocket_launch</span>
+            <span
+                class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-widest mt-1">Missions</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-slate-400 p-2" href="#">
+            <span class="material-symbols-outlined" data-icon="map">map</span>
+            <span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-widest mt-1">Map</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-slate-400 p-2" href="#">
+            <span class="material-symbols-outlined" data-icon="military_tech">military_tech</span>
+            <span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-widest mt-1">Awards</span>
+        </a>
+        <a class="flex flex-col items-center justify-center bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white rounded-2xl p-3 shadow-lg shadow-violet-200"
+            href="#">
+            <span class="material-symbols-outlined" data-icon="settings">settings</span>
+            <span
+                class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-widest mt-1">Settings</span>
+        </a>
+    </nav>
+</body>
+
+</html>

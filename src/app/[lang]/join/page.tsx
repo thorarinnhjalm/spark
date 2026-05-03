@@ -30,7 +30,8 @@ export default function JoinPage() {
       }
 
       const sanitizedNickname = nickname.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
-      const dummyEmail = `${sanitizedNickname}_${inviteCode.toLowerCase()}@spark.app`;
+      const randomSuffix = Math.random().toString(36).substring(2, 6);
+      const dummyEmail = `${sanitizedNickname}_${inviteCode.toLowerCase()}_${randomSuffix}@spark.app`;
 
       const userCredential = await createUserWithEmailAndPassword(auth, dummyEmail, password);
 
@@ -49,7 +50,13 @@ export default function JoinPage() {
   };
 
   return (
-    <div className="bg-surface font-body-md text-on-background selection:bg-primary-fixed flex flex-col items-center justify-center p-gutter min-h-screen relative">
+    <div 
+      className="font-body-md text-on-background selection:bg-primary-fixed flex flex-col items-center justify-center p-gutter min-h-screen relative"
+      style={{
+        backgroundColor: '#fef7ff',
+        backgroundImage: 'radial-gradient(at 0% 0%, rgba(132, 85, 239, 0.15) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(253, 86, 167, 0.15) 0px, transparent 50%), radial-gradient(at 50% 100%, rgba(132, 85, 239, 0.1) 0px, transparent 50%)'
+      }}
+    >
       
       {/* Absolute positioned language switcher */}
       <div className="absolute top-6 right-6 z-50">
@@ -153,6 +160,24 @@ export default function JoinPage() {
           <p className="font-body-md text-on-surface-variant">{t.join.areYouParent}</p>
           <div className="flex gap-gutter">
             <Link href={`/${lang}/login`} className="font-label-caps text-primary-container hover:underline py-2 px-4 glass-card rounded-full">{t.join.goToDashboard}</Link>
+          </div>
+        </div>
+
+        {/* Visual Elements / Mascot Placeholder */}
+        <div className="mt-xl grid grid-cols-2 gap-gutter w-full">
+          <div className="glass-card rounded-[24px] p-gutter flex flex-col items-center text-center gap-2">
+            <div className="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center mb-2">
+              <span className="material-symbols-outlined text-primary-container text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
+            </div>
+            <h3 className="font-h3 text-on-surface text-[18px]">Galdrar</h3>
+            <p className="font-body-md text-on-surface-variant text-[14px]">Lærðu að búa til hluti með skipunum.</p>
+          </div>
+          <div className="glass-card rounded-[24px] p-gutter flex flex-col items-center text-center gap-2">
+            <div className="w-16 h-16 rounded-full bg-secondary-fixed flex items-center justify-center mb-2">
+              <span className="material-symbols-outlined text-secondary-container text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }}>group</span>
+            </div>
+            <h3 className="font-h3 text-on-surface text-[18px]">Vinir</h3>
+            <p className="font-body-md text-on-surface-variant text-[14px]">Skoðaðu heimana sem aðrir hafa smíðað.</p>
           </div>
         </div>
 

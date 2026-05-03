@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html lang="is">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Spark AI Fluency - Lærðu að vinna með gervigreind</title>
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts: Outfit -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        spark: {
+                            purple: '#8b5cf6',
+                            pink: '#ec4899',
+                            bg: '#f8fafc',
+                        }
+                    },
+                    backgroundImage: {
+                        'spark-gradient': 'linear-gradient(to right, #8b5cf6, #ec4899)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style data-purpose="custom-layout">
+        /* Custom glassmorphism and subtle shadows */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-image-container {
+            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.12), 0 30px 60px -30px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+
+<body class="bg-spark-bg font-sans text-slate-800 antialiased">
+    <!-- BEGIN: TopBar -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <img alt="Spark AI Logo" class="h-10 w-auto"
+                        src="https://lh3.googleusercontent.com/aida/ADBb0uhx7RjoXUS8UKIk_lgbD4gMzQQxNqJ5XWKXeBWP8oTEyWbKbq1j3IcN-Q9gKh2txEstzGxU6jb-FaHMZSUG7GKuGtSq55Qwy18C7ZxIF9JQfC9-Cl9dijwCuRxKM5N4uifeJKUz5s_Q4f497AklpTVhWNLPgAXPHgbRKz8QibSamO5G8b-Mc3IVWgpnuCRNMhs7cdiUjjABBDE4ypDGwmvfWYEC4xufFdW5kq4AWRMLVfIoGSHsf2QZU9do" />
+                    <span class="ml-2 text-2xl font-bold text-spark-purple">Spark AI</span>
+                </div>
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a class="text-spark-purple border-b-2 border-spark-purple px-1 pt-1 text-sm font-medium"
+                        href="#">Missions</a>
+                    <a class="text-slate-500 hover:text-slate-700 px-1 pt-1 text-sm font-medium" href="#">Dashboard</a>
+                    <a class="text-slate-500 hover:text-slate-700 px-1 pt-1 text-sm font-medium" href="#">Library</a>
+                    <a class="text-slate-500 hover:text-slate-700 px-1 pt-1 text-sm font-medium" href="#">Explore</a>
+                </div>
+                <!-- Auth Links -->
+                <div class="flex items-center space-x-6">
+                    <a class="text-sm font-medium text-slate-600 hover:text-spark-purple transition-colors"
+                        href="#">Foreldrar: Innskráning</a>
+                    <a class="inline-flex items-center px-6 py-2.5 border border-transparent text-sm font-medium rounded-full text-white bg-spark-gradient shadow-sm hover:opacity-90 transition-opacity"
+                        href="#">
+                        Start Learning
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- END: TopBar -->
+    <main>
+        <!-- BEGIN: HeroSection -->
+        <section class="relative pt-16 pb-20 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <!-- Badge -->
+                <div
+                    class="inline-flex items-center px-4 py-1.5 rounded-full bg-slate-100 text-spark-purple text-xs font-semibold uppercase tracking-wider mb-8 border border-slate-200">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                        <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"></path>
+                    </svg>
+                    Næsta kynslóð gervigreindar
+                </div>
+                <!-- Headline -->
+                <h1 class="text-5xl md:text-6xl font-bold tracking-tight text-slate-900 mb-6">
+                    Lærðu að vinna með <span class="gradient-text">gervigreind</span>
+                </h1>
+                <!-- Subheadline -->
+                <p class="max-w-2xl mx-auto text-lg text-slate-600 mb-10 leading-relaxed">
+                    Spark AI hjálpar börnum og unglingum að ná tökum á gervigreind í gegnum skapandi verkefni og
+                    gagnvirka kennslu. Undirbúðu barnið þitt fyrir framtíðina í dag.
+                </p>
+                <!-- Hero CTAs -->
+                <div class="flex flex-col sm:flex-row justify-center gap-4 mb-16">
+                    <button
+                        class="px-10 py-4 bg-spark-gradient text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all">
+                        Stofna aðgang
+                    </button>
+                    <button
+                        class="px-10 py-4 bg-white text-slate-700 border border-slate-200 rounded-2xl font-semibold hover:bg-slate-50 transition-all">
+                        Sjá kynningu
+                    </button>
+                </div>
+                <!-- 3D Graphic Image -->
+                <div class="relative max-w-5xl mx-auto hero-image-container rounded-[2.5rem] overflow-hidden">
+                    <img alt="Spark AI Interactive Graphic" class="w-full h-auto"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVyNuehyUyzFqbI9ypmfecIGq5aFTgjQNWxzQ5DyLaPESjS2CyvM951KIbm2Nb0BR3Qa0taSZIyMqY46drYcV1O6kFpGpNwImkncfc1B1Q0nAdjd986VppoN4YeseXqT-qf2oWjWrWzZ6JXrLYxV_5P8qe9IwQhaFqG5UVwBmVDR5iwNP-QfIltfTTEL5VEurDHxcXRUDkhyCHFSZX540i50_DmevlfosMH5sN2n6oRt6G6I7De0Wh1GAUSkIzlibZnQDd90ZP5801" />
+                </div>
+            </div>
+        </section>
+        <!-- END: HeroSection -->
+        <!-- BEGIN: 4D Framework Section -->
+        <section class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">4D Framework: Kjarninn í Spark</h2>
+                    <p class="text-slate-500 max-w-2xl mx-auto">
+                        Við kennum fjórar lykilstoðir sem gera börnum kleift að verða snillingar í samskiptum við
+                        gervigreind.
+                    </p>
+                </div>
+                <!-- Bento Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Card: Delegation -->
+                    <div class="p-8 rounded-[2rem] border-2 border-spark-purple/20 bg-white hover:border-spark-purple transition-colors flex flex-col h-full"
+                        data-purpose="framework-card">
+                        <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-spark-purple" fill="none" stroke="currentColor"
+                                viewbox="0 0 24 24">
+                                <path
+                                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Delegation</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed flex-grow">
+                            Að læra hvaða verkefnum má deila með gervigreind og hverjum ekki. Skilningur á samvinnu
+                            manns og vélar.
+                        </p>
+                        <a class="mt-8 text-spark-purple font-semibold text-sm hover:underline"
+                            href="#">Verkefnastýring</a>
+                    </div>
+                    <!-- Card: Description -->
+                    <div class="p-8 rounded-[2rem] border-2 border-pink-400/20 bg-white hover:border-pink-400 transition-colors flex flex-col h-full"
+                        data-purpose="framework-card">
+                        <div class="w-12 h-12 rounded-xl bg-pink-100 flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                                <path
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Description</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed flex-grow">
+                            Listin að gefa skýr fyrirmæli (prompts). Nákvæmni í máli leiðir til betri niðurstaðna frá
+                            gervigreind.
+                        </p>
+                        <a class="mt-8 text-pink-500 font-semibold text-sm hover:underline" href="#">Málfarsleg
+                            nákvæmni</a>
+                    </div>
+                    <!-- Card: Discernment -->
+                    <div class="p-8 rounded-[2rem] border-2 border-amber-400/20 bg-white hover:border-amber-400 transition-colors flex flex-col h-full"
+                        data-purpose="framework-card">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                                <path
+                                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Discernment</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed flex-grow">
+                            Gagnrýnin hugsun. Að greina á milli sannleika og vitleysu í svörum gervigreindar.
+                        </p>
+                        <a class="mt-8 text-amber-500 font-semibold text-sm hover:underline" href="#">Gagnrýnin
+                            hugsun</a>
+                    </div>
+                    <!-- Card: Diligence -->
+                    <div class="p-8 rounded-[2rem] border-2 border-indigo-400/20 bg-white hover:border-indigo-400 transition-colors flex flex-col h-full"
+                        data-purpose="framework-card">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                                <path
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Diligence</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed flex-grow">
+                            Siðferði og ábyrgð. Tryggja að gervigreind sé notuð á uppbyggilegan og heiðarlegan hátt.
+                        </p>
+                        <a class="mt-8 text-indigo-500 font-semibold text-sm hover:underline" href="#">Ábyrgð og
+                            siðferði</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END: 4D Framework Section -->
+        <!-- BEGIN: Pricing Section -->
+        <section class="py-24 bg-spark-bg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-slate-900 mb-4">Einfaldar áskriftir</h2>
+                    <p class="text-slate-500">Veldu þá leið sem hentar þinni fjölskyldu best.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <!-- Free Plan -->
+                    <div class="bg-white p-10 rounded-[2.5rem] border border-slate-200 shadow-sm flex flex-col">
+                        <span
+                            class="inline-block px-4 py-1 rounded-full bg-slate-100 text-slate-500 text-xs font-bold w-fit mb-6">Byrjandi</span>
+                        <h3 class="text-3xl font-bold mb-2">Ókeypis</h3>
+                        <p class="text-slate-500 text-sm mb-8">Fyrir þá sem vilja prófa grunnatriðin.</p>
+                        <ul class="space-y-4 mb-10 flex-grow">
+                            <li class="flex items-center text-sm text-slate-600 font-medium">
+                                <svg class="w-5 h-5 text-spark-purple mr-3" fill="none" stroke="currentColor"
+                                    viewbox="0 0 24 24">
+                                    <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"></path>
+                                </svg>
+                                3 verkefni á viku
+                            </li>
+                            <li class="flex items-center text-sm text-slate-600 font-medium">
+                                <svg class="w-5 h-5 text-spark-purple mr-3" fill="none" stroke="currentColor"
+                                    viewbox="0 0 24 24">
+                                    <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"></path>
+                                </svg>
+                                Aðgangur að samfélagi
+                            </li>
+                            <li class="flex items-center text-sm text-slate-600 font-medium">
+                                <svg class="w-5 h-5 text-spark-purple mr-3" fill="none" stroke="currentColor"
+                                    viewbox="0 0 24 24">
+                                    <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"></path>
+                                </svg>
+                                Grunn mælaborð
+                            </li>
+                        </ul>
+                        <button
+                            class="w-full py-4 px-6 border-2 border-slate-200 text-spark-purple font-bold rounded-2xl hover:border-spark-purple transition-all">
+                            Byrja núna
+                        </button>
+                    </div>
+                    <!-- Family Plan -->
+                    <div
+                        class="bg-white p-10 rounded-[2.5rem] border-2 border-spark-purple shadow-xl relative overflow-hidden flex flex-col">
+                        <div class="absolute top-0 right-0">
+                            <div
+                                class="bg-spark-gradient text-white text-[10px] font-bold py-1 px-10 transform rotate-45 translate-x-10 translate-y-4">
+                                VINSÆLAST</div>
+                        </div>
+                        <span
+                            class="inline-block px-4 py-1 rounded-full bg-pink-100 text-pink-600 text-xs font-bold w-fit mb-6">Vinsælast</span>
+                        <h3 class="text-3xl font-bold mb-2">Family Plan</h3>
+                        <div class="flex items-baseline mb-2">
+                            <span class="text-4xl font-extrabold">2.900 kr.</span>
+                            <span class="text-slate-500 text-sm ml-2">/ mánuði</span>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-8">Allt í Free og meira til</p>
+                        <ul class="space-y-4 mb-10 flex-grow">
+                            <li class="flex items-center text-sm text-slate-600 font-medium">
+                                <svg class="w-5 h-5 text-pink-500 mr-3" fill="none" stroke="currentColor"
+                                    viewbox="0 0 24 24">
+                                    <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"></path>
+                                </svg>
+                                Ótakmörkuð verkefni
+                            </li>
+                            <li class="flex items-center text-sm text-slate-600 font-medium">
+                                <svg class="w-5 h-5 text-pink-500 mr-3" fill="none" stroke="currentColor"
+                                    viewbox="0 0 24 24">
+                                    <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"></path>
+                                </svg>
+                                Allt að 5 barna aðgangar
+                            </li>
+                            <li class="flex items-center text-sm text-slate-600 font-medium">
+                                <svg class="w-5 h-5 text-pink-500 mr-3" fill="none" stroke="currentColor"
+                                    viewbox="0 0 24 24">
+                                    <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"></path>
+                                </svg>
+                                Ítarlegar framfaramælingar
+                            </li>
+                        </ul>
+                        <button
+                            class="w-full py-4 px-6 bg-spark-gradient text-white font-bold rounded-2xl shadow-lg shadow-pink-500/30 hover:opacity-90 transition-all">
+                            Velja Family
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END: Pricing Section -->
+    </main>
+    <!-- BEGIN: Footer -->
+    <footer class="bg-white border-t border-slate-200 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <img alt="Spark AI Logo" class="h-8 w-auto"
+                            src="https://lh3.googleusercontent.com/aida/ADBb0uhx7RjoXUS8UKIk_lgbD4gMzQQxNqJ5XWKXeBWP8oTEyWbKbq1j3IcN-Q9gKh2txEstzGxU6jb-FaHMZSUG7GKuGtSq55Qwy18C7ZxIF9JQfC9-Cl9dijwCuRxKM5N4uifeJKUz5s_Q4f497AklpTVhWNLPgAXPHgbRKz8QibSamO5G8b-Mc3IVWgpnuCRNMhs7cdiUjjABBDE4ypDGwmvfWYEC4xufFdW5kq4AWRMLVfIoGSHsf2QZU9do" />
+                        <span class="ml-2 text-xl font-bold text-slate-900 tracking-tight">Spark AI Fluency</span>
+                    </div>
+                    <p class="text-slate-500 text-sm leading-relaxed max-w-sm mb-6">
+                        Við trúum því að hvert barn eigi að hafa tækifæri til að læra á tækni framtíðarinnar á öruggan
+                        og skapandi hátt.
+                    </p>
+                    <p class="text-slate-400 text-xs">
+                        © 2024 Spark AI Fluency. Empowering the next generation.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-slate-900 font-bold mb-6">Lagalegt</h4>
+                    <ul class="space-y-4">
+                        <li><a class="text-slate-500 hover:text-spark-purple text-sm transition-colors" href="#">Privacy
+                                Policy</a></li>
+                        <li><a class="text-slate-500 hover:text-spark-purple text-sm transition-colors" href="#">Terms
+                                of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-slate-900 font-bold mb-6">Hjálp</h4>
+                    <ul class="space-y-4">
+                        <li><a class="text-slate-500 hover:text-spark-purple text-sm transition-colors" href="#">Parent
+                                Guide</a></li>
+                        <li><a class="text-slate-500 hover:text-spark-purple text-sm transition-colors" href="#">Help
+                                Center</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END: Footer -->
+</body>
+
+</html>

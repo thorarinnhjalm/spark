@@ -10,6 +10,21 @@ import Link from 'next/link';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { useTranslation } from '@/components/DictionaryProvider';
 
+const COVER_IMAGES = [
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuAL3qDWIPQDXC3z-WxklsJpdOBpDP_sS7ytUOdkYe7SeVmXMioLVOU6zJBLnOwvSoOc2HSsTzFvE5YeyDBATpyLERaFqjeZ_Z1gtvwHkMF61xLcRJqMWLIpZwjf6m7xi6QZSkrlgkpAM8l7VaGp_oK8XgC0TLyRjjNGHeYX1oqTXkBCFl8sT25PuKqcGNt4k4V4XTKGsr_5pz5kebLNaiFjTT1i172y7VXr-8fyjnXgLywaeyS_fIy-eUIYijZVaPYEU6U4ucXIuvnE',
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuB_nTmq4f0JXGGUnXmWFW9FWXV85xG44yuws-ZhK9JEzzBE5xZnKr4qMRI_OaHXkswrWAKNsU_E6ay9FbioyPHo-j-hGT-UpK95j_kENK4VwHAIFUnhr8_xIwn-ciwJgxYmq2qEqoRk-jPiH06F-_5OpIaYDtqiO0IUTwNjjo94LJh3YC4SmEi_D-oA84fSrZwa5y9wGaTJkfPi1DdHKFIdBfJx_HNP5pOkKvu_nzRuow9WoQXG3mUq4KJwf4IUTlM9Ixwi2pdOBHtq'
+];
+
+const AVATAR_IMAGES = [
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuBsa0HNughzPaxakZi9uB7YZLRkBPZCi2Iw7UcrPiRzH_5pKrQrRDNrGAfHSG2kd7i4G5-NkbUdup2DVn08hustM5lspN4j7154Bm8Raf3Fa9ZPzaQIFDsgSCWs2MQO_SFCxrRgreYm6izYuxAjvw5PbAThBFhDAo2e0i5FVyiGTeNByMYqsWchRPyxZbi8jmyzNtvtVQ3-X07nwl-KiQ05_bFkYu4xb96Po0nsXTeVROpc6Dj7UWthjaKCK6ePwsxcdBRM-IXM-Wg_',
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuDi0TK9FuLhVujdMGf7CLH5chQN_HE_GSSvZBlRTZFAnx3Q-hJdyD70-8cr-6qKlIi_tQlIqu20pKJ_tozhphP5MFAoPeVVUyhWkbpdSWhzgIR0yVyHOOZnvb1jU9R8wsmuUWhUKiodFQhVR9oy_lHWDFPhcWcH2GKJHDxo6DFx-JfrN-6hdVpIf9tfLsuRIAuUZs9-tAroWVlIJCfN0sFgsnHQaUcuaxK5gFUCviJWvP5TdvUO6GWG7Kf_wdxWanqri_3WIEjiE-FY'
+];
+
+const GRADIENTS = [
+  'from-violet-500 to-fuchsia-500',
+  'from-emerald-400 to-teal-500'
+];
+
 export default function DashboardPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
@@ -51,14 +66,14 @@ export default function DashboardPage() {
 
   if (loading || !user) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <span className="text-outline">{t.common.loading}</span>
+      <div className="flex items-center justify-center min-h-screen bg-surface">
+        <span className="text-outline font-bold">{t.common.loading}</span>
       </div>
     );
   }
 
   return (
-    <>
+    <div className="bg-surface font-body-md text-on-background min-h-screen">
       {/* TopNavBar */}
       <header className="bg-white/70 backdrop-blur-xl dark:bg-slate-900/70 border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] sticky top-0 z-50">
         <div className="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
@@ -70,11 +85,11 @@ export default function DashboardPage() {
             <LanguageSwitcher />
             <button 
               onClick={() => signOut(auth)}
-              className="scale-95 active:scale-90 transition-transform px-4 py-2 bg-surface-container-high text-primary rounded-xl font-semibold text-sm hover:bg-surface-container"
+              className="scale-95 active:scale-90 transition-transform px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90"
             >
               {t.common.logout}
             </button>
-            <div className="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold">
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container bg-primary-fixed flex items-center justify-center text-primary font-bold">
               {user.email?.charAt(0).toUpperCase()}
             </div>
           </div>
@@ -91,7 +106,7 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
           {/* Left Column: Invite Code Widget (Priority) */}
           <div className="md:col-span-4 lg:col-span-3">
-            <div className="glass-card p-md rounded-2xl flex flex-col gap-6 sticky top-28">
+            <div className="glass-card shadow-[0_8px_32px_rgba(139,92,246,0.08)] p-md rounded-2xl flex flex-col gap-6 sticky top-28">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-primary-fixed rounded-xl flex items-center justify-center text-primary">
                   <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24" }}>person_add</span>
@@ -135,23 +150,24 @@ export default function DashboardPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
               
               {children.map((child, index) => {
-                // Generate a pseudo-random gradient for each child to keep UI colorful
-                const gradients = [
-                  'from-violet-500 to-fuchsia-500',
-                  'from-emerald-400 to-teal-500',
-                  'from-amber-400 to-orange-500'
-                ];
-                const gradient = gradients[index % gradients.length];
+                const coverImg = COVER_IMAGES[index % COVER_IMAGES.length];
+                const avatarImg = AVATAR_IMAGES[index % AVATAR_IMAGES.length];
+                const gradient = GRADIENTS[index % GRADIENTS.length];
+                
                 // Max XP arbitrary scale for progress bar visual (10,000 XP)
                 const xpPercentage = Math.min((child.xp / 10000) * 100, 100);
 
                 return (
-                  <div key={child.id} className="glass-card rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 group">
+                  <div key={child.id} className="glass-card shadow-[0_8px_32px_rgba(139,92,246,0.08)] rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 group">
                     <div className={`h-32 bg-gradient-to-br ${gradient} relative`}>
-                      {/* Avatar Placeholder */}
+                      <img 
+                        className="w-full h-full object-cover opacity-60 mix-blend-overlay" 
+                        src={coverImg}
+                        alt="Cover"
+                      />
                       <div className="absolute -bottom-8 left-6">
-                        <div className="w-16 h-16 rounded-2xl border-4 border-white shadow-lg overflow-hidden bg-white flex items-center justify-center">
-                           <span className="text-2xl font-bold text-primary">{child.displayName.charAt(0)}</span>
+                        <div className="w-16 h-16 rounded-2xl border-4 border-white shadow-lg overflow-hidden bg-white">
+                          <img alt="Child profile" className="w-full h-full object-cover" src={avatarImg} />
                         </div>
                       </div>
                     </div>
@@ -159,7 +175,7 @@ export default function DashboardPage() {
                     <div className="p-6 pt-12 flex flex-col gap-4">
                       <div>
                         <h3 className="font-h3 text-h3">{child.displayName}</h3>
-                        <p className="text-xs font-bold text-secondary uppercase tracking-widest">{child.rank}</p>
+                        <p className={`text-xs font-bold ${index % 2 === 0 ? 'text-secondary' : 'text-primary'} uppercase tracking-widest`}>{child.rank}</p>
                       </div>
                       
                       <div className="space-y-2">
@@ -170,7 +186,7 @@ export default function DashboardPage() {
                         <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
                           <div 
                             className="h-full bg-gradient-to-r from-primary to-secondary-container shadow-[0_0_8px_rgba(139,92,246,0.5)]" 
-                            style={{ width: `${xpPercentage}%` }}
+                            style={{ width: `${Math.max(xpPercentage, 5)}%` }}
                           ></div>
                         </div>
                       </div>
@@ -212,6 +228,6 @@ export default function DashboardPage() {
           </div>
         </div>
       </footer>
-    </>
+    </div>
   );
 }

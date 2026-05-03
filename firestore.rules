@@ -1,0 +1,30 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Parents
+    match /parents/{parentId} {
+      // Allow read for invite code verification (needed for child signup)
+      // and allow full access to the parent themselves
+      allow read: if true; 
+      allow write: if request.auth != null && request.auth.uid == parentId;
+    }
+    
+    // Children
+    match /children/{childId} {
+      // Child can read/write their own data
+      // Parent can read/write their child's data
+      allow read, update, delete: if request.auth != null && (request.auth.uid == childId || resource.data.parentUid == request.auth.uid);
+      // Allow child to create their own document during signup
+      allow create: if request.auth != null && request.auth.uid == childId;
+    }
+
+    // Mission Progress
+    match /children/{childId}/mission_progress/{progressId} {
+      // Child can read/write their own progress
+      // Parent can read their child's progress
+      allow read, write: if request.auth != null && (request.auth.uid == childId || get(/databases/$(database)/documents/children/$(childId)).data.parentUid == request.auth.uid);
+    }
+  }
+}

@@ -119,7 +119,7 @@ export default function ActiveMissionPage() {
           <div className="absolute inset-0 bg-gradient-to-tr from-emerald-400/10 to-teal-400/10 pointer-events-none"></div>
           <div className="text-6xl mb-6 relative z-10">🎉</div>
           <h1 className="font-h1 text-emerald-500 mb-4 relative z-10">{t.lab.wellDone}</h1>
-          <p className="font-body-lg text-on-surface mb-8 relative z-10">{t.lab.youGotXp} <strong className="text-emerald-600">{mission.xpReward} XP</strong> {t.lab.forCompleting} {mission.title}!</p>
+          <p className="font-body-lg text-on-surface mb-8 relative z-10">{t.lab.youGotXp} <strong className="text-emerald-600">{mission.xpReward} XP</strong> {t.lab.forCompleting} {mission.title[lang as 'is' | 'en']}!</p>
           <button 
             onClick={() => router.push(`/${lang}/missions`)}
             className="px-8 py-4 bg-emerald-500 text-white rounded-2xl font-bold hover:scale-105 transition-transform shadow-lg relative z-10"
@@ -159,9 +159,9 @@ export default function ActiveMissionPage() {
       <main className="max-w-4xl mx-auto px-gutter py-xl space-y-xl">
         {/* Progress Header */}
         <div className="flex flex-col gap-sm">
-          <div className="flex justify-between items-end">
-            <h1 className="font-h2 text-h2 text-primary">{mission.title}</h1>
-            <span className="font-label-caps text-label-caps text-on-surface-variant bg-surface-container-high px-3 py-1 rounded-full">{phaseText}</span>
+          <div className="flex justify-between items-end mb-2">
+            <h1 className="font-h2 text-h2 text-primary">{mission.title[lang as 'is' | 'en']}</h1>
+            <span className="font-label-caps text-label-caps text-on-surface-variant bg-surface-container-high px-4 py-2 rounded-full shadow-sm">{phaseText}</span>
           </div>
           <div className="h-4 w-full bg-surface-container rounded-full overflow-hidden">
             <div 
@@ -176,58 +176,60 @@ export default function ActiveMissionPage() {
         <div className="grid grid-cols-1 gap-lg pb-10">
           
           {/* Phase 1: Hook Phase (Scenario Card) */}
-          <section className={`glass-card rounded-xl p-md space-y-md transition-all duration-500 ${phase !== 'hook' ? 'opacity-50 grayscale pointer-events-none' : 'shadow-lg ring-2 ring-primary-container/20'}`}>
+          <section className={`glass-card rounded-[32px] p-lg space-y-md transition-all duration-500 ${phase !== 'hook' ? 'opacity-50 grayscale pointer-events-none' : 'shadow-[0_20px_50px_rgba(139,92,246,0.15)] ring-2 ring-primary/20'}`}>
             <div className="flex items-center gap-sm">
-              <div className="w-12 h-12 bg-primary-fixed rounded-xl flex items-center justify-center text-primary">
-                <span className="material-symbols-outlined">rocket_launch</span>
+              <div className="w-16 h-16 bg-primary-fixed rounded-[20px] flex items-center justify-center text-primary shadow-sm">
+                <span className="material-symbols-outlined text-[32px]">rocket_launch</span>
               </div>
               <h2 className="font-h3 text-h3">{t.lab.whatHappensNext}</h2>
             </div>
-            <p className="font-body-lg text-body-lg text-on-surface-variant">{mission.phases.hook.scenarioText}</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-sm">
-              {mission.phases.hook.options.map((opt, i) => (
+            <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed px-2">{mission.phases.hook.scenarioText[lang as 'is' | 'en']}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+              {mission.phases.hook.options[lang as 'is' | 'en'].map((opt, i) => (
                 <button 
                   key={i} 
                   onClick={handleStartLab}
-                  className="p-md border-2 border-outline-variant hover:border-primary-container hover:text-primary rounded-xl text-left bg-white font-semibold transition-colors flex items-center justify-between group"
+                  className="p-6 border-2 border-surface-variant hover:border-primary hover:text-primary hover:bg-primary-fixed/30 rounded-[24px] text-left bg-white font-bold transition-all flex items-center justify-between group shadow-sm hover:shadow-md"
                 >
-                  {opt}
-                  <span className="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">check_circle</span>
+                  <span className="text-lg">{opt}</span>
+                  <span className="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors text-[24px]">check_circle</span>
                 </button>
               ))}
             </div>
           </section>
 
           {/* Phase 2: Lab Phase (Chat UI) */}
-          <section className={`glass-card rounded-xl flex flex-col h-[500px] transition-all duration-500 ${phase === 'hook' ? 'hidden' : phase !== 'lab' ? 'opacity-50 grayscale pointer-events-none' : 'shadow-lg ring-2 ring-primary-container/20'}`}>
-            <div className="p-base border-b border-outline-variant/40 flex items-center justify-between gap-sm bg-white/30">
-              <div className="flex items-center gap-sm">
-                <div className="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center">
-                  <span className="material-symbols-outlined text-white text-sm">bolt</span>
+          <section className={`glass-card rounded-[32px] flex flex-col h-[600px] overflow-hidden transition-all duration-500 ${phase === 'hook' ? 'hidden' : phase !== 'lab' ? 'opacity-50 grayscale pointer-events-none' : 'shadow-[0_20px_50px_rgba(139,92,246,0.15)] ring-2 ring-primary/20'}`}>
+            <div className="p-6 border-b border-white/40 flex items-center justify-between gap-sm bg-gradient-to-r from-primary-fixed/50 to-transparent">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-[16px] bg-primary flex items-center justify-center shadow-md">
+                  <span className="material-symbols-outlined text-white text-[24px]">bolt</span>
                 </div>
-                <span className="font-bold text-primary">Spark AI</span>
-                {phase === 'lab' && (
-                  <span className="ml-auto flex gap-1 items-center">
-                    <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                    <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Active</span>
-                  </span>
-                )}
+                <div>
+                  <div className="font-bold text-primary text-lg leading-tight">Spark AI</div>
+                  {phase === 'lab' && (
+                    <div className="flex gap-1.5 items-center mt-1">
+                      <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                      <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Active</span>
+                    </div>
+                  )}
+                </div>
               </div>
               {phase === 'lab' && (
                 <button 
                   onClick={handleFinishLab}
-                  className="bg-secondary-container text-white px-4 py-1.5 rounded-full text-xs font-bold hover:scale-105 transition-transform"
+                  className="bg-primary text-white px-6 py-3 rounded-full text-sm font-bold hover:scale-105 active:scale-95 transition-transform shadow-lg shadow-primary/20"
                 >
                   {t.lab.imReady}
                 </button>
               )}
             </div>
             
-            <div className="flex-1 overflow-y-auto p-md space-y-md bg-surface-bright/50">
+            <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-surface-bright/30">
               {/* Objective Banner */}
-              <div className="bg-surface-container-low p-4 rounded-xl border border-surface-variant text-sm font-medium text-on-surface-variant flex items-start gap-2 mb-4">
-                <span className="material-symbols-outlined text-primary-container text-lg">flag</span>
-                <span><strong>{t.lab.objective}</strong> {mission.phases.lab.goalText}</span>
+              <div className="bg-white/80 backdrop-blur-md p-5 rounded-[20px] border border-white shadow-sm font-medium text-on-surface flex items-start gap-3 mb-6">
+                <span className="material-symbols-outlined text-secondary text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>flag</span>
+                <span className="leading-relaxed"><strong>{t.lab.objective}</strong> {mission.phases.lab.goalText[lang as 'is' | 'en']}</span>
               </div>
 
               {chatHistory.length === 0 && (
@@ -237,13 +239,13 @@ export default function ActiveMissionPage() {
               )}
 
               {chatHistory.map((msg, i) => (
-                <div key={i} className={`flex gap-sm max-w-[85%] ${msg.role === 'user' ? 'flex-row-reverse ml-auto' : ''}`}>
+                <div key={i} className={`flex gap-3 max-w-[85%] ${msg.role === 'user' ? 'flex-row-reverse ml-auto' : ''}`}>
                   {msg.role === 'ai' && (
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center text-primary font-bold text-xs">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold text-xs shadow-sm">
                       AI
                     </div>
                   )}
-                  <div className={`p-md rounded-2xl font-medium shadow-sm border ${msg.role === 'user' ? 'bg-gradient-to-br from-primary to-secondary-container text-white border-transparent rounded-br-sm' : 'bg-white border-surface-variant text-on-surface rounded-bl-sm'}`}>
+                  <div className={`p-4 rounded-[20px] font-medium shadow-sm border ${msg.role === 'user' ? 'bg-gradient-to-br from-primary to-secondary text-white border-transparent rounded-br-[4px]' : 'bg-white border-white/60 text-on-surface rounded-bl-[4px]'}`}>
                     {msg.text}
                   </div>
                 </div>
@@ -262,10 +264,10 @@ export default function ActiveMissionPage() {
               <div ref={chatEndRef} />
             </div>
 
-            <div className="p-md bg-white/50 border-t border-outline-variant/40">
-              <form onSubmit={handleSendMessage} className="flex gap-sm bg-white rounded-full p-2 border border-outline-variant focus-within:ring-2 ring-primary-fixed transition-all">
+            <div className="p-6 bg-white/60 border-t border-white/40 backdrop-blur-md">
+              <form onSubmit={handleSendMessage} className="flex gap-2 bg-white rounded-full p-2 border-2 border-primary/10 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 transition-all shadow-sm">
                 <input 
-                  className="flex-1 bg-transparent border-none focus:ring-0 px-4 font-medium outline-none disabled:opacity-50" 
+                  className="flex-1 bg-transparent border-none focus:ring-0 px-6 py-2 text-lg font-medium outline-none disabled:opacity-50 text-on-surface placeholder:text-outline" 
                   placeholder={t.lab.typeAnswer}
                   type="text"
                   value={inputValue}
@@ -275,30 +277,31 @@ export default function ActiveMissionPage() {
                 <button 
                   type="submit"
                   disabled={isChatLoading || !inputValue.trim() || phase !== 'lab'}
-                  className="w-10 h-10 bg-primary-container text-white rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-transform disabled:opacity-50 disabled:hover:scale-100"
+                  className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-transform disabled:opacity-50 disabled:hover:scale-100 shadow-md"
                 >
-                  <span className="material-symbols-outlined" style={{ marginLeft: '4px' }}>send</span>
+                  <span className="material-symbols-outlined text-[24px]" style={{ marginLeft: '4px' }}>send</span>
                 </button>
               </form>
             </div>
           </section>
 
           {/* Phase 3: Reflection Phase (Question Card) */}
-          <section className={`glass-card rounded-xl p-md space-y-md border-primary-container/20 border-2 relative overflow-hidden transition-all duration-500 ${phase !== 'reflection' ? 'hidden' : 'shadow-lg ring-2 ring-primary-container/20'}`}>
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary-container/5 to-secondary-container/5 pointer-events-none"></div>
+          <section className={`glass-card rounded-[32px] p-lg space-y-md border-secondary/20 border-2 relative overflow-hidden transition-all duration-500 ${phase !== 'reflection' ? 'hidden' : 'shadow-[0_20px_50px_rgba(253,86,167,0.15)] ring-2 ring-secondary/20'}`}>
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-secondary/5 pointer-events-none"></div>
             <div className="flex items-center gap-sm relative">
-              <div className="w-12 h-12 bg-secondary-fixed rounded-xl flex items-center justify-center text-secondary">
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>military_tech</span>
+              <div className="w-16 h-16 bg-secondary-fixed rounded-[20px] flex items-center justify-center text-secondary shadow-sm">
+                <span className="material-symbols-outlined text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }}>military_tech</span>
               </div>
               <h2 className="font-h3 text-h3">{t.lab.finalTask}</h2>
             </div>
             
-            <div className="space-y-sm relative">
-              <label className="font-body-lg text-body-lg font-bold text-on-surface block">
-                {mission.phases.reflection.question}
+            <div className="space-y-4 relative pt-4">
+              <label className="font-body-lg text-xl font-bold text-on-surface block">
+                {mission.phases.reflection.question[lang as 'is' | 'en']}
               </label>
               <textarea 
-                className="w-full min-h-[120px] rounded-xl border border-outline-variant bg-surface-container-low p-md font-body-md focus:border-primary focus:ring-primary-container focus:ring-2 transition-all outline-none" 
+                className="w-full min-h-[160px] rounded-[24px] border-2 border-white/60 bg-white/80 p-6 text-lg font-body-md focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none shadow-inner resize-none" 
+
                 placeholder={t.lab.writeThoughts}
                 value={reflectionAnswer}
                 onChange={(e) => setReflectionAnswer(e.target.value)}

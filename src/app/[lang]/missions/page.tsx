@@ -72,8 +72,8 @@ export default function MissionsMapPage() {
 
   return (
     <div className="bg-background min-h-screen mission-path" style={{ 
-      backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(107, 56, 212, 0.1) 1px, transparent 0)',
-      backgroundSize: '40px 40px'
+      backgroundImage: 'radial-gradient(circle at 100% 50%, rgba(132, 85, 239, 0.08) 0%, transparent 40%), radial-gradient(circle at 0% 100%, rgba(253, 86, 167, 0.08) 0%, transparent 40%)',
+      backgroundSize: '100% 100%'
     }}>
       {/* TopNavBar */}
       <nav className="bg-white/70 backdrop-blur-xl dark:bg-slate-900/70 border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] sticky top-0 z-50">
@@ -109,7 +109,7 @@ export default function MissionsMapPage() {
               </p>
             </div>
             
-            <div className="glass-card p-6 rounded-2xl flex gap-8 shadow-lg">
+            <div className="glass-card p-6 rounded-[24px] flex gap-8 shadow-lg">
               <div className="text-center">
                 <span className="block text-h3 font-h3 text-primary">{totalXP}</span>
                 <span className="text-xs font-bold text-slate-500 uppercase">{t.missions.totalXp}</span>
@@ -149,7 +149,7 @@ export default function MissionsMapPage() {
             
             if (isCompleted) {
               return (
-                <div key={mission.missionId} className="group relative glass-card rounded-2xl p-1 overflow-hidden transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl">
+                <div key={mission.missionId} className="group relative glass-card rounded-[24px] p-1 overflow-hidden transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl">
                   <div className="bg-white rounded-[14px] p-5 h-full flex flex-col">
                     <div className="flex justify-between items-start mb-4">
                       <span className="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
@@ -160,11 +160,11 @@ export default function MissionsMapPage() {
                     </div>
                     
                     <div className="mb-4 aspect-video rounded-xl overflow-hidden bg-slate-100 relative">
-                      <img className="w-full h-full object-cover" src={image} alt={mission.title}/>
+                      <img className="w-full h-full object-cover" src={image} alt={mission.title[lang as 'is' | 'en']}/>
                     </div>
                     
-                    <h3 className="font-h3 text-lg mb-2">{mission.title}</h3>
-                    <p className="text-sm text-on-surface-variant mb-6 flex-grow">{mission.learningGoal}</p>
+                    <h3 className="font-h3 text-lg mb-2">{mission.title[lang as 'is' | 'en']}</h3>
+                    <p className="text-sm text-on-surface-variant mb-6 flex-grow">{mission.learningGoal[lang as 'is' | 'en']}</p>
                     
                     <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
                       <span className="material-symbols-outlined text-sm">{tag.icon}</span>
@@ -176,7 +176,7 @@ export default function MissionsMapPage() {
             }
 
             return (
-              <Link href={`/${lang}/missions/${mission.missionId}`} key={mission.missionId} className="group relative p-1 rounded-2xl overflow-hidden transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl bg-gradient-to-br from-primary to-secondary-container block">
+              <Link href={`/${lang}/missions/${mission.missionId}`} key={mission.missionId} className="group relative p-1 rounded-[24px] overflow-hidden transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl bg-gradient-to-br from-primary to-secondary-container block">
                 <div className="bg-white rounded-[14px] p-5 h-full flex flex-col">
                   <div className="flex justify-between items-start mb-4">
                     <span className="bg-violet-100 text-violet-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">{t.missions.missionOpen}</span>
@@ -184,11 +184,11 @@ export default function MissionsMapPage() {
                   </div>
                   
                   <div className="mb-4 aspect-video rounded-xl overflow-hidden bg-slate-100 relative">
-                    <img className="w-full h-full object-cover" src={image} alt={mission.title}/>
+                    <img className="w-full h-full object-cover" src={image} alt={mission.title[lang as 'is' | 'en']}/>
                   </div>
                   
-                  <h3 className="font-h3 text-lg mb-2">{mission.title}</h3>
-                  <p className="text-sm text-on-surface-variant mb-6 flex-grow">{mission.learningGoal}</p>
+                  <h3 className="font-h3 text-lg mb-2">{mission.title[lang as 'is' | 'en']}</h3>
+                  <p className="text-sm text-on-surface-variant mb-6 flex-grow">{mission.learningGoal[lang as 'is' | 'en']}</p>
                   
                   <button className="w-full py-3 bg-primary text-white rounded-xl font-bold text-sm shadow-md group-hover:scale-[1.02] transition-transform active:scale-95">
                     {t.missions.startNow}
