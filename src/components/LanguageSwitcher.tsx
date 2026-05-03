@@ -20,6 +20,7 @@ export default function LanguageSwitcher() {
       onClick={toggleLanguage}
       className="flex items-center justify-center px-3 py-1.5 rounded-full bg-surface-variant hover:bg-surface-dim transition-colors shadow-sm border border-surface-container-highest"
       title="Skipta um tungumál / Change language"
+      aria-label={lang === 'is' ? 'Breyta yfir á ensku' : 'Change to Icelandic'}
     >
       <span className="text-sm font-bold text-on-surface-variant tracking-wider">
         {lang === 'is' ? 'IS' : 'ENG'}

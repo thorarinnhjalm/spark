@@ -11,15 +11,40 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
   const t = dict.landing;
   const navT = dict.nav;
 
+  const schemaFAQ = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": t.faq1Q, "acceptedAnswer": { "@type": "Answer", "text": t.faq1A } },
+      { "@type": "Question", "name": t.faq2Q, "acceptedAnswer": { "@type": "Answer", "text": t.faq2A } },
+      { "@type": "Question", "name": t.faq3Q, "acceptedAnswer": { "@type": "Answer", "text": t.faq3A } },
+      { "@type": "Question", "name": t.faq4Q, "acceptedAnswer": { "@type": "Answer", "text": t.faq4A } },
+      { "@type": "Question", "name": t.faq5Q, "acceptedAnswer": { "@type": "Answer", "text": t.faq5A } }
+    ]
+  };
+  
+  const schemaPricing = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Spark AI",
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": lang === 'is' ? 'ISK' : 'USD',
+      "lowPrice": lang === 'is' ? '990' : '6.99',
+      "highPrice": lang === 'is' ? '1590' : '10.99',
+      "offerCount": 2
+    }
+  };
+
   return (
     <div className="bg-background font-body-md text-on-background min-h-screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaFAQ) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaPricing) }} />
       {/* TopNavBar */}
       <nav className="bg-white/70 backdrop-blur-xl border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <div className="bg-slate-900 h-10 w-10 flex items-center justify-center rounded-[12px] shadow-sm overflow-hidden">
-              <img src="/spark-icon.png" alt="" className="h-8 w-8 object-contain mix-blend-screen" />
-            </div>
+            <img src="/logo.png" alt="Spark logo" className="h-8 w-8 object-contain" />
             <span className="text-2xl font-black tracking-tighter text-primary">Spark</span>
           </div>
           
@@ -29,21 +54,21 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
             </Link>
           </div>
 
-          <div className="flex items-center gap-4">
-            <LanguageSwitcher />
-            <Link 
-              href={`/${lang}/login`} 
-              className="text-sm font-bold text-on-surface-variant hover:text-primary transition-colors hidden sm:block"
-            >
-              {navT.parentLogin}
-            </Link>
-            <Link 
-              href={`/${lang}/join`} 
-              className="px-6 py-2 bg-primary text-on-primary rounded-full font-bold text-sm shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all"
-            >
-              {navT.startLearning}
-            </Link>
-          </div>
+          <nav className="flex items-center gap-4">
+            <ul className="flex items-center gap-4">
+              <li><LanguageSwitcher /></li>
+              <li className="hidden sm:block">
+                <Link href={`/${lang}/login`} className="text-sm font-bold text-on-surface-variant hover:text-primary transition-colors">
+                  {navT.parentLogin}
+                </Link>
+              </li>
+              <li>
+                <Link href={`/${lang}/join`} className="px-6 py-2 bg-primary text-on-primary rounded-full font-bold text-sm shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all">
+                  {navT.startLearning}
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
       </nav>
 
@@ -52,7 +77,7 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
         <section className="relative text-center flex flex-col items-center mb-32">
           {/* Badge */}
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary-fixed/50 text-primary-fixed-variant text-xs font-bold uppercase tracking-wider mb-8 border border-primary/20 backdrop-blur-sm">
-            <span className="material-symbols-outlined text-[16px] mr-2">auto_awesome</span>
+            <span className="material-symbols-outlined text-[16px] mr-2" aria-hidden="true">auto_awesome</span>
             {t.heroBadge}
           </div>
           
@@ -97,7 +122,7 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
             {/* Card: Delegation */}
             <div className="glass-card p-8 rounded-[32px] flex flex-col h-full hover:shadow-[0_20px_40px_rgba(139,92,246,0.1)] transition-all duration-300 hover:-translate-y-2">
               <div className="w-16 h-16 rounded-[20px] bg-primary-fixed flex items-center justify-center mb-6 text-primary">
-                <span className="material-symbols-outlined text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }}>assignment_ind</span>
+                <span className="material-symbols-outlined text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }} aria-hidden="true">assignment_ind</span>
               </div>
               <h3 className="font-h3 text-xl mb-4 text-on-surface">{t.frameworkD1Title}</h3>
               <p className="text-on-surface-variant text-sm leading-relaxed flex-grow">
@@ -108,7 +133,7 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
             {/* Card: Description */}
             <div className="glass-card p-8 rounded-[32px] flex flex-col h-full hover:shadow-[0_20px_40px_rgba(253,86,167,0.1)] transition-all duration-300 hover:-translate-y-2">
               <div className="w-16 h-16 rounded-[20px] bg-secondary-fixed flex items-center justify-center mb-6 text-secondary-container">
-                <span className="material-symbols-outlined text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }}>description</span>
+                <span className="material-symbols-outlined text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }} aria-hidden="true">description</span>
               </div>
               <h3 className="font-h3 text-xl mb-4 text-on-surface">{t.frameworkD2Title}</h3>
               <p className="text-on-surface-variant text-sm leading-relaxed flex-grow">
@@ -119,7 +144,7 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
             {/* Card: Discernment */}
             <div className="glass-card p-8 rounded-[32px] flex flex-col h-full hover:shadow-[0_20px_40px_rgba(245,158,11,0.1)] transition-all duration-300 hover:-translate-y-2">
               <div className="w-16 h-16 rounded-[20px] bg-amber-100 flex items-center justify-center mb-6 text-amber-600">
-                <span className="material-symbols-outlined text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }}>visibility</span>
+                <span className="material-symbols-outlined text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }} aria-hidden="true">visibility</span>
               </div>
               <h3 className="font-h3 text-xl mb-4 text-on-surface">{t.frameworkD3Title}</h3>
               <p className="text-on-surface-variant text-sm leading-relaxed flex-grow">
@@ -130,13 +155,29 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
             {/* Card: Diligence */}
             <div className="glass-card p-8 rounded-[32px] flex flex-col h-full hover:shadow-[0_20px_40px_rgba(59,130,246,0.1)] transition-all duration-300 hover:-translate-y-2">
               <div className="w-16 h-16 rounded-[20px] bg-blue-100 flex items-center justify-center mb-6 text-blue-600">
-                <span className="material-symbols-outlined text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }}>bolt</span>
+                <span className="material-symbols-outlined text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }} aria-hidden="true">bolt</span>
               </div>
               <h3 className="font-h3 text-xl mb-4 text-on-surface">{t.frameworkD4Title}</h3>
               <p className="text-on-surface-variant text-sm leading-relaxed flex-grow">
                 {t.frameworkD4Desc}
               </p>
             </div>
+          </div>
+        </section>
+
+        {/* BEGIN: Blog Hook Section */}
+        <section className="mb-32">
+          <div className="glass-card p-12 rounded-[40px] text-center border-t border-white/60 shadow-[0_20px_40px_rgba(139,92,246,0.05)] bg-gradient-to-br from-surface to-surface-variant/30">
+            <h2 className="font-h2 text-3xl md:text-4xl text-on-surface mb-6">{t.blogHookTitle}</h2>
+            <p className="font-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10 leading-relaxed">
+              {t.blogHookDesc}
+            </p>
+            <Link 
+              href={`/${lang}/methodology`}
+              className="inline-block px-8 py-4 bg-white text-primary border border-primary/20 rounded-[20px] font-bold shadow-sm hover:shadow-md hover:bg-primary-fixed/30 hover:-translate-y-1 transition-all"
+            >
+              {t.blogHookCTA}
+            </Link>
           </div>
         </section>
 
@@ -222,6 +263,8 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
               { q: t.faq1Q, a: t.faq1A },
               { q: t.faq2Q, a: t.faq2A },
               { q: t.faq3Q, a: t.faq3A },
+              { q: t.faq4Q, a: t.faq4A },
+              { q: t.faq5Q, a: t.faq5A },
             ].map((faq, i) => (
               <details key={i} className="group glass-card rounded-[24px] overflow-hidden">
                 <summary className="flex items-center justify-between cursor-pointer p-8 font-bold text-on-surface text-lg hover:text-primary transition-colors list-none [&::-webkit-details-marker]:hidden">
