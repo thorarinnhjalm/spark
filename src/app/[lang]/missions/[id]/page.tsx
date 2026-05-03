@@ -147,7 +147,9 @@ export default function ActiveMissionPage() {
       <header className="bg-white/70 backdrop-blur-xl dark:bg-slate-900/70 border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] sticky top-0 z-50">
         <nav className="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
           <div className="flex items-center gap-2">
-            <img src="/spark-icon.png" alt="" className="h-8 w-8 object-contain" />
+          <div className="bg-slate-900 h-10 w-10 flex items-center justify-center rounded-[12px] shadow-sm overflow-hidden">
+            <img src="/spark-icon.png" alt="" className="h-8 w-8 object-contain mix-blend-screen" />
+          </div>
             <span className="text-2xl font-black tracking-tighter text-violet-600 dark:text-violet-400">Spark</span>
           </div>
           <div className="hidden md:flex gap-8 items-center">

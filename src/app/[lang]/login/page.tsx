@@ -61,7 +61,9 @@ export default function LoginPage() {
       {/* Top Navigation (Shell Implementation) */}
       <header className="bg-white/70 backdrop-blur-xl dark:bg-slate-900/70 border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto sticky top-0 z-50">
         <div className="flex items-center gap-2">
-          <img src="/spark-icon.png" alt="" className="h-8 w-8 object-contain" />
+          <div className="bg-slate-900 h-10 w-10 flex items-center justify-center rounded-[12px] shadow-sm overflow-hidden">
+            <img src="/spark-icon.png" alt="" className="h-8 w-8 object-contain mix-blend-screen" />
+          </div>
           <span className="text-2xl font-black tracking-tighter text-violet-600 dark:text-violet-400">Spark</span>
         </div>
         <div className="flex gap-4 items-center">
@@ -216,7 +218,9 @@ export default function LoginPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto px-8">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <img src="/spark-icon.png" alt="" className="h-6 w-6 object-contain" />
+              <div className="bg-slate-900 h-8 w-8 flex items-center justify-center rounded-lg shadow-sm overflow-hidden">
+                <img src="/spark-icon.png" alt="" className="h-6 w-6 object-contain mix-blend-screen" />
+              </div>
               <span className="text-lg font-bold text-slate-900 dark:text-white">Spark</span>
             </div>
             <p className="font-body-md text-xs text-slate-500">© 2026 Spark by Antigravity.</p>

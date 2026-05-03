@@ -17,7 +17,9 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
       <nav className="bg-white/70 backdrop-blur-xl border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <img src="/spark-icon.png" alt="" className="h-8 w-8 object-contain" />
+            <div className="bg-slate-900 h-10 w-10 flex items-center justify-center rounded-[12px] shadow-sm overflow-hidden">
+              <img src="/spark-icon.png" alt="" className="h-8 w-8 object-contain mix-blend-screen" />
+            </div>
             <span className="text-2xl font-black tracking-tighter text-primary">Spark</span>
           </div>
           
@@ -80,11 +82,6 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
             </Link>
           </div>
           
-          {/* 3D Graphic Image in Bento Card */}
-          <div className="relative w-full max-w-5xl mx-auto glass-card rounded-[40px] p-4 shadow-[0_30px_60px_rgba(139,92,246,0.15)]">
-            <div className="w-full h-auto rounded-[32px] overflow-hidden bg-gradient-to-b from-primary-fixed to-surface-container-low" style={{ minHeight: '200px' }}>
-            </div>
-          </div>
         </section>
 
         {/* BEGIN: 4D Framework Section */}
@@ -248,7 +245,9 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
             <div className="md:col-span-2">
               <div className="flex items-center gap-2 mb-6">
-                <img src="/spark-icon.png" alt="" className="h-8 w-8 object-contain" />
+                <div className="bg-slate-900 h-10 w-10 flex items-center justify-center rounded-[12px] shadow-sm overflow-hidden">
+                  <img src="/spark-icon.png" alt="" className="h-8 w-8 object-contain mix-blend-screen" />
+                </div>
                 <span className="text-2xl font-black tracking-tighter text-primary">Spark</span>
               </div>
               <p className="text-on-surface-variant text-xs">

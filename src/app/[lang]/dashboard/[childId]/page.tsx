@@ -90,7 +90,9 @@ export default function ChildProgressPage() {
       {/* Top Navigation Shell */}
       <nav className="bg-white/70 backdrop-blur-xl border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto sticky top-0 z-50">
         <div className="flex items-center gap-2">
-          <img src="/spark-icon.png" alt="" className="h-8 w-8 object-contain" />
+          <div className="bg-slate-900 h-10 w-10 flex items-center justify-center rounded-[12px] shadow-sm overflow-hidden">
+            <img src="/spark-icon.png" alt="" className="h-8 w-8 object-contain mix-blend-screen" />
+          </div>
           <span className="text-2xl font-black tracking-tighter text-violet-600">Spark</span>
         </div>
         <div className="hidden md:flex gap-8 items-center">
@@ -266,7 +268,9 @@ export default function ChildProgressPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto px-8">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <img src="/spark-icon.png" alt="" className="h-6 w-6 object-contain" />
+              <div className="bg-slate-900 h-8 w-8 flex items-center justify-center rounded-lg shadow-sm overflow-hidden">
+                <img src="/spark-icon.png" alt="" className="h-6 w-6 object-contain mix-blend-screen" />
+              </div>
               <span className="text-lg font-bold text-slate-900">Spark</span>
             </div>
             <p className="font-['Plus_Jakarta_Sans'] text-xs text-slate-500">© 2026 Spark by Antigravity.</p>
