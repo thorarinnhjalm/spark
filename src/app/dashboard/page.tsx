@@ -6,7 +6,6 @@ import { useAuth } from '@/context/AuthContext';
 import { db, auth } from '@/lib/firebase';
 import { doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
-
 import Link from 'next/link';
 
 export default function DashboardPage() {
@@ -24,13 +23,11 @@ export default function DashboardPage() {
   useEffect(() => {
     async function fetchParentData() {
       if (user) {
-        // Sækja foreldra-skjalið
         const parentDoc = await getDoc(doc(db, 'parents', user.uid));
         if (parentDoc.exists()) {
           setInviteCode(parentDoc.data().inviteCode);
         }
 
-        // Sækja börnin sem tilheyra þessu foreldri
         const childrenRef = collection(db, 'children');
         const q = query(childrenRef, where('parentUid', '==', user.uid));
         const querySnapshot = await getDocs(q);
@@ -49,59 +46,168 @@ export default function DashboardPage() {
     fetchParentData();
   }, [user]);
 
-  if (loading || !user) return <div className="container" style={{ paddingTop: '100px', textAlign: 'center' }}>Hleður...</div>;
+  if (loading || !user) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <span className="text-outline">Hleður...</span>
+      </div>
+    );
+  }
 
   return (
-    <div className="container" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-xl)' }}>
-        <h1>Mælaborð Foreldra</h1>
-        <button onClick={() => signOut(auth)} className="btn-outline">Útskrá</button>
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--spacing-lg)' }}>
-        
-        {/* Invite Code Panel */}
-        <div className="glass-panel" style={{ padding: 'var(--spacing-lg)' }}>
-          <h2 style={{ marginBottom: 'var(--spacing-sm)' }}>Bjóða barni</h2>
-          <p style={{ color: 'var(--text-secondary)', marginBottom: 'var(--spacing-md)' }}>
-            Gefðu barninu þessum kóða til að skrá sig inn og byrja að spila.
-          </p>
-          <div style={{ 
-            background: 'rgba(0,0,0,0.2)', padding: '20px', borderRadius: '12px', 
-            textAlign: 'center', fontSize: '2rem', letterSpacing: '4px', fontWeight: 'bold',
-            color: 'var(--primary-color)'
-          }}>
-            {inviteCode || 'Hleður...'}
+    <>
+      {/* TopNavBar */}
+      <header className="bg-white/70 backdrop-blur-xl dark:bg-slate-900/70 border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] sticky top-0 z-50">
+        <div className="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+          <div className="text-2xl font-black tracking-tighter text-violet-600 dark:text-violet-400">Spark AI</div>
+          <nav className="hidden md:flex items-center gap-8">
+            <Link href="/dashboard" className="text-violet-700 dark:text-violet-300 border-b-2 border-violet-500 pb-1 font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight">Mælaborð</Link>
+          </nav>
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={() => signOut(auth)}
+              className="scale-95 active:scale-90 transition-transform px-4 py-2 bg-surface-container-high text-primary rounded-xl font-semibold text-sm hover:bg-surface-container"
+            >
+              Útskrá
+            </button>
+            <div className="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold">
+              {user.email?.charAt(0).toUpperCase()}
+            </div>
           </div>
         </div>
+      </header>
 
-        {/* Börn (Children List) */}
-        <div className="glass-panel" style={{ padding: 'var(--spacing-lg)' }}>
-          <h2 style={{ marginBottom: 'var(--spacing-sm)' }}>Mín Börn</h2>
-          
-          {children.length === 0 ? (
-            <p style={{ color: 'var(--text-secondary)' }}>Ekkert barn hefur skráð sig ennþá. Láttu barnið fara á <b>/join</b> og nota kóðann þinn.</p>
-          ) : (
-            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              {children.map(child => (
-                <li key={child.id} style={{ 
-                  padding: '15px', background: 'rgba(255,255,255,0.05)', 
-                  borderRadius: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center'
-                }}>
-                  <div>
-                    <strong style={{ fontSize: '1.2rem' }}>{child.displayName}</strong>
-                    <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Stig: {child.xp} XP • Titill: {child.rank}</div>
-                  </div>
-                  <Link href={`/dashboard/${child.id}`} className="btn-outline" style={{ padding: '8px 16px', textDecoration: 'none', display: 'inline-block' }}>
-                    Skoða framvindu
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
+      <main className="max-w-7xl mx-auto px-6 py-10 md:py-16">
+        {/* Dashboard Header */}
+        <div className="mb-12">
+          <h1 className="font-h1 text-h1 text-on-surface mb-2">Velkomin(n) aftur</h1>
+          <p className="text-on-surface-variant font-body-lg text-body-lg">Hér er yfirlit yfir námsframvindu barna þinna í Spark AI.</p>
         </div>
 
-      </div>
-    </div>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+          {/* Left Column: Invite Code Widget (Priority) */}
+          <div className="md:col-span-4 lg:col-span-3">
+            <div className="glass-card p-md rounded-2xl flex flex-col gap-6 sticky top-28">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-primary-fixed rounded-xl flex items-center justify-center text-primary">
+                  <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24" }}>person_add</span>
+                </div>
+                <h3 className="font-h3 text-h3 leading-none">Boðskóði</h3>
+              </div>
+              <p className="text-sm text-on-surface-variant leading-relaxed">
+                Deildu þessum kóða með börnum þínum til að tengja þau við aðganginn þinn.
+              </p>
+              
+              <div className="relative group">
+                <div className="bg-primary-container p-6 rounded-2xl text-center shadow-lg shadow-primary/20 relative overflow-hidden">
+                  {/* Decorative blur inside code card */}
+                  <div className="absolute -top-10 -right-10 w-24 h-24 bg-white/20 rounded-full blur-2xl"></div>
+                  <span className="text-2xl font-black tracking-widest text-white relative z-10">
+                    {inviteCode || 'Hleður...'}
+                  </span>
+                </div>
+              </div>
+              
+              <button 
+                onClick={() => { navigator.clipboard.writeText(inviteCode || '') }}
+                className="w-full py-3 px-4 rounded-xl border-2 border-outline-variant font-semibold text-sm flex items-center justify-center gap-2 hover:bg-surface-container-low transition-colors active:scale-95 text-on-surface"
+              >
+                <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 0" }}>content_copy</span>
+                Afrita kóða
+              </button>
+            </div>
+          </div>
+
+          {/* Right Column: My Children Grid */}
+          <div className="md:col-span-8 lg:col-span-9 space-y-gutter">
+            <div className="flex items-center justify-between">
+              <h2 className="font-h2 text-h2 text-on-surface">Mín Börn</h2>
+              <span className="px-3 py-1 bg-surface-container-high text-primary rounded-full text-xs font-bold uppercase tracking-wider">
+                {children.length} Tengd
+              </span>
+            </div>
+
+            {/* Bento Grid for Children */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
+              
+              {children.map((child, index) => {
+                // Generate a pseudo-random gradient for each child to keep UI colorful
+                const gradients = [
+                  'from-violet-500 to-fuchsia-500',
+                  'from-emerald-400 to-teal-500',
+                  'from-amber-400 to-orange-500'
+                ];
+                const gradient = gradients[index % gradients.length];
+                // Max XP arbitrary scale for progress bar visual (10,000 XP)
+                const xpPercentage = Math.min((child.xp / 10000) * 100, 100);
+
+                return (
+                  <div key={child.id} className="glass-card rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 group">
+                    <div className={`h-32 bg-gradient-to-br ${gradient} relative`}>
+                      {/* Avatar Placeholder */}
+                      <div className="absolute -bottom-8 left-6">
+                        <div className="w-16 h-16 rounded-2xl border-4 border-white shadow-lg overflow-hidden bg-white flex items-center justify-center">
+                           <span className="text-2xl font-bold text-primary">{child.displayName.charAt(0)}</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="p-6 pt-12 flex flex-col gap-4">
+                      <div>
+                        <h3 className="font-h3 text-h3">{child.displayName}</h3>
+                        <p className="text-xs font-bold text-secondary uppercase tracking-widest">{child.rank}</p>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-xs font-bold text-on-surface-variant">
+                          <span>Námstign (XP)</span>
+                          <span>{child.xp} XP</span>
+                        </div>
+                        <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-gradient-to-r from-primary to-secondary-container shadow-[0_0_8px_rgba(139,92,246,0.5)]" 
+                            style={{ width: `${xpPercentage}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                      
+                      <Link 
+                        href={`/dashboard/${child.id}`}
+                        className="mt-2 w-full py-3 bg-surface-container-low text-primary font-bold rounded-xl border border-primary/10 hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2"
+                      >
+                        Skoða framvindu
+                        <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+                      </Link>
+                    </div>
+                  </div>
+                );
+              })}
+
+              {/* Empty State / Add New Logic */}
+              <Link href="/join" className="border-2 border-dashed border-outline-variant rounded-2xl p-6 flex flex-col items-center justify-center text-center gap-4 hover:border-primary/50 hover:bg-primary-fixed/20 transition-all cursor-pointer group">
+                <div className="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-slate-400 group-hover:bg-primary group-hover:text-white transition-all">
+                  <span className="material-symbols-outlined text-[32px]">add</span>
+                </div>
+                <div>
+                  <p className="font-bold text-on-surface">Bæta við barni</p>
+                  <p className="text-xs text-on-surface-variant">Notaðu boðskóðann á innskráningarsíðu barns</p>
+                </div>
+              </Link>
+
+            </div>
+          </div>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-slate-50 dark:bg-slate-950 w-full py-12 border-t border-slate-200 dark:border-slate-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto px-8">
+          <div className="space-y-4">
+            <div className="text-lg font-bold text-slate-900 dark:text-white">Spark AI Fluency</div>
+            <p className="font-body-md text-xs text-slate-500">© 2024 Spark AI Fluency. Empowering the next generation.</p>
+          </div>
+        </div>
+      </footer>
+    </>
   );
 }
