@@ -100,8 +100,8 @@ export default function DashboardPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
           {/* Left Column: Invite Code Widget (Priority) */}
-          <div className="md:col-span-4 lg:col-span-3">
-            <div className="glass-card shadow-[0_8px_32px_rgba(139,92,246,0.08)] p-md rounded-2xl flex flex-col gap-6 sticky top-28">
+          <div className="md:col-span-4 lg:col-span-3 flex flex-col gap-6 sticky top-28 self-start">
+            <div className="glass-card shadow-[0_8px_32px_rgba(139,92,246,0.08)] p-md rounded-2xl flex flex-col gap-6">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-primary-fixed rounded-xl flex items-center justify-center text-primary">
                   <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24" }}>person_add</span>
@@ -130,6 +130,16 @@ export default function DashboardPage() {
                 {t.dashboard.copyCode}
               </button>
             </div>
+
+            {/* Social Proof Widget */}
+            <iframe 
+              src="https://umsognin.is/w/spark" 
+              width="100%" 
+              height="500px" 
+              style={{ border: 'none', borderRadius: '24px', overflow: 'hidden', maxWidth: '480px' }}
+              title="Umsagnir viðskiptavina"
+              className="shadow-md mx-auto"
+            ></iframe>
           </div>
 
           {/* Right Column: My Children Grid */}
