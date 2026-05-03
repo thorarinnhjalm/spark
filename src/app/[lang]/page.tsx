@@ -165,7 +165,7 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
           </div>
         </section>
 
-        {/* BEGIN: Social Proof Section */}
+        {/* BEGIN: Social Proof Section (Hidden until reviews arrive) 
         <section className="mb-32 flex flex-col items-center">
           <div className="text-center mb-12">
             <h2 className="font-h2 text-3xl md:text-4xl text-on-surface mb-4">
@@ -182,6 +182,7 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
             ></iframe>
           </div>
         </section>
+        */}
         {/* BEGIN: Blog Hook Section */}
         <section className="mb-32">
           <div className="glass-card p-12 rounded-[40px] text-center border-t border-white/60 shadow-[0_20px_40px_rgba(139,92,246,0.05)] bg-gradient-to-br from-surface to-surface-variant/30">

@@ -131,7 +131,7 @@ export default function DashboardPage() {
               </button>
             </div>
 
-            {/* Social Proof Widget */}
+            {/* Social Proof Widget (Hidden until reviews arrive) 
             <iframe 
               src="https://umsognin.is/w/spark" 
               width="100%" 
@@ -140,6 +140,7 @@ export default function DashboardPage() {
               title="Umsagnir viðskiptavina"
               className="shadow-md mx-auto"
             ></iframe>
+            */}
           </div>
 
           {/* Right Column: My Children Grid */}
