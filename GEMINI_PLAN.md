@@ -358,3 +358,81 @@ The result must be empty.
 ### Build result
 ✅ `npm run build` passes. `grep -r "lh3.googleusercontent.com" src/` returns empty.
 
+---
+
+## Task 13 — "Why" section on landing page
+
+Add a "Why Spark?" section to `src/app/[lang]/page.tsx` positioned **between the Hero section and the 4D Framework section** (insert before the comment `{/* BEGIN: 4D Framework Section */}`).
+
+### Data
+
+`page.tsx` is a Server Component. It already does `const dict = await getDictionary(lang)`. Add two new destructures alongside the existing `const t = dict.landing` and `const navT = dict.nav`:
+
+```ts
+const whyT = dict.why;
+const credT = dict.credibility;
+```
+
+Both `why` and `credibility` keys already exist in both `is.json` and `en.json`.
+
+### Section markup
+
+Insert this section before the 4D framework section:
+
+```tsx
+{/* BEGIN: Why Section */}
+<section className="mb-32">
+  {/* Credibility badge */}
+  <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-fixed/50 text-primary-fixed-variant text-xs font-bold uppercase tracking-wider border border-primary/20 backdrop-blur-sm">
+      <span className="material-symbols-outlined text-[16px]" aria-hidden="true">verified</span>
+      {credT.badge}
+    </span>
+    <span className="text-xs font-semibold text-on-surface-variant">{credT.authors}</span>
+    <span className="hidden sm:block text-slate-300">·</span>
+    <span className="text-xs font-semibold text-on-surface-variant">{credT.partner}</span>
+    <span className="hidden sm:block text-slate-300">·</span>
+    <span className="text-xs font-semibold text-on-surface-variant">{credT.researchStat}</span>
+  </div>
+
+  <div className="text-center mb-12">
+    <h2 className="font-h2 text-4xl text-on-surface mb-4">{whyT.title}</h2>
+    <p className="font-body-lg text-on-surface-variant max-w-xl mx-auto">{whyT.subtitle}</p>
+  </div>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    {/* Parent column */}
+    <div className="glass-card p-10 rounded-[32px] flex flex-col gap-4">
+      <div className="w-14 h-14 rounded-[18px] bg-primary-fixed flex items-center justify-center text-primary mb-2">
+        <span className="material-symbols-outlined text-[28px]" style={{ fontVariationSettings: "'FILL' 1" }} aria-hidden="true">family_restroom</span>
+      </div>
+      <h3 className="font-h3 text-xl text-on-surface">{whyT.parentTitle}</h3>
+      <p className="text-on-surface-variant leading-relaxed">{whyT.parentBody}</p>
+    </div>
+
+    {/* Child column */}
+    <div className="glass-card p-10 rounded-[32px] flex flex-col gap-4">
+      <div className="w-14 h-14 rounded-[18px] bg-secondary-fixed flex items-center justify-center text-secondary-container mb-2">
+        <span className="material-symbols-outlined text-[28px]" style={{ fontVariationSettings: "'FILL' 1" }} aria-hidden="true">school</span>
+      </div>
+      <h3 className="font-h3 text-xl text-on-surface">{whyT.childTitle}</h3>
+      <p className="text-on-surface-variant leading-relaxed">{whyT.childBody}</p>
+    </div>
+  </div>
+</section>
+```
+
+### Verification
+
+Run `npm run build`. The build must pass with zero TypeScript errors.
+
+---
+
+### Task 13 Report
+
+> **Gemini:** 
+> - Destructured `whyT` and `credT` from `dict` in `src/app/[lang]/page.tsx`.
+> - Inserted the "Why Spark?" markup exactly as specified between the Hero and 4D Framework sections.
+> - Ran `npm run build` which compiled successfully with 0 TypeScript errors.
+> - Task 13 is complete.
+

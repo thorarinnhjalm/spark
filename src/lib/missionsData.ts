@@ -63,8 +63,8 @@ export const missionsData: Mission[] = [
       lab: {
         systemPrompt: "You are Spark. If asked to do a physical task, explain gently that you don't have a body but can give instructions. If asked for instructions, give 3 simple steps.",
         goalText: {
-          is: "Talaðu við Spark og finndu út nákvæmlega hvað gervigreind getur gert fyrir þig í skógarferð.",
-          en: "Talk to Spark and find out exactly what an AI can do for you on a camping trip."
+          is: "Talaðu við Spark og finndu út nákvæmlega hvað gervigreind getur gert fyrir þig í skólabúðum.",
+          en: "Talk to Spark and find out exactly what an AI can do for you at school camp."
         }
       },
       reflection: {
@@ -262,7 +262,7 @@ export const missionsData: Mission[] = [
     phases: {
       hook: {
         scenarioText: {
-          is: "Þú vilt að Spark 'teikni' eða lýsi grænum kötti með sólglögg á hausnum að borða ís. Hvernig útskýrirðu það án þess að sýna mynd?",
+          is: "Þú vilt að Spark 'teikni' eða lýsi grænum kötti með sólgleraugun á hausnum að borða ís. Hvernig útskýrirðu það án þess að sýna mynd?",
           en: "You want Spark to 'draw' or describe a green cat with sunglasses on its head eating ice cream. How do you explain it without showing a picture?"
         },
         options: {
@@ -934,7 +934,7 @@ export const missionsData: Mission[] = [
     phases: {
       hook: {
         scenarioText: {
-          is: "Vinur þinn segir þér að nota Spark til að búa til flotta en leiðinlega sögu um krakka í bekknum. Spark 'getur' gert það, en ætlarðu að gera það?",
+          is: "Vinur þinn segir þér að nota Spark til að búa til flotta en illgjarna sögu um krakka í bekknum. Spark 'getur' gert það, en ætlarðu að gera það?",
           en: "Your friend tells you to use Spark to write a cool but mean story about a kid in your class. Spark 'can' do it, but are you going to?"
         },
         options: {
@@ -951,7 +951,7 @@ export const missionsData: Mission[] = [
       },
       reflection: {
         question: {
-          is: "Jafnvel þó gervigreind *myndi* leyfa þér að gera leiðinlega hluti, af hverju ert það *þú* sem berð ábyrgðina?",
+          is: "Jafnvel þó gervigreind *myndi* leyfa þér að gera illgjarna hluti, af hverju ert það *þú* sem berð ábyrgðina?",
           en: "Even if AI *would* allow you to do mean things, why are *you* the one responsible?"
         }
       }

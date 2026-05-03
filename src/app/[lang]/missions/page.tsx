@@ -102,7 +102,7 @@ export default function MissionsMapPage() {
             {activeChildName ? (
               <div className="flex items-center gap-3 bg-secondary-container text-on-secondary-container px-4 py-2 rounded-full font-bold shadow-inner">
                 <span className="material-symbols-outlined text-[20px]">smart_toy</span>
-                Spilar sem {activeChildName}
+                {t.missions.playingAs} {activeChildName}
                 <button 
                   onClick={() => {
                     localStorage.removeItem('activeChildId');
@@ -110,7 +110,7 @@ export default function MissionsMapPage() {
                     router.push(`/${lang}/dashboard`);
                   }}
                   className="ml-2 w-6 h-6 rounded-full bg-white/50 flex items-center justify-center hover:bg-white transition-colors"
-                  title="Hætta að spila sem barn"
+                  title={t.missions.stopPlayingAs}
                 >
                   <span className="material-symbols-outlined text-[16px] text-error">close</span>
                 </button>

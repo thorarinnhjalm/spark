@@ -75,7 +75,9 @@
     "missionCompleted": "Done",
     "missionOpen": "Open",
     "missionLocked": "Locked",
-    "startNow": "Start"
+    "startNow": "Start",
+    "playingAs": "Playing as",
+    "stopPlayingAs": "Stop playing as child"
   },
   "lab": {
     "objective": "Objective:",
@@ -104,7 +106,7 @@
     "heroCreateAccount": "Start the Adventure",
     "heroViewMethodology": "View Methodology",
     "frameworkTitle": "The 4D Framework — the core of Spark",
-    "frameworkDesc": "Based on the global AI Fluency methodology from leading universities. Four skills that empower your child to use AI with safety and creativity.",
+    "frameworkDesc": "Developed by Prof. Rick Dakan and Prof. Joseph Feller in collaboration with Anthropic — built on research analysing over 9,800 AI conversations. Four skills that empower your child to use AI with confidence and understanding.",
     "frameworkD1Title": "Delegation",
     "frameworkD1Desc": "When should you use AI and when shouldn't you? Your child learns to divide tasks between themselves and the machine.",
     "frameworkD2Title": "Description",
@@ -138,7 +140,7 @@
     "faq1Q": "Is Spark safe for my child?",
     "faq1A": "Yes, 100%. Spark uses strict Google Safety Settings. We never store personally identifiable information about children, and none of our AI models are trained on user data.",
     "faq2Q": "What is the 4D Framework (AI Fluency)?",
-    "faq2A": "It's a methodology built on four pillars: Discover, Define, Design, and Deliver. This ensures your child learns about AI in a constructive and structured way.",
+    "faq2A": "It's a methodology built on four pillars: Delegation, Description, Discernment and Diligence. The framework was developed by Prof. Rick Dakan and Prof. Joseph Feller in collaboration with Anthropic, based on research analysing over 9,800 AI conversations.",
     "faq3Q": "What age is Spark for?",
     "faq3A": "Spark is best suited for children aged 10–14. The missions require reading comprehension and critical thinking that perfectly suits this age group.",
     "faq4Q": "Doesn't this just increase my child's 'screen time'?",
@@ -177,6 +179,7 @@
     "title1": "The 4D Framework — the path to ",
     "titleHighlight": "AI fluency",
     "desc": "We don't just teach children to use AI — we teach them to understand it, steer it, and think critically about its output.",
+    "researchCredit": "Developed by Prof. Rick Dakan and Prof. Joseph Feller in collaboration with Anthropic — built on research analysing over 9,800 AI conversations.",
     "d1Title": "1. Delegation",
     "d1Desc": "What should AI do and what should I do myself? Your child learns to delegate wisely — the machine helps, but the child leads.",
     "d1L1": "Brainstorming",
@@ -214,5 +217,20 @@
     "locked": "Complete the mission to unlock",
     "totalConcepts": "Total concepts",
     "unlocked": "Unlocked"
+  },
+  "why": {
+    "title": "Your children are already using AI.",
+    "subtitle": "Give them the wisdom to do it well.",
+    "parentTitle": "As a parent",
+    "parentBody": "You can't stop it — but you can make sure your child rises to the challenge. Children who understand AI will have an enormous advantage over those who simply use it without thinking.",
+    "childTitle": "What your child learns",
+    "childBody": "Spark teaches children to ask better questions, think critically about AI responses, and make responsible decisions — while playing and discovering for themselves."
+  },
+  "credibility": {
+    "badge": "Peer-reviewed methodology",
+    "researchStat": "9,800+ AI conversations analysed",
+    "authors": "Prof. Rick Dakan & Prof. Joseph Feller",
+    "partner": "In collaboration with Anthropic",
+    "researchDate": "January 2026"
   }
 }

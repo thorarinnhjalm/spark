@@ -3,7 +3,7 @@
     "loading": "Augnablik...",
     "error": "Úps! Eitthvað fór úrskeiðis. Reyndu aftur.",
     "save": "Vista",
-    "saving": "Vista...",
+    "saving": "Vistar...",
     "logout": "Útskrá"
   },
   "nav": {
@@ -75,7 +75,9 @@
     "missionCompleted": "Lokið",
     "missionOpen": "Opið",
     "missionLocked": "Læst",
-    "startNow": "Byrja"
+    "startNow": "Byrja",
+    "playingAs": "Spilar sem",
+    "stopPlayingAs": "Hætta að spila sem barn"
   },
   "lab": {
     "objective": "Markmið:",
@@ -104,7 +106,7 @@
     "heroCreateAccount": "Hefja ævintýrið",
     "heroViewMethodology": "Sjá aðferðafræði",
     "frameworkTitle": "4D ramminn — kjarninn í Spark",
-    "frameworkDesc": "Byggt á alþjóðlegu AI Fluency aðferðafræðinni frá fremstu háskólum. Fjórir hæfnipunktar sem gera barninu þínu kleift að nota gervigreind af öryggi og sköpunarkrafti.",
+    "frameworkDesc": "Þróað af Prof. Rick Dakan og Prof. Joseph Feller í samstarfi við Anthropic — og byggt á rannsókn á yfir 9.800 AI samtölum. Fjórir hæfnipunktar sem gera barninu þínu kleift að nota gervigreind af öryggi og skilningi.",
     "frameworkD1Title": "Verkaskipting",
     "frameworkD1Desc": "Hvenær á að nota gervigreind og hvenær ekki? Barnið lærir að skipta verkum á milli sín og vélarinnar.",
     "frameworkD2Title": "Skýr fyrirmæli",
@@ -138,10 +140,10 @@
     "faq1Q": "Er þetta öruggt fyrir barnið mitt?",
     "faq1A": "Já, 100%. Spark notar ströngustu öryggissíur (Safety Settings) frá Google. Við geymum aldrei persónugreinanleg gögn um börn, og engin af gervigreindarlíkönunum okkar eru þjálfuð á gögnum frá notendum.",
     "faq2Q": "Hvað er 4D ramminn (AI Fluency)?",
-    "faq2A": "Það er aðferðafræði sem byggir á fjórum stoðum: Discover (Uppgötva), Define (Skilgreina), Design (Hanna) og Deliver (Framkvæma). Þetta tryggir að barnið læri á gervigreind á uppbyggilegan og skipulagðan hátt.",
+    "faq2A": "Það er aðferðafræði sem byggir á fjórum stoðum: Delegation (Verkaskipting), Description (Skýr fyrirmæli), Discernment (Sannleiksmat) og Diligence (Ábyrgð). Ramminn var þróaður af Prof. Rick Dakan og Prof. Joseph Feller í samstarfi við Anthropic, og byggir á rannsókn á yfir 9.800 AI samtölum.",
     "faq3Q": "Fyrir hvaða aldur er Spark?",
     "faq3A": "Spark hentar best börnum á aldrinum 10–14 ára. Verkefnin krefjast lestrarkunnáttu og reyna á gagnrýna hugsun sem hentar þessum aldurshópi frábærlega.",
-    "faq4Q": "Aykur þetta ekki bara 'skjártíma' barnsins?",
+    "faq4Q": "Eykur þetta ekki bara 'skjártíma' barnsins?",
     "faq4A": "Nei. Öll verkefnin eru hönnuð sem 'virkur skjártími', þar sem barnið þarf að leysa þrautir, ígrunda og skapa. Þar að auki færðu sem foreldri umræðupunkta (Conversation Starters) til að taka umræðuna af skjánum og inn í stofuna heima.",
     "faq5Q": "Getur barnið spjallað frjálslega um allt við gervigreindina?",
     "faq5A": "Nei, gervigreindin er stranglega afmörkuð (prompt engineering) við hlutverk sitt í hverju verkefni (t.d. að svara sem Elísabet 1. eða sem vélmenni frá Mars). Hún getur ekki svarað spurningum utan rammans.",
@@ -177,6 +179,7 @@
     "title1": "4D ramminn — leiðin að ",
     "titleHighlight": "gervigreindarkunnáttu",
     "desc": "Við kennum börnum ekki bara að nota gervigreind — heldur að skilja hana, stýra henni og meta svör hennar gagnrýnið.",
+    "researchCredit": "Þróað af Prof. Rick Dakan og Prof. Joseph Feller í samstarfi við Anthropic — byggt á rannsókn á yfir 9.800 AI samtölum.",
     "d1Title": "1. Delegation",
     "d1Desc": "Hvað á gervigreindin að gera og hvað á ég að gera sjálf(ur)? Barnið lærir að skipta verkum rétt — vélin hjálpar, en barnið stýrir.",
     "d1L1": "Hugmyndavinna",
@@ -214,5 +217,20 @@
     "locked": "Kláraðu verkefnið til að opna",
     "totalConcepts": "Hugtök alls",
     "unlocked": "Opnuð"
+  },
+  "why": {
+    "title": "Börnin þín nota þegar gervigreind.",
+    "subtitle": "Gefa þeim skynsemina til að gera það vel.",
+    "parentTitle": "Sem foreldri",
+    "parentBody": "Þú getur ekki stöðvað það — en þú getur tryggt að barnið þitt standi undir kröfunum. Þau börn sem skilja gervigreind munu hafa gríðarlegt forskot á þau sem nota hana blindt.",
+    "childTitle": "Hvað barnið þitt lærir",
+    "childBody": "Spark kennir börnum að spyrja betri spurninga, gagnrýna svör og taka ábyrgar ákvarðanir — á meðan þau uppgötva og upplifa gervigreindina sjálf."
+  },
+  "credibility": {
+    "badge": "Viðurkennd aðferðafræði",
+    "researchStat": "9.800+ AI samtöl greind",
+    "authors": "Prof. Rick Dakan & Prof. Joseph Feller",
+    "partner": "Í samstarfi við Anthropic",
+    "researchDate": "Janúar 2026"
   }
 }
