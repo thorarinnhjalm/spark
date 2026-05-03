@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { createParentDocument } from '@/lib/db';
 import { Timestamp } from 'firebase/firestore';
@@ -38,6 +38,23 @@ export default function LoginPage() {
       } else {
         await signInWithEmailAndPassword(auth, email, password);
       }
+      router.push(`/${lang}/dashboard`);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError(t.common.error);
+      }
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    setError('');
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      // Ensure parent doc exists or gets created
+      await createParentDocument(result.user.uid, result.user.email, Timestamp.now());
       router.push(`/${lang}/dashboard`);
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -199,6 +216,20 @@ export default function LoginPage() {
                   <span className="material-symbols-outlined">arrow_forward</span>
                 </button>
               </form>
+
+              <div className="relative my-8 flex items-center">
+                <div className="flex-grow border-t border-outline-variant/50"></div>
+                <span className="flex-shrink-0 mx-4 text-on-surface-variant text-sm font-semibold">{t.login.orUse || 'Eða nota'}</span>
+                <div className="flex-grow border-t border-outline-variant/50"></div>
+              </div>
+
+              <button 
+                onClick={handleGoogleSignIn}
+                className="w-full bg-white text-on-surface py-4 rounded-xl font-semibold text-body-lg border border-outline-variant shadow-sm hover:bg-surface-container-low active:scale-95 transition-all flex items-center justify-center gap-4"
+              >
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" className="w-6 h-6" />
+                {t.login.googleSignInBtn || 'Halda áfram með Google'}
+              </button>
             </div>
           </div>
 

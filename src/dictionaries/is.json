@@ -32,7 +32,8 @@
     "gdprConsent": "Ég staðfesti að barnið mitt sé á aldrinum 10–14 ára og veiti samþykki fyrir vinnslu persónuupplýsinga í samræmi við persónuverndarstefnu Spark",
     "termsText": "Með skráningu samþykkir þú",
     "termsLink": "skilmála þjónustunnar",
-    "privacyLink": "persónuverndarstefnu"
+    "privacyLink": "persónuverndarstefnu",
+    "googleSignInBtn": "Halda áfram með Google"
   },
   "join": {
     "brandSubtitle": "Lærðu að vinna með gervigreind!",

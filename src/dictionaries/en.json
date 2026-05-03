@@ -32,7 +32,8 @@
     "gdprConsent": "I confirm my child is aged 10–14 and I consent to the processing of personal data in accordance with Spark's privacy policy",
     "termsText": "By signing up, you agree to our",
     "termsLink": "Terms of Service",
-    "privacyLink": "Privacy Policy"
+    "privacyLink": "Privacy Policy",
+    "googleSignInBtn": "Continue with Google"
   },
   "join": {
     "brandSubtitle": "Learn to work with AI!",
