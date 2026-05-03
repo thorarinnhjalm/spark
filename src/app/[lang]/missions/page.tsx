@@ -116,9 +116,9 @@ export default function MissionsMapPage() {
                 </button>
               </div>
             ) : (
-              <div className="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white font-bold overflow-hidden border-2 border-white">
+              <Link href={`/${lang}/profile`} className="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white font-bold overflow-hidden border-2 border-white hover:scale-105 transition-transform cursor-pointer">
                 {user.email?.charAt(0).toUpperCase()}
-              </div>
+              </Link>
             )}
             
             <button 

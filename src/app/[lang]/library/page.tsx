@@ -87,9 +87,9 @@ export default function LibraryPage() {
             >
               {t.common.logout}
             </button>
-            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
+            <Link href={`/${lang}/profile`} className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold hover:scale-105 transition-transform cursor-pointer">
               {user.email?.charAt(0).toUpperCase()}
-            </div>
+            </Link>
           </div>
         </div>
       </nav>

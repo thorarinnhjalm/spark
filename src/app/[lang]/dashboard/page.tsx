@@ -93,9 +93,9 @@ export default function DashboardPage() {
             >
               {t.common.logout}
             </button>
-            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container bg-primary-fixed flex items-center justify-center text-primary font-bold">
+            <Link href={`/${lang}/profile`} className="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container bg-primary-fixed flex items-center justify-center text-primary font-bold hover:scale-105 transition-transform cursor-pointer">
               {user.email?.charAt(0).toUpperCase()}
-            </div>
+            </Link>
           </div>
         </div>
       </header>

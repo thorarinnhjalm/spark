@@ -170,9 +170,9 @@ export default function ActiveMissionPage() {
 
             <Link href={`/${lang}/missions`} className="hidden md:block bg-surface-variant text-on-surface-variant px-4 py-2 rounded-xl font-semibold scale-95 active:scale-90 transition-transform">{t.lab.quit}</Link>
             {!activeChildName && (
-              <div className="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white font-bold overflow-hidden border-2 border-white">
+              <Link href={`/${lang}/profile`} className="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white font-bold overflow-hidden border-2 border-white hover:scale-105 transition-transform cursor-pointer">
                 {user.email?.charAt(0).toUpperCase()}
-              </div>
+              </Link>
             )}
           </div>
         </nav>

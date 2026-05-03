@@ -106,9 +106,9 @@ export default function ChildProgressPage() {
           <Link href={`/${lang}/dashboard`} className="hidden md:block px-6 py-2 bg-surface-container-high text-primary rounded-full font-semibold text-sm transition-transform scale-95 active:scale-90">
             Til baka
           </Link>
-          <div className="w-10 h-10 rounded-full border-2 border-primary overflow-hidden bg-primary flex items-center justify-center">
+          <Link href={`/${lang}/profile`} className="w-10 h-10 rounded-full border-2 border-primary overflow-hidden bg-primary flex items-center justify-center hover:scale-105 transition-transform cursor-pointer">
             <span className="text-white font-bold text-sm">{user?.email?.charAt(0).toUpperCase()}</span>
-          </div>
+          </Link>
         </div>
       </nav>
 
