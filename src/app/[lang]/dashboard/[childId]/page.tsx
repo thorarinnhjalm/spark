@@ -103,8 +103,8 @@ export default function ChildProgressPage() {
           <Link href={`/${lang}/dashboard`} className="hidden md:block px-6 py-2 bg-surface-container-high text-primary rounded-full font-semibold text-sm transition-transform scale-95 active:scale-90">
             Til baka
           </Link>
-          <div className="w-10 h-10 rounded-full border-2 border-primary overflow-hidden">
-            <img alt="User profile" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMljqgmNTE414gmbpbWBqUFaSjMTo3zdTeNQ_dJF-cByQw8e8UJ2dX9Fr4_i30ChkQfGelzkCMM-BdrFnT8Fu-eWhNHpx8KejZ9s-vGM6ThSRda171oo_1jcOIyj22FeC6BqWb8AezDFpC0StXyxm07kxHt-w-Y1KHSuolpfla_2OxSo9qQyGvXlk_FJPUF3LCJDaR4OD2v8WtvObxxcU8Ew9QiIwFd8bRS_g3Vc4vkMTnKCWEJ1O1xpaNTL8FgmgBQJADIJR2tmdz" />
+          <div className="w-10 h-10 rounded-full border-2 border-primary overflow-hidden bg-primary flex items-center justify-center">
+            <span className="text-white font-bold text-sm">{user?.email?.charAt(0).toUpperCase()}</span>
           </div>
         </div>
       </nav>
@@ -113,8 +113,8 @@ export default function ChildProgressPage() {
         {/* Profile Header Section */}
         <header className="mb-12 flex flex-col md:flex-row items-center gap-8 bg-gradient-to-r from-primary-fixed to-surface-bright p-8 rounded-[32px] shadow-sm">
           <div className="relative group">
-            <div className="w-32 h-32 md:w-48 md:h-48 rounded-full border-8 border-white shadow-xl overflow-hidden bg-white">
-              <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAen4xfDyba94ulqxUKJyoGEVOQnaGmB3VDfmADwWX5gnpQKrgDJWyhgy5AIe1LnNwRPQe_qLfdN0qNXIiqNEw0thRZe3_0fpJXo203wtjpG87MWxDPF97je2sdNBft-xcz5_X2i3XZ1OMNsQtYgjP6aSnpq4mTccAk0zn6iEPvePTKw-VGk1qZME4HhcWGf25D9FY9EB5dWwOpPgPn5hTFiHDnSXYI6gmoumOEv5gEyQLJTvgNHhW5XjL18yN13V-Jc42b6SxHSnxs" />
+            <div className="w-32 h-32 md:w-48 md:h-48 rounded-full border-8 border-white shadow-xl overflow-hidden bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center">
+              <span className="text-white font-black text-6xl">{childData.displayName?.charAt(0)?.toUpperCase() || '?'}</span>
             </div>
             <button className="absolute bottom-2 right-2 bg-secondary text-white p-3 rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center">
               <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 0" }}>edit</span>
@@ -263,7 +263,7 @@ export default function ChildProgressPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto px-8">
           <div>
             <p className="text-lg font-bold text-slate-900 mb-2">Spark AI</p>
-            <p className="font-['Plus_Jakarta_Sans'] text-xs text-slate-500">© 2024 Spark AI Fluency. Empowering the next generation.</p>
+            <p className="font-['Plus_Jakarta_Sans'] text-xs text-slate-500">© 2026 Spark AI Fluency. Empowering the next generation.</p>
           </div>
         </div>
       </footer>

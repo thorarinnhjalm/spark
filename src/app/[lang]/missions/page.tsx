@@ -11,12 +11,13 @@ import Link from 'next/link';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { useTranslation } from '@/components/DictionaryProvider';
 
-const IMAGES = [
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuBwlh62DXsKQ7EYZx7oW7I3q0wmYKjdo6qZ7g__UuYC_2RZoo1n4O8cYzTVzs-2P1-ng8vb58wJQesf-YHXg63gatXyZ3QxjXAXHR_sX6Kteu2nsYVYhNCzRN2hm70SfxiexqGEWHEveVii3f5kZJKmKIfqJHXFlrzcXkxwi-4xVcIZauxCqbvbJm3gyYUC13ee4LmilPptKLdDIflLUpRV4fV9yD3psFz0_LufbMA0elIPyXPj0OLwEWn1DfHy8C5rrPKL9bShb6cE",
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuCh2EYDOLybW_hJeEUEeXAXXvEb0AxhWfNLJ7DITjIv2EWy5xYG0ns_LI9t2OMvx4bXheHfFmbiBoEZh4SgylEcC-IQFezor0BVgdEdLzrYBXXktvz1Z-8EggwzzBQhTpn38oXdcFFrXRKspv3xy3e9QbUS1MuRTUIvOgbsw7YcCcy8p0Ta7zhRvEDMLUi0aB5emodeB6qUS9UKx146-n6yzqTbYtrr1ZOPul1qBaSdmts8KIUMaKzPYdBqH_ZssOXsNsg-csBIwm16",
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuATWQBwCqvPVVApBixrxi86U9lQds-uDnkgmvZZiE4YvGhRD-_raHwMM6n7dAfcEugG1WlpglxcouYAqhK-ROu_nsqA74yb_47MFuc6TxbyjKb2gwIcrqSoA1sVlgXs-pxHNRaGlHLpxEZzTVeEkniHvo8YjntW6cUGyC9a9bjwlJI3PJvw8bxxJTPXDrDYlChZ1yNVufeUOzQf1BZgjJRRrJKuQjGwM-WFWrKgyF05stqVuhTzdpzSJVqeMSFKYmhhpQeiL9AxkacC",
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuCdsNVt566OANuJwmpkmNBG1FpdYJuGyLJEhUZG9iUbWlUj8UmmiD4PD1jMzUQ-nge1O4-SIWynKAEq7cw7137IcnAVgNs2YvS-ivLxMCwf4oAIh8R268sZJ-oN13h7NYS3Vlk4ur2dXhpro4jki70uJD1u6JOiDAmkZiqnNApKMPndA4V4mGWV9d1-YAAcZuiWUx_j0MYhO9jsnF2GImstWbiudNhEuhSK9R9H7gHXVZ8xvMk52-T3a_0Rze7iEf9CKa-haRSXSRcA"
-];
+// D-category gradient map for mission card thumbnails (replaces external images)
+const CATEGORY_GRADIENTS: Record<string, { from: string; to: string }> = {
+  Delegation: { from: 'rgb(139, 92, 246)', to: 'rgb(124, 58, 237)' },
+  Description: { from: 'rgb(59, 130, 246)', to: 'rgb(6, 182, 212)' },
+  Discernment: { from: 'rgb(16, 185, 129)', to: 'rgb(20, 184, 166)' },
+  Diligence: { from: 'rgb(245, 158, 11)', to: 'rgb(249, 115, 22)' },
+};
 
 const TAGS = [
   { name: "Delegation", icon: "assignment_ind" },
@@ -141,12 +142,10 @@ export default function MissionsMapPage() {
           
           {missionsData.map((mission: Mission, index: number) => {
             const isCompleted = completedMissions.includes(mission.missionId);
-            const image = IMAGES[index % IMAGES.length];
-            const tag = TAGS[index % TAGS.length];
+            const isLocked = index > 0 && !completedMissions.includes(missionsData[index - 1].missionId);
+            const tag = TAGS.find(t => t.name === mission.dCode) ?? TAGS[0];
+            const gradient = CATEGORY_GRADIENTS[mission.dCode] || CATEGORY_GRADIENTS['Delegation'];
 
-            // Default to Icelandic titles until we translate missionsData.ts
-            // But we will fetch from mission.title
-            
             if (isCompleted) {
               return (
                 <div key={mission.missionId} className="group relative glass-card rounded-[24px] p-1 overflow-hidden transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl">
@@ -159,14 +158,44 @@ export default function MissionsMapPage() {
                       <span className="text-primary font-bold text-sm">+{mission.xpReward} XP</span>
                     </div>
                     
-                    <div className="mb-4 aspect-video rounded-xl overflow-hidden bg-slate-100 relative">
-                      <img className="w-full h-full object-cover" src={image} alt={mission.title[lang as 'is' | 'en']}/>
+                    <div className="mb-4 aspect-video rounded-xl overflow-hidden relative flex items-center justify-center" style={{ background: `linear-gradient(135deg, ${gradient.from}, ${gradient.to})` }}>
+                      <span className="text-white/30 text-5xl font-black absolute">{mission.missionId}</span>
+                      <span className="material-symbols-outlined text-white text-[48px] relative z-10" style={{ fontVariationSettings: "'FILL' 1" }}>{tag.icon}</span>
                     </div>
                     
                     <h3 className="font-h3 text-lg mb-2">{mission.title[lang as 'is' | 'en']}</h3>
                     <p className="text-sm text-on-surface-variant mb-6 flex-grow">{mission.learningGoal[lang as 'is' | 'en']}</p>
                     
                     <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                      <span className="material-symbols-outlined text-sm">{tag.icon}</span>
+                      {tag.name}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
+            if (isLocked) {
+              return (
+                <div key={mission.missionId} className="group relative rounded-[24px] p-1 overflow-hidden transition-all duration-300 bg-slate-200/50">
+                  <div className="bg-white/60 rounded-[14px] p-5 h-full flex flex-col opacity-60">
+                    <div className="flex justify-between items-start mb-4">
+                      <span className="bg-slate-100 text-slate-400 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
+                        <span className="material-symbols-outlined text-xs">lock</span>
+                        {t.missions.missionLocked}
+                      </span>
+                      <span className="text-slate-400 font-bold text-sm">+{mission.xpReward} XP</span>
+                    </div>
+                    
+                    <div className="mb-4 aspect-video rounded-xl overflow-hidden relative flex items-center justify-center bg-slate-200">
+                      <span className="text-slate-300 text-5xl font-black absolute">{mission.missionId}</span>
+                      <span className="material-symbols-outlined text-slate-400 text-[48px] relative z-10">lock</span>
+                    </div>
+                    
+                    <h3 className="font-h3 text-lg mb-2 text-slate-400">{mission.title[lang as 'is' | 'en']}</h3>
+                    <p className="text-sm text-slate-400 mb-6 flex-grow">{mission.learningGoal[lang as 'is' | 'en']}</p>
+                    
+                    <div className="flex items-center gap-2 text-[10px] font-bold text-slate-300 uppercase tracking-widest">
                       <span className="material-symbols-outlined text-sm">{tag.icon}</span>
                       {tag.name}
                     </div>
@@ -183,8 +212,9 @@ export default function MissionsMapPage() {
                     <span className="text-primary font-bold text-sm">+{mission.xpReward} XP</span>
                   </div>
                   
-                  <div className="mb-4 aspect-video rounded-xl overflow-hidden bg-slate-100 relative">
-                    <img className="w-full h-full object-cover" src={image} alt={mission.title[lang as 'is' | 'en']}/>
+                  <div className="mb-4 aspect-video rounded-xl overflow-hidden relative flex items-center justify-center" style={{ background: `linear-gradient(135deg, ${gradient.from}, ${gradient.to})` }}>
+                    <span className="text-white/30 text-5xl font-black absolute">{mission.missionId}</span>
+                    <span className="material-symbols-outlined text-white text-[48px] relative z-10" style={{ fontVariationSettings: "'FILL' 1" }}>{tag.icon}</span>
                   </div>
                   
                   <h3 className="font-h3 text-lg mb-2">{mission.title[lang as 'is' | 'en']}</h3>
@@ -206,7 +236,7 @@ export default function MissionsMapPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto px-8">
           <div>
             <div className="text-lg font-bold text-slate-900 dark:text-white mb-4">Spark AI Fluency</div>
-            <p className="font-['Plus_Jakarta_Sans'] text-xs text-slate-500 mb-4">© 2024 Spark AI Fluency. Empowering the next generation.</p>
+            <p className="font-['Plus_Jakarta_Sans'] text-xs text-slate-500 mb-4">© 2026 Spark AI Fluency. Empowering the next generation.</p>
           </div>
         </div>
       </footer>

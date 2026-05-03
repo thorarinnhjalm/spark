@@ -1,12 +1,26 @@
 import { NextResponse } from 'next/server';
 import { GoogleGenAI, HarmCategory, HarmBlockThreshold } from '@google/genai';
 import { missionsData } from '@/lib/missionsData';
+import { adminAuth } from '@/lib/firebaseAdmin';
 
 // Pössum upp á að nota server-side environment breytuna
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 export async function POST(req: Request) {
   try {
+    // Auth guard: verify Firebase ID token
+    const authHeader = req.headers.get('Authorization');
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return NextResponse.json({ error: 'Missing authorization token' }, { status: 401 });
+    }
+
+    const idToken = authHeader.split('Bearer ')[1];
+    try {
+      await adminAuth.verifyIdToken(idToken);
+    } catch {
+      return NextResponse.json({ error: 'Invalid or expired token' }, { status: 401 });
+    }
+
     const body = await req.json();
     const { missionId, history, message, language } = body;
 

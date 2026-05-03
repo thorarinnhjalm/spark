@@ -28,6 +28,7 @@ export type Mission = {
   title: LocalizedText;
   xpReward: number;
   learningGoal: LocalizedText;
+  conceptsTaught: LocalizedText[];
   phases: MissionPhase;
 };
 
@@ -44,6 +45,10 @@ export const missionsData: Mission[] = [
       is: "Gervigreind er verkfæri, ekki lausn á öllu.",
       en: "AI is a tool, not a universal solution."
     },
+    conceptsTaught: [
+      { is: "AI er verkfæri, ekki lausn", en: "AI is a tool, not a solution" },
+      { is: "Líkamleg verkefni krefjast manneskju", en: "Physical tasks require a human" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -82,6 +87,10 @@ export const missionsData: Mission[] = [
       is: "Gervigreind fær lánað, en fólk finnur upp nýtt.",
       en: "AI borrows, but humans invent new things."
     },
+    conceptsTaught: [
+      { is: "AI blandar saman núverandi efni", en: "AI mixes existing content" },
+      { is: "Mannleg sköpun er einstök", en: "Human creativity is unique" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -120,6 +129,10 @@ export const missionsData: Mission[] = [
       is: "Að finna línuna á milli hjálpar og svindls.",
       en: "Finding the line between help and cheating."
     },
+    conceptsTaught: [
+      { is: "Hjálp vs. svindl í AI notkun", en: "Help vs. cheating in AI use" },
+      { is: "Eigin vinna hefur gildi", en: "Your own work has value" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -158,6 +171,10 @@ export const missionsData: Mission[] = [
       is: "Góð lýsing (prompt) ræður gæðum svarsins.",
       en: "A good prompt determines the quality of the answer."
     },
+    conceptsTaught: [
+      { is: "Gæði fyrirmæla ráða gæðum svars", en: "Prompt quality determines answer quality" },
+      { is: "Nákvæm lýsing gefur betra svar", en: "Precise description gives better answers" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -196,6 +213,10 @@ export const missionsData: Mission[] = [
       is: "Samhengi skiptir máli í þýðingum.",
       en: "Context matters in translations."
     },
+    conceptsTaught: [
+      { is: "Samhengi skiptir máli", en: "Context matters" },
+      { is: "Orð hafa marga merkingar", en: "Words have multiple meanings" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -234,6 +255,10 @@ export const missionsData: Mission[] = [
       is: "Gervigreind skilur ekki heiminn sjónrænt eins og við.",
       en: "AI does not visually understand the world like we do."
     },
+    conceptsTaught: [
+      { is: "AI skilur ekki myndir eins og manneskjur", en: "AI doesn't understand images like humans" },
+      { is: "Nákvæm fyrirmæli fyrir myndlýsingar", en: "Precise instructions for image descriptions" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -272,6 +297,10 @@ export const missionsData: Mission[] = [
       is: "Gervigreind blandar oft saman sönnu og lognu.",
       en: "AI often mixes truth and lies."
     },
+    conceptsTaught: [
+      { is: "AI blandar sönnu og röngu", en: "AI mixes truth and fiction" },
+      { is: "Alltaf þarf að sannreyna", en: "Always verify AI claims" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -310,6 +339,10 @@ export const missionsData: Mission[] = [
       is: "AI gerir staðreyndavillur sem lúka sannfærandi.",
       en: "AI makes factual errors that look convincing."
     },
+    conceptsTaught: [
+      { is: "Ofskynjun (hallucination) í AI", en: "AI hallucination" },
+      { is: "Sannfærandi villur eru hættulegar", en: "Convincing errors are dangerous" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -348,6 +381,10 @@ export const missionsData: Mission[] = [
       is: "AI endurspeglar villur og hlutdrægni í þjálfunargögnum.",
       en: "AI reflects errors and biases in training data."
     },
+    conceptsTaught: [
+      { is: "Hlutdrægni (bias) í AI", en: "Bias in AI" },
+      { is: "AI endurspeglar þjálfunargögn", en: "AI reflects its training data" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -386,6 +423,10 @@ export const missionsData: Mission[] = [
       is: "Það sem þú deilir fer á brott.",
       en: "What you share goes away forever."
     },
+    conceptsTaught: [
+      { is: "Aldrei deila persónulegum upplýsingum með AI", en: "Never share personal info with AI" },
+      { is: "Gögn á netinu eru varanleg", en: "Data on the internet is permanent" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -424,6 +465,10 @@ export const missionsData: Mission[] = [
       is: "Sjónrænt efni krefst sömu gagnrýni og texti.",
       en: "Visual media requires the same critical thinking as text."
     },
+    conceptsTaught: [
+      { is: "Deepfake – tilbúin myndbönd", en: "Deepfake – generated videos" },
+      { is: "Sjónrænt efni krefst gagnrýni", en: "Visual content requires critical thinking" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -462,6 +507,10 @@ export const missionsData: Mission[] = [
       is: "Ábyrg notkun krefst heiðarlegra samskipta.",
       en: "Responsible use requires honest communication."
     },
+    conceptsTaught: [
+      { is: "Heiðarleiki í AI notkun", en: "Honesty in AI use" },
+      { is: "Mannleg tengsl krefjast ekta samskipta", en: "Human relationships require authentic communication" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -500,6 +549,10 @@ export const missionsData: Mission[] = [
       is: "Svar vs. Útskýring hefur áhrif á framtíðarþekkingu þína.",
       en: "Answer vs. Explanation impacts your future knowledge."
     },
+    conceptsTaught: [
+      { is: "Svar vs. útskýring", en: "Answer vs. explanation" },
+      { is: "AI sem kennsluverkfæri", en: "AI as a learning tool" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -538,6 +591,10 @@ export const missionsData: Mission[] = [
       is: "AI er frábær í uppbyggingu, en menn ráða sköpuninni.",
       en: "AI is great at structuring, but humans control the creation."
     },
+    conceptsTaught: [
+      { is: "AI sem skipulagsverkfæri", en: "AI as an organizing tool" },
+      { is: "Manneskjan stjórnar ferlinu", en: "Humans control the process" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -576,6 +633,10 @@ export const missionsData: Mission[] = [
       is: "Líf og ábyrgð verða ekki framkölluð með kóða.",
       en: "Life and responsibility cannot be produced with code."
     },
+    conceptsTaught: [
+      { is: "Landamæri stafræns og raunverulegs heims", en: "Borders of digital and real world" },
+      { is: "AI getur ekki séð um lifandi verur", en: "AI cannot care for living beings" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -614,6 +675,10 @@ export const missionsData: Mission[] = [
       is: "Fínstilling á tóni (tone) gjörbreytir gervigreind.",
       en: "Tweaking the tone completely transforms AI."
     },
+    conceptsTaught: [
+      { is: "Tónn og skapgerð í AI svari", en: "Tone and mood in AI responses" },
+      { is: "Fínstilling fyrirmæla", en: "Fine-tuning instructions" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -652,6 +717,10 @@ export const missionsData: Mission[] = [
       is: "Gervigreind getur brugðið sér í hlutverk (Persona prompting).",
       en: "AI can play a role (Persona prompting)."
     },
+    conceptsTaught: [
+      { is: "Persona prompting – hlutverk í AI", en: "Persona prompting – AI roles" },
+      { is: "AI getur haldið hlutverki í samræðum", en: "AI can maintain character in conversation" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -690,6 +759,10 @@ export const missionsData: Mission[] = [
       is: "Að gleyma smáatriðum í fyrirmælum getur haft afleiðingar.",
       en: "Forgetting details in instructions can have consequences."
     },
+    conceptsTaught: [
+      { is: "Smáatriði skipta máli í fyrirmælum", en: "Details matter in instructions" },
+      { is: "AI veit ekki þitt sem þú segir ekki", en: "AI doesn't know what you don't say" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -728,6 +801,10 @@ export const missionsData: Mission[] = [
       is: "Lestu yfir allt svarið, villan getur verið falin í miðjunni.",
       en: "Read over the entire answer, the error might be hidden in the middle."
     },
+    conceptsTaught: [
+      { is: "Falið villa í texta", en: "Hidden errors in text" },
+      { is: "Les allt svarið, ekki bara byrjunina", en: "Read the full answer, not just the beginning" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -766,6 +843,10 @@ export const missionsData: Mission[] = [
       is: "Staðreyndavillur í samhengi tíma.",
       en: "Factual errors in the context of time."
     },
+    conceptsTaught: [
+      { is: "Tímaskekkja (anachronism)", en: "Anachronism – time errors" },
+      { is: "Yfirfara söguleg gögn frá AI", en: "Review historical data from AI" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -804,6 +885,10 @@ export const missionsData: Mission[] = [
       is: "Gervigreind er ekki læknir eða fagmaður.",
       en: "AI is not a doctor or a professional."
     },
+    conceptsTaught: [
+      { is: "AI er ekki læknir", en: "AI is not a doctor" },
+      { is: "Alltaf leiða með sérfræðingum", en: "Always consult professionals" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -842,6 +927,10 @@ export const missionsData: Mission[] = [
       is: "Við berum ábyrgð á því sem við biðjum AI um að búa til.",
       en: "We are responsible for what we ask AI to create."
     },
+    conceptsTaught: [
+      { is: "Ábyrgð á AI framleidd efni", en: "Responsibility for AI-generated content" },
+      { is: "AI og einelti", en: "AI and bullying" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -880,6 +969,10 @@ export const missionsData: Mission[] = [
       is: "Gildi þess að gera hlutina sjálfur þegar tilfinningar eru annars vegar.",
       en: "The value of doing things yourself when feelings are involved."
     },
+    conceptsTaught: [
+      { is: "Mannleg fyrirhafn hefur sérstakt gildi", en: "Human effort has special value" },
+      { is: "Tilfinningar krefjast ekta", en: "Emotions require authenticity" }
+    ],
     phases: {
       hook: {
         scenarioText: {
@@ -918,6 +1011,11 @@ export const missionsData: Mission[] = [
       is: "Framleiðsla á gerviefni dreifist hratt og enginn veit upprunann.",
       en: "Synthetic media spreads fast and nobody knows its origin."
     },
+    conceptsTaught: [
+      { is: "Höfundarréttur og AI efni", en: "Copyright and AI content" },
+      { is: "Gerviefni dreifist hratt", en: "Synthetic media spreads fast" },
+      { is: "Merkja AI-framleitt efni", en: "Label AI-generated content" }
+    ],
     phases: {
       hook: {
         scenarioText: {

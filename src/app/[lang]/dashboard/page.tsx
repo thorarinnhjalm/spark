@@ -10,19 +10,11 @@ import Link from 'next/link';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { useTranslation } from '@/components/DictionaryProvider';
 
-const COVER_IMAGES = [
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuAL3qDWIPQDXC3z-WxklsJpdOBpDP_sS7ytUOdkYe7SeVmXMioLVOU6zJBLnOwvSoOc2HSsTzFvE5YeyDBATpyLERaFqjeZ_Z1gtvwHkMF61xLcRJqMWLIpZwjf6m7xi6QZSkrlgkpAM8l7VaGp_oK8XgC0TLyRjjNGHeYX1oqTXkBCFl8sT25PuKqcGNt4k4V4XTKGsr_5pz5kebLNaiFjTT1i172y7VXr-8fyjnXgLywaeyS_fIy-eUIYijZVaPYEU6U4ucXIuvnE',
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuB_nTmq4f0JXGGUnXmWFW9FWXV85xG44yuws-ZhK9JEzzBE5xZnKr4qMRI_OaHXkswrWAKNsU_E6ay9FbioyPHo-j-hGT-UpK95j_kENK4VwHAIFUnhr8_xIwn-ciwJgxYmq2qEqoRk-jPiH06F-_5OpIaYDtqiO0IUTwNjjo94LJh3YC4SmEi_D-oA84fSrZwa5y9wGaTJkfPi1DdHKFIdBfJx_HNP5pOkKvu_nzRuow9WoQXG3mUq4KJwf4IUTlM9Ixwi2pdOBHtq'
-];
-
-const AVATAR_IMAGES = [
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuBsa0HNughzPaxakZi9uB7YZLRkBPZCi2Iw7UcrPiRzH_5pKrQrRDNrGAfHSG2kd7i4G5-NkbUdup2DVn08hustM5lspN4j7154Bm8Raf3Fa9ZPzaQIFDsgSCWs2MQO_SFCxrRgreYm6izYuxAjvw5PbAThBFhDAo2e0i5FVyiGTeNByMYqsWchRPyxZbi8jmyzNtvtVQ3-X07nwl-KiQ05_bFkYu4xb96Po0nsXTeVROpc6Dj7UWthjaKCK6ePwsxcdBRM-IXM-Wg_',
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuDi0TK9FuLhVujdMGf7CLH5chQN_HE_GSSvZBlRTZFAnx3Q-hJdyD70-8cr-6qKlIi_tQlIqu20pKJ_tozhphP5MFAoPeVVUyhWkbpdSWhzgIR0yVyHOOZnvb1jU9R8wsmuUWhUKiodFQhVR9oy_lHWDFPhcWcH2GKJHDxo6DFx-JfrN-6hdVpIf9tfLsuRIAuUZs9-tAroWVlIJCfN0sFgsnHQaUcuaxK5gFUCviJWvP5TdvUO6GWG7Kf_wdxWanqri_3WIEjiE-FY'
-];
-
 const GRADIENTS = [
   'from-violet-500 to-fuchsia-500',
-  'from-emerald-400 to-teal-500'
+  'from-emerald-400 to-teal-500',
+  'from-blue-500 to-cyan-500',
+  'from-amber-500 to-orange-500'
 ];
 
 export default function DashboardPage() {
@@ -150,8 +142,6 @@ export default function DashboardPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
               
               {children.map((child, index) => {
-                const coverImg = COVER_IMAGES[index % COVER_IMAGES.length];
-                const avatarImg = AVATAR_IMAGES[index % AVATAR_IMAGES.length];
                 const gradient = GRADIENTS[index % GRADIENTS.length];
                 
                 // Max XP arbitrary scale for progress bar visual (10,000 XP)
@@ -160,14 +150,10 @@ export default function DashboardPage() {
                 return (
                   <div key={child.id} className="glass-card shadow-[0_8px_32px_rgba(139,92,246,0.08)] rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 group">
                     <div className={`h-32 bg-gradient-to-br ${gradient} relative`}>
-                      <img 
-                        className="w-full h-full object-cover opacity-60 mix-blend-overlay" 
-                        src={coverImg}
-                        alt="Cover"
-                      />
+                      <div className="absolute inset-0 bg-white/10"></div>
                       <div className="absolute -bottom-8 left-6">
-                        <div className="w-16 h-16 rounded-2xl border-4 border-white shadow-lg overflow-hidden bg-white">
-                          <img alt="Child profile" className="w-full h-full object-cover" src={avatarImg} />
+                        <div className={`w-16 h-16 rounded-2xl border-4 border-white shadow-lg overflow-hidden bg-gradient-to-br ${gradient} flex items-center justify-center`}>
+                          <span className="text-white font-black text-2xl">{child.displayName?.charAt(0)?.toUpperCase() || '?'}</span>
                         </div>
                       </div>
                     </div>
@@ -224,7 +210,7 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto px-8">
           <div className="space-y-4">
             <div className="text-lg font-bold text-slate-900 dark:text-white">Spark AI Fluency</div>
-            <p className="font-body-md text-xs text-slate-500">© 2024 Spark AI Fluency. Empowering the next generation.</p>
+            <p className="font-body-md text-xs text-slate-500">© 2026 Spark AI Fluency. Empowering the next generation.</p>
           </div>
         </div>
       </footer>

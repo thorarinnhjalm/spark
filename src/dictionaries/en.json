@@ -29,6 +29,7 @@
     "loginBtn": "Log In",
     "registerBtn": "Create Account",
     "orUse": "Or use",
+    "gdprConsent": "I confirm my child is aged 10–14 and I consent to the processing of personal data",
     "termsText": "By signing up, you agree to our",
     "termsLink": "Terms of Service",
     "privacyLink": "Privacy Policy"
@@ -69,6 +70,7 @@
     "allMissions": "All Missions",
     "missionCompleted": "Done",
     "missionOpen": "Open",
+    "missionLocked": "Locked",
     "startNow": "Start Now"
   },
   "lab": {
@@ -84,7 +86,10 @@
     "wellDone": "Well Done!",
     "youGotXp": "You earned",
     "forCompleting": "for completing",
-    "backToMap": "Back to Mission Map"
+    "backToMap": "Back to Mission Map",
+    "phase1Label": "Phase 1: Scenario",
+    "phase2Label": "Phase 2: Lab Phase",
+    "phase3Label": "Phase 3: Reflection"
   },
   "landing": {
     "heroBadge": "Next Generation AI",
@@ -164,5 +169,14 @@
     "ctaDesc": "Register your child for the future today and see how our 4D framework transforms curiosity into skills.",
     "ctaStart": "Start Now",
     "ctaPlay": "Kids: Play"
+  },
+  "library": {
+    "title": "Concept Library",
+    "subtitle": "Everything you've learned on your journey",
+    "conceptsLearned": "Concepts learned",
+    "fromMission": "From mission",
+    "locked": "Complete the mission to unlock",
+    "totalConcepts": "Total Concepts",
+    "unlocked": "Unlocked"
   }
 }

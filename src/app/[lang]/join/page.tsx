@@ -163,33 +163,11 @@ export default function JoinPage() {
           </div>
         </div>
 
-        {/* Visual Elements / Mascot Placeholder */}
-        <div className="mt-xl grid grid-cols-2 gap-gutter w-full">
-          <div className="glass-card rounded-[24px] p-gutter flex flex-col items-center text-center gap-2">
-            <div className="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center mb-2">
-              <span className="material-symbols-outlined text-primary-container text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
-            </div>
-            <h3 className="font-h3 text-on-surface text-[18px]">Galdrar</h3>
-            <p className="font-body-md text-on-surface-variant text-[14px]">Lærðu að búa til hluti með skipunum.</p>
-          </div>
-          <div className="glass-card rounded-[24px] p-gutter flex flex-col items-center text-center gap-2">
-            <div className="w-16 h-16 rounded-full bg-secondary-fixed flex items-center justify-center mb-2">
-              <span className="material-symbols-outlined text-secondary-container text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }}>group</span>
-            </div>
-            <h3 className="font-h3 text-on-surface text-[18px]">Vinir</h3>
-            <p className="font-body-md text-on-surface-variant text-[14px]">Skoðaðu heimana sem aðrir hafa smíðað.</p>
-          </div>
-        </div>
+
 
       </main>
 
-      {/* Visual Anchor Background Elements */}
-      <div className="fixed top-20 left-10 -z-10 opacity-40 hidden lg:block">
-        <img alt="Spark Mascot" className="w-32 h-32" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBawTF61TaPWlu0KoRJKB41L8BZGIGGgbLToN_1ngiOdR8yyk_TFf9VHf0CgZU07Dcd-6xCuq-QoGEu8V3Oc4xLq5Ytu9nHycmPg3TqE5uZz9hFABkAyAF4G67gOmpwS0teZEcBXFO-iW5khoSCx8Nm_vRmYiZcz3iLMM8Av_G3GjuID8VnSyb6kDYeMcqTqz5sHnP2bc-l_iqsPMdqdUyrH-cQDHnobU82WcPoN9rov0SSIzdks7ZSP48SPlzo5-ghSc-DKAnmq1BG"/>
-      </div>
-      <div className="fixed bottom-20 right-10 -z-10 opacity-40 hidden lg:block">
-        <img alt="Player Avatar" className="w-32 h-32" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfyf3Xga-7r5fjvcQE6P4CT8J7t-q8GeB1tXHTSOCBewvhPNrGQalLiDkLCAyXc98YnLszQ2saTLYn1xHpDnHP-WlklKIFAtVtpODT8vU7qplmRvb01qDdHNQlPbUUeC7fOHj_GX9yLvejPCynPoALcD_D59pxVx3LfZd4NMer_kgZp_OmI1XGGCe_hfRsnuUZ6GDyw9L2U6MOz-Yj-OdE65F6r3TE-l9gDtKbGOyAnCXF_8KsP-WKrQ6xDs1V6JZiDOmjVxGlFSQt"/>
-      </div>
+
     </div>
   );
 }

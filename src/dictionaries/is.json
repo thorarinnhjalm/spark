@@ -29,6 +29,7 @@
     "loginBtn": "Innskráning",
     "registerBtn": "Stofna aðgang",
     "orUse": "Eða nota",
+    "gdprConsent": "Ég staðfesti að barnið mitt sé á aldrinum 10–14 ára og samþykki vinnslu persónuupplýsinga",
     "termsText": "Með því að skrá þig samþykkir þú",
     "termsLink": "skilmála okkar",
     "privacyLink": "persónuverndarstefnu"
@@ -69,6 +70,7 @@
     "allMissions": "Öll verkefni",
     "missionCompleted": "Lokið",
     "missionOpen": "Opið",
+    "missionLocked": "Læst",
     "startNow": "Byrja núna"
   },
   "lab": {
@@ -84,7 +86,10 @@
     "wellDone": "Vel gert!",
     "youGotXp": "Þú fékst",
     "forCompleting": "fyrir að klára",
-    "backToMap": "Aftur í ævintýrakortið"
+    "backToMap": "Aftur í ævintýrakortið",
+    "phase1Label": "Fasi 1: Atburðarás",
+    "phase2Label": "Fasi 2: Tilraun",
+    "phase3Label": "Fasi 3: Ígrundan"
   },
   "landing": {
     "heroBadge": "Næsta kynslóð gervigreindar",
@@ -164,5 +169,14 @@
     "ctaDesc": "Skráðu barnið þitt í framtíðina í dag og sjáðu hvernig 4D ramminn okkar umbreytir forvitni í færni.",
     "ctaStart": "Byrjaðu núna",
     "ctaPlay": "Krakkar: Spila"
+  },
+  "library": {
+    "title": "Hugmyndasafnið",
+    "subtitle": "Allt sem þú hefur lært á ferðalaginu",
+    "conceptsLearned": "Hugtök lærð",
+    "fromMission": "Úr verkefni",
+    "locked": "Kláraðu verkefnið til að opna",
+    "totalConcepts": "Heildarhugtök",
+    "unlocked": "Opnuð"
   }
 }

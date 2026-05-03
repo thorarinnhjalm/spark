@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { createParentDocument } from '@/lib/db';
+import { Timestamp } from 'firebase/firestore';
 import { useAuth } from '@/context/AuthContext';
 import Link from 'next/link';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
@@ -15,6 +16,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
   const [error, setError] = useState('');
+  const [gdprConsent, setGdprConsent] = useState(false);
   const router = useRouter();
   const { user, loading } = useAuth();
   const { t, lang } = useTranslation();
@@ -32,7 +34,7 @@ export default function LoginPage() {
     try {
       if (isRegistering) {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        await createParentDocument(userCredential.user.uid, userCredential.user.email);
+        await createParentDocument(userCredential.user.uid, userCredential.user.email, Timestamp.now());
       } else {
         await signInWithEmailAndPassword(auth, email, password);
       }
@@ -169,33 +171,31 @@ export default function LoginPage() {
                   </div>
                 )}
 
+                {isRegistering && (
+                  <div className="flex items-start gap-3 p-4 bg-primary-fixed/20 rounded-xl border border-primary/10">
+                    <input
+                      id="gdpr-consent"
+                      type="checkbox"
+                      checked={gdprConsent}
+                      onChange={(e) => setGdprConsent(e.target.checked)}
+                      className="mt-1 w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary-container accent-primary cursor-pointer flex-shrink-0"
+                    />
+                    <label htmlFor="gdpr-consent" className="text-sm text-on-surface-variant leading-relaxed cursor-pointer">
+                      {t.login.gdprConsent}
+                    </label>
+                  </div>
+                )}
+
                 {/* Submit Button */}
                 <button 
-                  className="w-full vibrant-gradient text-on-primary py-4 rounded-xl font-h3 text-body-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-base" 
+                  className="w-full vibrant-gradient text-on-primary py-4 rounded-xl font-h3 text-body-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-base disabled:opacity-50 disabled:hover:scale-100" 
                   type="submit"
+                  disabled={isRegistering && !gdprConsent}
                 >
                   {isRegistering ? t.login.registerBtn : t.login.loginBtn}
                   <span className="material-symbols-outlined">arrow_forward</span>
                 </button>
               </form>
-
-              <div className="mt-xl flex items-center gap-base">
-                <div className="h-[1px] flex-1 bg-outline-variant"></div>
-                <span className="text-label-caps font-label-caps text-outline">{t.login.orUse}</span>
-                <div className="h-[1px] flex-1 bg-outline-variant"></div>
-              </div>
-
-              {/* Social Logins */}
-              <div className="grid grid-cols-2 gap-gutter mt-lg">
-                <button className="flex items-center justify-center gap-base py-3 border border-outline-variant rounded-xl hover:bg-white transition-colors">
-                  <img alt="Google" className="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCe3siBkStGEVW4kDFQ1Sy2BlOspNeu8B2afdKmCj1_iy43lYOAn1J9VGkBRmgYetVr-oVDHM6AOe03a9ZUS4dCgPsJE6YYyKr6IJobi7K-Tb1g1FeaO5swcf6h-waD6eypX40ebGdhO42PSDFGfRuE-AulPS95EEVlpi3pNABrPGTBRK-uCVzP8ocblpZl5zconS3C3H14p64NcIH2ULAkGDTGqUx0IxAs1nAMXKHvZ3DatPf4ZzuM22v4DR4LhfobBWA7hSZwSnDz"/>
-                  <span className="font-label-caps text-label-caps">Google</span>
-                </button>
-                <button className="flex items-center justify-center gap-base py-3 border border-outline-variant rounded-xl hover:bg-white transition-colors">
-                  <span className="material-symbols-outlined text-on-surface" style={{ fontVariationSettings: "'FILL' 1" }}>ios</span>
-                  <span className="font-label-caps text-label-caps">Apple</span>
-                </button>
-              </div>
             </div>
           </div>
 
@@ -213,7 +213,7 @@ export default function LoginPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto px-8">
           <div className="space-y-4">
             <div className="text-lg font-bold text-slate-900 dark:text-white">Spark AI Fluency</div>
-            <p className="font-body-md text-xs text-slate-500">© 2024 Spark AI Fluency. Empowering the next generation.</p>
+            <p className="font-body-md text-xs text-slate-500">© 2026 Spark AI Fluency. Empowering the next generation.</p>
           </div>
           <div className="flex flex-wrap gap-x-8 gap-y-4 justify-start md:justify-end items-center">
             <a className="font-body-md text-xs text-slate-400 hover:text-violet-500 transition-colors underline decoration-violet-500/30 underline-offset-4" href="#">Privacy Policy</a>

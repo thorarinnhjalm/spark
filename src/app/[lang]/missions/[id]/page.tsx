@@ -64,9 +64,13 @@ export default function ActiveMissionPage() {
     setIsChatLoading(true);
 
     try {
+      const idToken = await user?.getIdToken();
       const res = await fetch('/api/chat', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          ...(idToken ? { 'Authorization': `Bearer ${idToken}` } : {})
+        },
         body: JSON.stringify({
           missionId: mission?.missionId,
           history: chatHistory,
@@ -133,9 +137,9 @@ export default function ActiveMissionPage() {
 
   // Calculate Progress Bar Width
   let progressWidth = '33%';
-  let phaseText = 'Phase 1: Scenario';
-  if (phase === 'lab') { progressWidth = '66%'; phaseText = 'Phase 2: Lab Phase'; }
-  if (phase === 'reflection') { progressWidth = '100%'; phaseText = 'Phase 3: Reflection'; }
+  let phaseText = t.lab.phase1Label;
+  if (phase === 'lab') { progressWidth = '66%'; phaseText = t.lab.phase2Label; }
+  if (phase === 'reflection') { progressWidth = '100%'; phaseText = t.lab.phase3Label; }
 
   return (
     <div className="bg-background font-body-md text-on-background min-h-screen pb-24 md:pb-0">

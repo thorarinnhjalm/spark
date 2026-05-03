@@ -11,7 +11,7 @@ function generateInviteCode(): string {
   return result;
 }
 
-export async function createParentDocument(uid: string, email: string | null) {
+export async function createParentDocument(uid: string, email: string | null, gdprConsentAt?: ReturnType<typeof Timestamp.now>) {
   const parentRef = doc(db, 'parents', uid);
   const parentSnap = await getDoc(parentRef);
 
@@ -23,7 +23,8 @@ export async function createParentDocument(uid: string, email: string | null) {
       inviteCode,
       plan: 'free',
       maxChildren: 1,
-      createdAt: Timestamp.now()
+      createdAt: Timestamp.now(),
+      ...(gdprConsentAt ? { gdprConsentAt } : {})
     });
     return inviteCode;
   }
@@ -62,6 +63,14 @@ export async function createChildDocument(uid: string, parentUid: string, displa
   }
 }
 
+// Rank calculation based on spec thresholds
+function calculateRank(xp: number): string {
+  if (xp >= 600) return 'Elite Agent';
+  if (xp >= 300) return 'Senior Agent';
+  if (xp >= 100) return 'Agent';
+  return 'Recruit';
+}
+
 export async function saveMissionProgress(childUid: string, missionId: string, xpEarned: number, reflectionAnswer: string) {
   const progressRef = doc(collection(db, `children/${childUid}/mission_progress`));
   
@@ -74,11 +83,13 @@ export async function saveMissionProgress(childUid: string, missionId: string, x
     expiresAt: new Timestamp(Math.floor(Date.now() / 1000) + (30 * 24 * 60 * 60), 0) // 30 daga TTL (GDPR-K)
   });
 
-  // Uppfæra heildar XP hjá barni
+  // Uppfæra heildar XP og rank hjá barni
   const childRef = doc(db, 'children', childUid);
   const childSnap = await getDoc(childRef);
   if (childSnap.exists()) {
     const currentXp = childSnap.data().xp || 0;
-    await setDoc(childRef, { xp: currentXp + xpEarned }, { merge: true });
+    const newXp = currentXp + xpEarned;
+    const newRank = calculateRank(newXp);
+    await setDoc(childRef, { xp: newXp, rank: newRank }, { merge: true });
   }
 }
