@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { db, auth } from '@/lib/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
 import Link from 'next/link';
 import { useTranslation } from '@/components/DictionaryProvider';
@@ -28,7 +28,15 @@ export default function ProfilePage() {
         try {
           const parentDoc = await getDoc(doc(db, 'parents', user.uid));
           if (parentDoc.exists()) {
-            setParentData(parentDoc.data());
+            const data = parentDoc.data();
+            if (!data.inviteCode) {
+              const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+              let newCode = 'SPARK-';
+              for (let i = 0; i < 4; i++) newCode += chars.charAt(Math.floor(Math.random() * chars.length));
+              await updateDoc(doc(db, 'parents', user.uid), { inviteCode: newCode });
+              data.inviteCode = newCode;
+            }
+            setParentData(data);
           }
         } catch (error) {
           console.error('Error fetching parent data:', error);

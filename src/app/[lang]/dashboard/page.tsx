@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { db, auth } from '@/lib/firebase';
-import { doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
+import { doc, getDoc, collection, query, where, getDocs, updateDoc } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
 import Link from 'next/link';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
@@ -35,7 +35,17 @@ export default function DashboardPage() {
       if (user) {
         const parentDoc = await getDoc(doc(db, 'parents', user.uid));
         if (parentDoc.exists()) {
-          setInviteCode(parentDoc.data().inviteCode);
+          const data = parentDoc.data();
+          if (data.inviteCode) {
+            setInviteCode(data.inviteCode);
+          } else {
+            // Robustness: If a user somehow has a document without an invite code (e.g. from early testing or script), generate one now.
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let newCode = 'SPARK-';
+            for (let i = 0; i < 4; i++) newCode += chars.charAt(Math.floor(Math.random() * chars.length));
+            await updateDoc(doc(db, 'parents', user.uid), { inviteCode: newCode });
+            setInviteCode(newCode);
+          }
         }
 
         const childrenRef = collection(db, 'children');
