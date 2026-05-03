@@ -245,14 +245,19 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
             <div className="md:col-span-2">
               <div className="flex items-center gap-2 mb-6">
-                <div className="bg-slate-900 h-10 w-10 flex items-center justify-center rounded-[12px] shadow-sm overflow-hidden">
-                  <img src="/spark-icon.png" alt="" className="h-8 w-8 object-contain mix-blend-screen" />
-                </div>
+                <img src="/logo.png" alt="" className="h-8 w-8 object-contain" />
                 <span className="text-2xl font-black tracking-tighter text-primary">Spark</span>
               </div>
               <p className="text-on-surface-variant text-xs">
                 {t.footer}
               </p>
+            </div>
+          </div>
+          <div className="border-t border-surface-variant/50 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="font-body-md text-xs text-on-surface-variant/70">© 2026 Neðri Hóll Hugmyndahús ehf.</p>
+            <div className="flex gap-6">
+              <Link href={`/${lang}/privacy`} className="font-body-md text-xs text-on-surface-variant hover:text-primary transition-colors underline decoration-primary/30 underline-offset-4">Privacy Policy</Link>
+              <Link href={`/${lang}/terms`} className="font-body-md text-xs text-on-surface-variant hover:text-primary transition-colors underline decoration-primary/30 underline-offset-4">Terms of Service</Link>
             </div>
           </div>
         </div>

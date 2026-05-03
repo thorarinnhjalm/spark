@@ -61,9 +61,7 @@ export default function LoginPage() {
       {/* Top Navigation (Shell Implementation) */}
       <header className="bg-white/70 backdrop-blur-xl dark:bg-slate-900/70 border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto sticky top-0 z-50">
         <div className="flex items-center gap-2">
-          <div className="bg-slate-900 h-10 w-10 flex items-center justify-center rounded-[12px] shadow-sm overflow-hidden">
-            <img src="/spark-icon.png" alt="" className="h-8 w-8 object-contain mix-blend-screen" />
-          </div>
+          <img src="/logo.png" alt="" className="h-8 w-8 object-contain" />
           <span className="text-2xl font-black tracking-tighter text-violet-600 dark:text-violet-400">Spark</span>
         </div>
         <div className="flex gap-4 items-center">
@@ -204,12 +202,11 @@ export default function LoginPage() {
             </div>
           </div>
 
-          {/* Footer Message */}
           <p className="mt-8 text-center font-body-md text-on-surface-variant px-6">
             {t.login.termsText} {' '}
-            <a className="text-primary font-semibold hover:underline" href="#">{t.login.termsLink}</a> 
+            <Link className="text-primary font-semibold hover:underline" href={`/${lang}/terms`}>{t.login.termsLink}</Link> 
             {' '}og{' '}
-            <a className="text-primary font-semibold hover:underline" href="#">{t.login.privacyLink}</a>.
+            <Link className="text-primary font-semibold hover:underline" href={`/${lang}/privacy`}>{t.login.privacyLink}</Link>.
           </p>
         </div>
       </main>
@@ -218,16 +215,14 @@ export default function LoginPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto px-8">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="bg-slate-900 h-8 w-8 flex items-center justify-center rounded-lg shadow-sm overflow-hidden">
-                <img src="/spark-icon.png" alt="" className="h-6 w-6 object-contain mix-blend-screen" />
-              </div>
+              <img src="/logo.png" alt="" className="h-6 w-6 object-contain" />
               <span className="text-lg font-bold text-slate-900 dark:text-white">Spark</span>
             </div>
             <p className="font-body-md text-xs text-slate-500">© 2026 Spark by Antigravity.</p>
           </div>
           <div className="flex flex-wrap gap-x-8 gap-y-4 justify-start md:justify-end items-center">
-            <a className="font-body-md text-xs text-slate-400 hover:text-violet-500 transition-colors underline decoration-violet-500/30 underline-offset-4" href="#">Privacy Policy</a>
-            <a className="font-body-md text-xs text-slate-400 hover:text-violet-500 transition-colors underline decoration-violet-500/30 underline-offset-4" href="#">Terms of Service</a>
+            <Link className="font-body-md text-xs text-slate-400 hover:text-violet-500 transition-colors underline decoration-violet-500/30 underline-offset-4" href={`/${lang}/privacy`}>Privacy Policy</Link>
+            <Link className="font-body-md text-xs text-slate-400 hover:text-violet-500 transition-colors underline decoration-violet-500/30 underline-offset-4" href={`/${lang}/terms`}>Terms of Service</Link>
             <a className="font-body-md text-xs text-slate-400 hover:text-violet-500 transition-colors underline decoration-violet-500/30 underline-offset-4" href="#">Parent Guide</a>
           </div>
         </div>
