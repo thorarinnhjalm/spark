@@ -159,6 +159,14 @@
     "footerLegalTerms": "Terms of Service",
     "footerLegalPrivacy": "Privacy Policy",
     "footerMission": "We prepare children for the future by fostering critical thinking and digital literacy through play and discovery.",
+    "articlesTitle": "Educational Articles",
+    "articlesSubtitle": "Learn how AI is changing education and how you can support your child's learning journey.",
+    "readTime": "min read",
+    "writtenBy": "By",
+    "readArticle": "Read Article",
+    "articlesHookTitle": "Discover the Future",
+    "articlesHookDesc": "We publish in-depth articles on safety, prompt engineering, and critical thinking in the age of AI.",
+    "articlesHookCTA": "Explore Library",
     "footer": "© 2026 Spark. All rights reserved."
   },
   "methodology": {

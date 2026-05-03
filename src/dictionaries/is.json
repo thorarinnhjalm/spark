@@ -159,6 +159,14 @@
     "footerLegalTerms": "Skilmálar",
     "footerLegalPrivacy": "Persónuvernd",
     "footerMission": "Við undirbúum börn fyrir framtíðina með því að efla gagnrýna hugsun og stafrænt læsi í gegnum leik og uppgötvun.",
+    "articlesTitle": "Fræðsluefni",
+    "articlesSubtitle": "Lærðu hvernig gervigreind er að breyta menntun og hvernig þú getur stutt við bakið á barninu þínu.",
+    "readTime": "mín. lestur",
+    "writtenBy": "Eftir",
+    "readArticle": "Lesa grein",
+    "articlesHookTitle": "Kynntu þér framtíðina",
+    "articlesHookDesc": "Við gefum út ítarlegar greinar um öryggi, prompt engineering og gagnrýna hugsun á tímum gervigreindar.",
+    "articlesHookCTA": "Skoða greinasafn",
     "footer": "© 2026 Spark. Öll réttindi áskilin."
   },
   "methodology": {

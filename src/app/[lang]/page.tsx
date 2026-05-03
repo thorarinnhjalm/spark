@@ -272,6 +272,25 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
           </div>
         </section>
 
+        {/* BEGIN: Articles Hook Section */}
+        <section className="mb-32">
+          <div className="glass-card p-12 rounded-[40px] text-center border-t border-white/60 shadow-[0_20px_40px_rgba(139,92,246,0.05)] bg-gradient-to-bl from-surface to-surface-variant/30 relative overflow-hidden">
+            <div className="absolute -top-24 -left-24 w-64 h-64 bg-primary-container opacity-30 blur-3xl rounded-full pointer-events-none"></div>
+            <div className="relative z-10">
+              <h2 className="font-h2 text-3xl md:text-4xl text-on-surface mb-6">{t.articlesHookTitle}</h2>
+              <p className="font-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10 leading-relaxed">
+                {t.articlesHookDesc}
+              </p>
+              <Link 
+                href={`/${lang}/articles`}
+                className="inline-block px-8 py-4 bg-primary text-white rounded-[20px] font-bold shadow-md hover:shadow-lg hover:-translate-y-1 transition-all"
+              >
+                {t.articlesHookCTA}
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* BEGIN: FAQ Section */}
         <section className="mb-32">
           <div className="text-center mb-16">
