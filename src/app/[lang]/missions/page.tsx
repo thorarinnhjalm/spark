@@ -153,9 +153,11 @@ export default function MissionsMapPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           
           {missionsData.filter(m => !activeCategory || m.dCode === activeCategory).map((mission: Mission, index: number) => {
-            const globalIndex = missionsData.findIndex(m => m.missionId === mission.missionId);
+            const categoryMissions = missionsData.filter(m => m.dCode === mission.dCode);
+            const positionInCategory = categoryMissions.findIndex(m => m.missionId === mission.missionId);
+            const previousInCategory = positionInCategory > 0 ? categoryMissions[positionInCategory - 1].missionId : null;
             const isCompleted = completedMissions.includes(mission.missionId);
-            const isLocked = globalIndex > 0 && !completedMissions.includes(missionsData[globalIndex - 1].missionId);
+            const isLocked = previousInCategory !== null && !completedMissions.includes(previousInCategory);
             const tag = TAGS.find(t => t.name === mission.dCode) ?? TAGS[0];
             const gradient = CATEGORY_GRADIENTS[mission.dCode] || CATEGORY_GRADIENTS['Delegation'];
 

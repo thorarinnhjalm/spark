@@ -63,11 +63,11 @@ export async function createChildDocument(uid: string, parentUid: string, displa
   }
 }
 
-// Rank calculation based on spec thresholds
+// Thresholds scaled for 24 missions × 50 XP = 1,200 max
 function calculateRank(xp: number): string {
-  if (xp >= 600) return 'Elite Agent';
-  if (xp >= 300) return 'Senior Agent';
-  if (xp >= 100) return 'Agent';
+  if (xp >= 1000) return 'Elite Agent';
+  if (xp >= 600) return 'Senior Agent';
+  if (xp >= 150) return 'Agent';
   return 'Recruit';
 }
 

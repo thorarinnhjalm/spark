@@ -147,8 +147,7 @@ export default function DashboardPage() {
               {children.map((child, index) => {
                 const gradient = GRADIENTS[index % GRADIENTS.length];
                 
-                // Max XP arbitrary scale for progress bar visual (10,000 XP)
-                const xpPercentage = Math.min((child.xp / 10000) * 100, 100);
+                const xpPercentage = Math.min((child.xp / 1200) * 100, 100);
 
                 return (
                   <div key={child.id} className="glass-card shadow-[0_8px_32px_rgba(139,92,246,0.08)] rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 group">
