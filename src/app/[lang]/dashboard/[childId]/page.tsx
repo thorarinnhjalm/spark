@@ -17,7 +17,7 @@ export default function ChildProgressPage() {
   const childId = params.childId as string;
   const { t, lang } = useTranslation();
 
-  const [childData, setChildData] = useState<{ displayName: string, xp: number, rank: string, parentUid: string } | null>(null);
+  const [childData, setChildData] = useState<{ displayName: string, xp: number, rank: string, parentUid: string, streak?: number } | null>(null);
   const [progressData, setProgressData] = useState<{ id: string, missionId: string, missionTitle: string, dCode: string, xpEarned: number, reflectionAnswer: string, completedAt: string }[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -44,7 +44,8 @@ export default function ChildProgressPage() {
           displayName: data.displayName || 'Óþekkt',
           xp: data.xp || 0,
           rank: data.rank || 'Nýliði',
-          parentUid: data.parentUid
+          parentUid: data.parentUid,
+          streak: data.streak || 0
         });
 
         const progressRef = collection(db, `children/${childId}/mission_progress`);
@@ -123,9 +124,22 @@ export default function ChildProgressPage() {
             </button>
           </div>
           <div className="text-center md:text-left flex-1">
-            <div className="flex flex-col md:flex-row items-center gap-4 mb-2">
-              <h1 className="font-h1 text-h1 text-primary">Góðan dag, {childData.displayName}!</h1>
-              <span className="px-4 py-1 bg-secondary-container text-on-secondary-container rounded-full font-label-caps text-label-caps uppercase tracking-widest">{childData.rank}</span>
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-2">
+              <div className="flex flex-col md:flex-row items-center gap-4">
+                <h1 className="font-h1 text-h1 text-primary">Góðan dag, {childData.displayName}!</h1>
+                <span className="px-4 py-1 bg-secondary-container text-on-secondary-container rounded-full font-label-caps text-label-caps uppercase tracking-widest">{childData.rank}</span>
+              </div>
+              <button 
+                onClick={() => {
+                  localStorage.setItem('activeChildId', childId);
+                  localStorage.setItem('activeChildName', childData.displayName);
+                  router.push(`/${lang}/missions`);
+                }}
+                className="bg-gradient-to-r from-primary to-secondary-container text-white px-6 py-3 rounded-xl font-bold shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
+              >
+                <span className="material-symbols-outlined">play_arrow</span>
+                Spila sem {childData.displayName}
+              </button>
             </div>
             <p className="font-body-lg text-body-lg text-on-surface-variant mb-6">Tilbúinn í næsta ævintýri?</p>
             <div className="max-w-md">
@@ -163,10 +177,12 @@ export default function ChildProgressPage() {
               </div>
             </div>
             <div className="mt-8 flex gap-4 overflow-x-auto pb-2">
-              <div className="flex-shrink-0 bg-white/50 px-4 py-3 rounded-2xl flex items-center gap-3 border border-white">
-                <span className="material-symbols-outlined text-amber-500" style={{ fontVariationSettings: "'FILL' 1" }}>local_fire_department</span>
-                <span className="font-bold text-slate-700">5 Daga Runa</span>
-              </div>
+              {(childData.streak || 0) > 0 && (
+                <div className="flex-shrink-0 bg-white/50 px-4 py-3 rounded-2xl flex items-center gap-3 border border-white">
+                  <span className="material-symbols-outlined text-amber-500" style={{ fontVariationSettings: "'FILL' 1" }}>local_fire_department</span>
+                  <span className="font-bold text-slate-700">{childData.streak || 0} Daga Runa</span>
+                </div>
+              )}
               <div className="flex-shrink-0 bg-white/50 px-4 py-3 rounded-2xl flex items-center gap-3 border border-white">
                 <span className="material-symbols-outlined text-blue-500" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
                 <span className="font-bold text-slate-700">{progressData.length} Verkefni</span>

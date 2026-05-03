@@ -30,11 +30,16 @@ export default function ActiveMissionPage() {
   const [reflectionAnswer, setReflectionAnswer] = useState('');
   const [isSaving, setIsSaving] = useState(false);
 
+  const [activeChildName, setActiveChildName] = useState<string | null>(null);
+
   const chatEndRef = useRef<HTMLDivElement>(null);
   
   // Auth Check
   useEffect(() => {
     if (!loading && !user) router.push(`/${lang}/join`);
+    if (user && typeof window !== 'undefined') {
+      setActiveChildName(localStorage.getItem('activeChildName'));
+    }
   }, [user, loading, router, lang]);
 
   // If mission not found
@@ -99,7 +104,8 @@ export default function ActiveMissionPage() {
     setIsSaving(true);
     
     try {
-      await saveMissionProgress(user.uid, mission.missionId, mission.xpReward, reflectionAnswer);
+      const targetId = localStorage.getItem('activeChildId') || user.uid;
+      await saveMissionProgress(targetId, mission.missionId, mission.xpReward, reflectionAnswer);
       setPhase('success');
     } catch (error) {
       console.error("Gat ekki vistað:", error);
@@ -154,10 +160,20 @@ export default function ActiveMissionPage() {
           </div>
           <div className="flex items-center gap-4">
             <LanguageSwitcher />
+            
+            {activeChildName ? (
+              <div className="hidden md:flex items-center gap-2 bg-secondary-container text-on-secondary-container px-4 py-2 rounded-full font-bold shadow-inner">
+                <span className="material-symbols-outlined text-[18px]">smart_toy</span>
+                {activeChildName}
+              </div>
+            ) : null}
+
             <Link href={`/${lang}/missions`} className="hidden md:block bg-surface-variant text-on-surface-variant px-4 py-2 rounded-xl font-semibold scale-95 active:scale-90 transition-transform">{t.lab.quit}</Link>
-            <div className="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white font-bold overflow-hidden border-2 border-white">
-              {user.email?.charAt(0).toUpperCase()}
-            </div>
+            {!activeChildName && (
+              <div className="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white font-bold overflow-hidden border-2 border-white">
+                {user.email?.charAt(0).toUpperCase()}
+              </div>
+            )}
           </div>
         </nav>
       </header>

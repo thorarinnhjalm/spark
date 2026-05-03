@@ -35,6 +35,8 @@ export default function MissionsMapPage() {
   const [totalXP, setTotalXP] = useState(0);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
+  const [activeChildName, setActiveChildName] = useState<string | null>(null);
+
   useEffect(() => {
     if (!loading && !user) {
       router.push(`/${lang}/join`);
@@ -45,12 +47,19 @@ export default function MissionsMapPage() {
     async function fetchProgress() {
       if (user) {
         try {
-          const childDoc = await getDoc(doc(db, 'children', user.uid));
+          const storedChildId = localStorage.getItem('activeChildId');
+          const targetId = storedChildId || user.uid;
+          
+          if (storedChildId) {
+            setActiveChildName(localStorage.getItem('activeChildName'));
+          }
+
+          const childDoc = await getDoc(doc(db, 'children', targetId));
           if (childDoc.exists()) {
             setTotalXP(childDoc.data().xp || 0);
           }
 
-          const progressRef = collection(db, `children/${user.uid}/mission_progress`);
+          const progressRef = collection(db, `children/${targetId}/mission_progress`);
           const snapshot = await getDocs(query(progressRef));
           const completed = snapshot.docs.map(doc => doc.data().missionId);
           setCompletedMissions(completed);
@@ -89,15 +98,35 @@ export default function MissionsMapPage() {
           </div>
           <div className="flex items-center gap-4">
             <LanguageSwitcher />
+            
+            {activeChildName ? (
+              <div className="flex items-center gap-3 bg-secondary-container text-on-secondary-container px-4 py-2 rounded-full font-bold shadow-inner">
+                <span className="material-symbols-outlined text-[20px]">smart_toy</span>
+                Spilar sem {activeChildName}
+                <button 
+                  onClick={() => {
+                    localStorage.removeItem('activeChildId');
+                    localStorage.removeItem('activeChildName');
+                    router.push(`/${lang}/dashboard`);
+                  }}
+                  className="ml-2 w-6 h-6 rounded-full bg-white/50 flex items-center justify-center hover:bg-white transition-colors"
+                  title="Hætta að spila sem barn"
+                >
+                  <span className="material-symbols-outlined text-[16px] text-error">close</span>
+                </button>
+              </div>
+            ) : (
+              <div className="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white font-bold overflow-hidden border-2 border-white">
+                {user.email?.charAt(0).toUpperCase()}
+              </div>
+            )}
+            
             <button 
               onClick={() => signOut(auth)}
               className="px-5 py-2 bg-surface-variant rounded-full text-on-surface-variant font-bold text-sm scale-95 active:scale-90 transition-transform hover:bg-surface-dim"
             >
               {t.common.logout}
             </button>
-            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
-              {user.email?.charAt(0).toUpperCase()}
-            </div>
           </div>
         </div>
       </nav>
