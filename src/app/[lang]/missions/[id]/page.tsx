@@ -189,7 +189,9 @@ export default function ActiveMissionPage() {
               </div>
               <h2 className="font-h3 text-h3">{t.lab.whatHappensNext}</h2>
             </div>
-            <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed px-2">{mission.phases.hook.scenarioText[lang as 'is' | 'en']}</p>
+            <div className="bg-surface-bright p-6 rounded-[24px] border border-surface-variant mt-4">
+              <p className="font-h3 text-xl text-on-surface leading-relaxed">{mission.phases.hook.scenarioText[lang as 'is' | 'en']}</p>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
               {mission.phases.hook.options[lang as 'is' | 'en'].map((opt, i) => (
                 <button 
@@ -232,10 +234,17 @@ export default function ActiveMissionPage() {
             </div>
             
             <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-surface-bright/30">
-              {/* Objective Banner */}
-              <div className="bg-white/80 backdrop-blur-md p-5 rounded-[20px] border border-white shadow-sm font-medium text-on-surface flex items-start gap-3 mb-6">
-                <span className="material-symbols-outlined text-secondary text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>flag</span>
-                <span className="leading-relaxed"><strong>{t.lab.objective}</strong> {mission.phases.lab.goalText[lang as 'is' | 'en']}</span>
+              {/* Objective Banner - Made highly prominent for clarity */}
+              <div className="bg-gradient-to-r from-primary-container to-secondary-container p-6 rounded-[24px] border-2 border-primary/30 shadow-[0_8px_30px_rgba(139,92,246,0.2)] flex flex-col md:flex-row items-start md:items-center gap-4 mb-8">
+                <div className="w-14 h-14 shrink-0 bg-white rounded-full flex items-center justify-center shadow-inner text-primary">
+                  <span className="material-symbols-outlined text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }}>emoji_objects</span>
+                </div>
+                <div>
+                  <h3 className="font-bold text-primary tracking-widest uppercase text-xs mb-1">{t.lab.objective}</h3>
+                  <p className="text-on-primary-container font-h3 text-lg leading-snug">
+                    {mission.phases.lab.goalText[lang as 'is' | 'en']}
+                  </p>
+                </div>
               </div>
 
               {chatHistory.length === 0 && (
@@ -302,7 +311,7 @@ export default function ActiveMissionPage() {
             </div>
             
             <div className="space-y-4 relative pt-4">
-              <label className="font-body-lg text-xl font-bold text-on-surface block">
+              <label className="font-body-lg text-2xl font-bold text-on-surface block leading-snug">
                 {mission.phases.reflection.question[lang as 'is' | 'en']}
               </label>
               <textarea 
