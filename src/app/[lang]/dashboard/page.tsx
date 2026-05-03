@@ -142,7 +142,7 @@ export default function DashboardPage() {
 
             {/* Social Proof / Review Collection Widget */}
             <iframe 
-              src={`https://umsognin.is/w/spark?lang=${lang}`}
+              src={`https://umsognin.is/w/spark?lng=${lang}`}
               width="100%" 
               height="500px" 
               style={{ border: 'none', borderRadius: '24px', overflow: 'hidden', maxWidth: '480px' }}
