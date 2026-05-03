@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { db } from '@/lib/firebase';
-import { doc, getDoc, collection, getDocs, Timestamp } from 'firebase/firestore';
+import { doc, getDoc, collection, getDocs, updateDoc, Timestamp } from 'firebase/firestore';
 import Link from 'next/link';
 
 export default function AdminDashboard() {
@@ -64,6 +64,19 @@ export default function AdminDashboard() {
       console.error('Error fetching admin data:', error);
     } finally {
       setIsLoadingData(false);
+    }
+  };
+
+  const handleUpgradeToPremium = async (parentId: string) => {
+    if (!confirm('Ertu viss um að þú viljir gefa þessum aðgangi Premium áskrift frítt?')) return;
+    
+    try {
+      await updateDoc(doc(db, 'parents', parentId), { plan: 'premium' });
+      // Update local state
+      setParents(parents.map(p => p.id === parentId ? { ...p, plan: 'premium' } : p));
+    } catch (error) {
+      console.error('Error upgrading parent:', error);
+      alert('Ekki tókst að uppfæra áskrift.');
     }
   };
 
@@ -134,6 +147,7 @@ export default function AdminDashboard() {
                     <th className="pb-3 font-semibold">Netfang</th>
                     <th className="pb-3 font-semibold">Invite Code</th>
                     <th className="pb-3 font-semibold">Plan</th>
+                    <th className="pb-3 font-semibold text-right">Aðgerðir</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -145,6 +159,18 @@ export default function AdminDashboard() {
                         <span className={`px-3 py-1 rounded-full text-xs font-semibold ${parent.plan === 'premium' ? 'bg-success/20 text-success' : 'bg-surface-variant text-on-surface-variant'}`}>
                           {parent.plan || 'free'}
                         </span>
+                      </td>
+                      <td className="py-4 text-right">
+                        {parent.plan !== 'premium' && (
+                          <button 
+                            onClick={() => handleUpgradeToPremium(parent.id)}
+                            className="bg-primary/10 text-primary hover:bg-primary/20 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors flex items-center gap-1 inline-flex"
+                            title="Gefa Premium frítt"
+                          >
+                            <span className="material-symbols-outlined text-[14px]">stars</span>
+                            Gefa Premium
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))}
