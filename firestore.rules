@@ -15,7 +15,9 @@ service cloud.firestore {
     match /children/{childId} {
       // Child can read/write their own data
       // Parent can read/write their child's data
-      allow read, update, delete: if request.auth != null && (request.auth.uid == childId || resource.data.parentUid == request.auth.uid);
+      allow get: if request.auth != null && (request.auth.uid == childId || resource.data.parentUid == request.auth.uid);
+      allow list: if request.auth != null && resource.data.parentUid == request.auth.uid;
+      allow update, delete: if request.auth != null && (request.auth.uid == childId || resource.data.parentUid == request.auth.uid);
       // Allow child to create their own document during signup
       allow create: if request.auth != null && request.auth.uid == childId;
     }

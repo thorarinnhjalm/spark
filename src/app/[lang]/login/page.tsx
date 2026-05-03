@@ -21,15 +21,18 @@ export default function LoginPage() {
   const { user, loading } = useAuth();
   const { t, lang } = useTranslation();
 
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
+
   useEffect(() => {
-    if (!loading && user) {
+    if (!loading && user && !isAuthenticating) {
       router.push(`/${lang}/dashboard`);
     }
-  }, [user, loading, router, lang]);
+  }, [user, loading, router, lang, isAuthenticating]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setIsAuthenticating(true);
 
     try {
       if (isRegistering) {
@@ -45,11 +48,13 @@ export default function LoginPage() {
       } else {
         setError(t.common.error);
       }
+      setIsAuthenticating(false);
     }
   };
 
   const handleGoogleSignIn = async () => {
     setError('');
+    setIsAuthenticating(true);
     const provider = new GoogleAuthProvider();
     try {
       const result = await signInWithPopup(auth, provider);
@@ -62,6 +67,7 @@ export default function LoginPage() {
       } else {
         setError(t.common.error);
       }
+      setIsAuthenticating(false);
     }
   };
 
