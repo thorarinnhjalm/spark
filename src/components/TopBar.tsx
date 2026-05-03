@@ -25,9 +25,14 @@ export default function TopBar() {
               {loading ? (
                 <span className="text-outline text-sm font-medium opacity-50">{t.common.loading}</span>
               ) : user ? (
-                <Link href={`/${lang}/dashboard`} className="bg-surface-variant text-on-surface-variant px-4 py-2 rounded-xl font-semibold hover:bg-surface-dim transition-colors text-sm">
-                  {t.nav.dashboard}
-                </Link>
+                <div className="flex items-center gap-3">
+                  <Link href={`/${lang}/dashboard`} className="text-on-surface-variant font-semibold hover:text-primary transition-colors text-sm">
+                    {t.nav.dashboard}
+                  </Link>
+                  <Link href={`/${lang}/profile`} className="bg-surface-variant text-on-surface-variant p-2 rounded-full hover:bg-surface-dim transition-colors flex items-center justify-center" title="Minn Prófíll">
+                    <span className="material-symbols-outlined text-[20px]">person</span>
+                  </Link>
+                </div>
               ) : (
                 <Link href={`/${lang}/login`} className="bg-primary text-white px-4 py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors shadow-sm text-sm">
                   {t.login.loginBtn}

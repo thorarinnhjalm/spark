@@ -2,22 +2,25 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    
+    function isAdmin() {
+      return request.auth != null && get(/databases/$(database)/documents/parents/$(request.auth.uid)).data.role == 'admin';
+    }
+
     // Parents
     match /parents/{parentId} {
       // Allow read for invite code verification (needed for child signup)
       // and allow full access to the parent themselves
       allow read: if true; 
-      allow write: if request.auth != null && request.auth.uid == parentId;
+      allow write: if request.auth != null && (request.auth.uid == parentId || isAdmin());
     }
     
     // Children
     match /children/{childId} {
       // Child can read/write their own data
       // Parent can read/write their child's data
-      allow get: if request.auth != null && (request.auth.uid == childId || resource.data.parentUid == request.auth.uid);
-      allow list: if request.auth != null && resource.data.parentUid == request.auth.uid;
-      allow update, delete: if request.auth != null && (request.auth.uid == childId || resource.data.parentUid == request.auth.uid);
+      allow get: if request.auth != null && (isAdmin() || request.auth.uid == childId || resource.data.parentUid == request.auth.uid);
+      allow list: if request.auth != null && (isAdmin() || resource.data.parentUid == request.auth.uid);
+      allow update, delete: if request.auth != null && (isAdmin() || request.auth.uid == childId || resource.data.parentUid == request.auth.uid);
       // Allow child to create their own document during signup
       allow create: if request.auth != null && request.auth.uid == childId;
     }
@@ -26,7 +29,7 @@ service cloud.firestore {
     match /children/{childId}/mission_progress/{progressId} {
       // Child can read/write their own progress
       // Parent can read their child's progress
-      allow read, write: if request.auth != null && (request.auth.uid == childId || get(/databases/$(database)/documents/children/$(childId)).data.parentUid == request.auth.uid);
+      allow read, write: if request.auth != null && (isAdmin() || request.auth.uid == childId || get(/databases/$(database)/documents/children/$(childId)).data.parentUid == request.auth.uid);
     }
   }
 }
