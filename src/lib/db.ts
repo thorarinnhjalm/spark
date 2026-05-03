@@ -61,3 +61,24 @@ export async function createChildDocument(uid: string, parentUid: string, displa
     });
   }
 }
+
+export async function saveMissionProgress(childUid: string, missionId: string, xpEarned: number, reflectionAnswer: string) {
+  const progressRef = doc(collection(db, `children/${childUid}/mission_progress`));
+  
+  await setDoc(progressRef, {
+    missionId,
+    status: 'completed',
+    xpEarned,
+    reflectionAnswer,
+    completedAt: Timestamp.now(),
+    expiresAt: new Timestamp(Math.floor(Date.now() / 1000) + (30 * 24 * 60 * 60), 0) // 30 daga TTL (GDPR-K)
+  });
+
+  // Uppfæra heildar XP hjá barni
+  const childRef = doc(db, 'children', childUid);
+  const childSnap = await getDoc(childRef);
+  if (childSnap.exists()) {
+    const currentXp = childSnap.data().xp || 0;
+    await setDoc(childRef, { xp: currentXp + xpEarned }, { merge: true });
+  }
+}
