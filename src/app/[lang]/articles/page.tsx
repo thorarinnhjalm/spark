@@ -37,11 +37,12 @@ export default async function ArticlesPage(props: { params: Promise<{ lang: stri
               href={`/${lang}/articles/${article.slug}`}
               className="glass-card rounded-[24px] overflow-hidden group flex flex-col hover:shadow-[0_20px_40px_rgba(139,92,246,0.1)] transition-all duration-300 hover:-translate-y-2 border border-white/40"
             >
-              {/* Fake Image Placeholder - using gradient */}
-              <div className="h-48 w-full bg-gradient-to-br from-primary-container to-secondary-container relative overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center opacity-30">
-                  <span className="material-symbols-outlined text-primary text-[64px]">local_library</span>
-                </div>
+              <div className="h-48 w-full bg-surface-variant relative overflow-hidden">
+                <img 
+                  src={article.imageUrl} 
+                  alt={article.title[lang]} 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
               </div>
               
               <div className="p-8 flex flex-col flex-grow">

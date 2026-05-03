@@ -5,16 +5,49 @@ import { AuthProvider } from '@/context/AuthContext';
 import { getDictionary, Locale } from '@/dictionaries';
 import { DictionaryProvider } from '@/components/DictionaryProvider';
 
-export const metadata: Metadata = {
-  title: "Spark AI",
-  description: "AI Fluency for Kids",
-  alternates: {
-    languages: {
-      'en': '/en',
-      'is': '/is',
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const lang = resolvedParams.lang as Locale;
+  const dict = await getDictionary(lang);
+  
+  // Use translations or fallbacks
+  const title = dict.landing?.heroTitle1 ? `Spark | ${dict.landing.heroTitle1}` : "Spark AI Education";
+  const description = dict.landing?.footerMission || "AI Fluency for Kids. We prepare children for the future by fostering critical thinking and digital literacy through play and discovery.";
+  
+  return {
+    metadataBase: new URL('https://spark-ai.is'),
+    title,
+    description,
+    alternates: {
+      languages: {
+        'en': '/en',
+        'is': '/is',
+      },
     },
-  },
-};
+    openGraph: {
+      title,
+      description,
+      url: 'https://spark-ai.is',
+      siteName: 'Spark',
+      images: [
+        {
+          url: '/opengraph-image.png',
+          width: 1200,
+          height: 630,
+          alt: 'Spark AI Education',
+        },
+      ],
+      locale: lang === 'is' ? 'is_IS' : 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/twitter-image.png'],
+    },
+  };
+}
 
 export async function generateStaticParams() {
   return [{ lang: 'is' }, { lang: 'en' }];

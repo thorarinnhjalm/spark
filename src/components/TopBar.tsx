@@ -16,6 +16,22 @@ export default function TopBar() {
         <Link href={`/${lang}`} className="flex items-center gap-2">
           <img src="/logo.png" alt="Spark logo" className="h-8 w-auto object-contain" />
         </Link>
+        
+        <div className="hidden md:flex gap-8 items-center">
+          <Link href={`/${lang}/methodology`} className="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 hover:text-primary transition-all duration-300">
+            {t.nav.methodology}
+          </Link>
+          <Link href={`/${lang}/articles`} className="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 hover:text-primary transition-all duration-300">
+            {t.nav.articles || "Fræðsluefni"}
+          </Link>
+          <Link href={`/${lang}#pricing`} className="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 hover:text-primary transition-all duration-300">
+            {t.nav.pricing || "Verðskrá"}
+          </Link>
+          <Link href={`/${lang}#faq`} className="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 hover:text-primary transition-all duration-300">
+            {t.nav.faq || "Spurningar"}
+          </Link>
+        </div>
+
         <nav>
           <ul className="flex items-center gap-4">
             <li>

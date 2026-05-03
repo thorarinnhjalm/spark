@@ -16,6 +16,43 @@ export async function generateStaticParams() {
   return paths;
 }
 
+export async function generateMetadata({ params }: { params: Promise<{ lang: string; slug: string }> }): Promise<import('next').Metadata> {
+  const resolvedParams = await params;
+  const lang = resolvedParams.lang as Locale;
+  const article = articlesData.find(a => a.slug === resolvedParams.slug);
+
+  if (!article) return {};
+
+  const title = `${article.title[lang]} | Spark`;
+  const description = article.excerpt[lang];
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'article',
+      publishedTime: article.date,
+      authors: [article.author],
+      images: [
+        {
+          url: article.imageUrl,
+          width: 1200,
+          height: 630,
+          alt: article.title[lang],
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [article.imageUrl],
+    },
+  };
+}
+
 export default async function ArticleReaderPage(props: { params: Promise<{ lang: string; slug: string }> }) {
   const params = await props.params;
   const lang = params.lang as Locale;
@@ -62,6 +99,15 @@ export default async function ArticleReaderPage(props: { params: Promise<{ lang:
             </div>
           </div>
         </header>
+
+        {/* Hero Image */}
+        <div className="w-full aspect-[16/9] mb-12 rounded-[32px] overflow-hidden bg-surface-variant border border-white/20 shadow-xl">
+          <img 
+            src={article.imageUrl} 
+            alt={article.title[lang]} 
+            className="w-full h-full object-cover"
+          />
+        </div>
 
         {/* Article Content - rendered safely because we wrote the HTML */}
         <article 
