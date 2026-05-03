@@ -72,23 +72,23 @@ export default function LoginPage() {
         </div>
       </header>
 
-      <main className="flex items-center justify-center min-h-[calc(100vh-80px)] px-gutter py-xl relative">
+      <main className="flex items-center justify-center min-h-[calc(100vh-80px)] px-6 py-12 relative">
         {/* Illustrative Side Elements (Hidden on small screens) */}
-        <div className="hidden xl:block fixed left-12 top-1/2 -translate-y-1/2 w-64 h-96 glass-card rounded-[32px] p-md rotate-[-6deg] opacity-40 pointer-events-none">
-          <div className="w-full h-full rounded-2xl bg-gradient-to-br from-primary-fixed to-secondary-fixed/30 p-gutter">
-            <div className="h-4 w-2/3 bg-white/60 rounded-full mb-base"></div>
-            <div className="h-4 w-full bg-white/60 rounded-full mb-base"></div>
-            <div className="h-32 w-full bg-white/40 rounded-2xl mb-xl"></div>
+        <div className="hidden xl:block fixed left-12 top-1/2 -translate-y-1/2 w-64 h-96 glass-card rounded-[32px] p-6 rotate-[-6deg] opacity-40 pointer-events-none">
+          <div className="w-full h-full rounded-2xl bg-gradient-to-br from-primary-fixed to-secondary-fixed/30 p-4">
+            <div className="h-4 w-2/3 bg-white/60 rounded-full mb-4"></div>
+            <div className="h-4 w-full bg-white/60 rounded-full mb-4"></div>
+            <div className="h-32 w-full bg-white/40 rounded-2xl mb-8"></div>
           </div>
         </div>
 
-        <div className="hidden xl:block fixed right-12 top-1/2 -translate-y-1/2 w-72 h-[420px] glass-card rounded-[32px] p-md rotate-[4deg] opacity-50 pointer-events-none">
-          <div className="w-full h-full rounded-2xl bg-white/40 p-gutter">
-            <div className="flex items-center gap-base mb-lg">
+        <div className="hidden xl:block fixed right-12 top-1/2 -translate-y-1/2 w-72 h-[420px] glass-card rounded-[32px] p-6 rotate-[4deg] opacity-50 pointer-events-none">
+          <div className="w-full h-full rounded-2xl bg-white/40 p-4">
+            <div className="flex items-center gap-4 mb-6">
               <div className="w-10 h-10 rounded-full bg-primary-container"></div>
               <div className="h-4 w-24 bg-primary-container/20 rounded-full"></div>
             </div>
-            <div className="space-y-base">
+            <div className="space-y-4">
               <div className="h-20 w-full bg-white/80 rounded-xl"></div>
               <div className="h-20 w-full bg-white/80 rounded-xl"></div>
               <div className="h-20 w-full bg-white/80 rounded-xl"></div>
@@ -96,21 +96,21 @@ export default function LoginPage() {
           </div>
         </div>
 
-        <div className="w-full max-w-md relative z-10">
+        <div className="w-full max-w-xl relative z-10">
           {/* Glassmorphic Auth Card */}
-          <div className="glass-card rounded-[24px] p-md shadow-[0_20px_50px_rgba(139,92,246,0.1)] relative overflow-hidden">
+          <div className="glass-card rounded-[24px] p-8 md:p-12 shadow-[0_20px_50px_rgba(139,92,246,0.1)] relative overflow-hidden">
             {/* Decorative background elements */}
             <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary-fixed/30 rounded-full blur-3xl pointer-events-none"></div>
             <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-secondary-fixed/30 rounded-full blur-3xl pointer-events-none"></div>
             
             <div className="relative z-10">
-              <div className="text-center mb-xl">
-                <h1 className="font-h2 text-h2 text-primary mb-xs">{t.login.title}</h1>
+              <div className="text-center mb-10">
+                <h1 className="font-h2 text-h2 text-primary mb-2">{t.login.title}</h1>
                 <p className="font-body-md text-on-surface-variant">{t.login.subtitle}</p>
               </div>
 
               {/* Toggle Switch */}
-              <div className="flex p-1 bg-surface-container-low rounded-full mb-lg border border-outline-variant/30 relative">
+              <div className="flex p-1 bg-surface-container-low rounded-full mb-8 border border-outline-variant/30 relative">
                 <div 
                   className="absolute top-1 bottom-1 w-[calc(50%-4px)] bg-white rounded-full shadow-sm transition-all duration-300"
                   style={{ left: isRegistering ? 'calc(50% + 2px)' : '4px' }}
@@ -135,9 +135,9 @@ export default function LoginPage() {
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-md">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Email Field */}
-                <div className="space-y-xs">
+                <div className="space-y-2">
                   <label className="font-label-caps text-label-caps text-on-surface-variant ml-1">{t.login.email}</label>
                   <div className="relative">
                     <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-[20px]">mail</span>
@@ -153,7 +153,7 @@ export default function LoginPage() {
                 </div>
 
                 {/* Password Field */}
-                <div className="space-y-xs">
+                <div className="space-y-2">
                   <label className="font-label-caps text-label-caps text-on-surface-variant ml-1">{t.login.password}</label>
                   <div className="relative">
                     <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-[20px]">lock</span>
@@ -191,7 +191,7 @@ export default function LoginPage() {
 
                 {/* Submit Button */}
                 <button 
-                  className="w-full vibrant-gradient text-on-primary py-4 rounded-xl font-h3 text-body-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-base disabled:opacity-50 disabled:hover:scale-100" 
+                  className="w-full vibrant-gradient text-on-primary py-4 rounded-xl font-h3 text-body-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-4 disabled:opacity-50 disabled:hover:scale-100" 
                   type="submit"
                   disabled={isRegistering && !gdprConsent}
                 >
@@ -203,7 +203,7 @@ export default function LoginPage() {
           </div>
 
           {/* Footer Message */}
-          <p className="mt-lg text-center font-body-md text-on-surface-variant px-md">
+          <p className="mt-8 text-center font-body-md text-on-surface-variant px-6">
             {t.login.termsText} {' '}
             <a className="text-primary font-semibold hover:underline" href="#">{t.login.termsLink}</a> 
             {' '}og{' '}
