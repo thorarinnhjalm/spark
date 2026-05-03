@@ -54,6 +54,15 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
             <Link href={`/${lang}/methodology`} className="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 hover:text-primary transition-all duration-300">
               {navT.methodology}
             </Link>
+            <Link href={`/${lang}/articles`} className="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 hover:text-primary transition-all duration-300">
+              {navT.articles}
+            </Link>
+            <Link href={`/${lang}#pricing`} className="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 hover:text-primary transition-all duration-300">
+              {navT.pricing}
+            </Link>
+            <Link href={`/${lang}#faq`} className="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 hover:text-primary transition-all duration-300">
+              {navT.faq}
+            </Link>
           </div>
 
           <nav className="flex items-center gap-4">
@@ -202,7 +211,7 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
         </section>
 
         {/* BEGIN: Pricing Section */}
-        <section className="mb-32 relative">
+        <section id="pricing" className="scroll-mt-32 mb-32 relative">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[500px] bg-gradient-to-r from-primary-fixed/40 to-secondary-fixed/40 blur-3xl -z-10 rounded-full"></div>
           
           <div className="text-center mb-16">
@@ -292,7 +301,7 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
         </section>
 
         {/* BEGIN: FAQ Section */}
-        <section className="mb-32">
+        <section id="faq" className="scroll-mt-32 mb-32">
           <div className="text-center mb-16">
             <h2 className="font-h2 text-4xl text-on-surface mb-4">{t.faqTitle}</h2>
           </div>

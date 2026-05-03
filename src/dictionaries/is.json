@@ -14,7 +14,10 @@
     "startLearning": "Byrja",
     "childJoin": "Börn: Skráðu þig",
     "parentLogin": "Foreldrar: Innskráning",
-    "methodology": "Aðferðafræði"
+    "methodology": "Aðferðafræði",
+    "articles": "Fræðsluefni",
+    "pricing": "Verðskrá",
+    "faq": "Spurningar"
   },
   "login": {
     "title": "Velkomin",

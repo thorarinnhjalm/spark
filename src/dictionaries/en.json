@@ -14,7 +14,10 @@
     "startLearning": "Start Learning",
     "childJoin": "Kids: Join Here",
     "parentLogin": "Parents: Log In",
-    "methodology": "Methodology"
+    "methodology": "Methodology",
+    "articles": "Articles",
+    "pricing": "Pricing",
+    "faq": "FAQ"
   },
   "login": {
     "title": "Welcome",
