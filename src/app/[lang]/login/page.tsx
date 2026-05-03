@@ -251,8 +251,7 @@ export default function LoginPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto px-8">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <img src="/logo.png" alt="" className="h-6 w-6 object-contain" />
-              <span className="text-lg font-bold text-slate-900 dark:text-white">Spark</span>
+              <img src="/logo.png" alt="Spark" className="h-6 w-auto object-contain" />
             </div>
             <p className="font-body-md text-xs text-slate-500">© 2026 Spark by Antigravity.</p>
           </div>
