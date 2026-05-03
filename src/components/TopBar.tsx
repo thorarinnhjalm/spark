@@ -14,10 +14,7 @@ export default function TopBar() {
     <header className="py-4 border-b border-surface-variant bg-white/70 backdrop-blur-xl sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <Link href={`/${lang}`} className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary-container flex items-center justify-center font-bold text-white shadow-sm">
-            S
-          </div>
-          <span className="text-xl font-bold tracking-wide text-primary">SPARK</span>
+          <img src="/logo.png" alt="Spark AI" className="h-10 w-auto object-contain" />
         </Link>
         <nav className="flex items-center gap-4">
           <LanguageSwitcher />

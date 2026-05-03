@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html lang="is"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Spark AI - Verkefnakort</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#e9ddff",
+                      "on-tertiary-container": "#fffbff",
+                      "primary-container": "#8455ef",
+                      "on-tertiary": "#ffffff",
+                      "surface-bright": "#fef7ff",
+                      "on-tertiary-fixed-variant": "#673d00",
+                      "on-secondary-fixed": "#3e0022",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-primary": "#d0bcff",
+                      "secondary-container": "#fd56a7",
+                      "surface-container-high": "#ede5f3",
+                      "secondary-fixed": "#ffd9e4",
+                      "on-secondary": "#ffffff",
+                      "on-primary-container": "#fffbff",
+                      "on-secondary-container": "#600037",
+                      "surface-tint": "#6d3bd7",
+                      "on-primary-fixed": "#23005c",
+                      "on-error-container": "#93000a",
+                      "tertiary-container": "#a76500",
+                      "secondary-fixed-dim": "#ffb0cd",
+                      "on-error": "#ffffff",
+                      "inverse-surface": "#322f39",
+                      "outline": "#7b7486",
+                      "primary": "#6b38d4",
+                      "on-primary": "#ffffff",
+                      "surface-variant": "#e7e0ed",
+                      "on-surface": "#1d1a23",
+                      "tertiary-fixed": "#ffdcbb",
+                      "surface-container-highest": "#e7e0ed",
+                      "inverse-on-surface": "#f5eefb",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed-dim": "#ffb869",
+                      "tertiary": "#855000",
+                      "surface-container": "#f3ebf8",
+                      "surface-dim": "#ded7e4",
+                      "error": "#ba1a1a",
+                      "outline-variant": "#cbc3d7",
+                      "on-secondary-fixed-variant": "#8c0053",
+                      "surface-container-low": "#f8f1fe",
+                      "primary-fixed-dim": "#d0bcff",
+                      "on-background": "#1d1a23",
+                      "surface": "#fef7ff",
+                      "on-surface-variant": "#494454",
+                      "on-primary-fixed-variant": "#5516be",
+                      "secondary": "#b4136d",
+                      "on-tertiary-fixed": "#2c1700",
+                      "background": "#fef7ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "lg": "48px",
+                      "xl": "64px",
+                      "sm": "12px",
+                      "base": "8px",
+                      "xs": "4px",
+                      "gutter": "16px",
+                      "margin-page": "32px",
+                      "md": "24px"
+              },
+              "fontFamily": {
+                      "h2": ["Plus Jakarta Sans"],
+                      "label-caps": ["Plus Jakarta Sans"],
+                      "h3": ["Plus Jakarta Sans"],
+                      "body-lg": ["Plus Jakarta Sans"],
+                      "h1": ["Plus Jakarta Sans"],
+                      "body-md": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "h1": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .mission-path {
+            background-image: radial-gradient(circle at 2px 2px, rgba(107, 56, 212, 0.1) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background min-h-screen mission-path">
+<!-- TopNavBar -->
+<nav class="bg-white/70 backdrop-blur-xl dark:bg-slate-900/70 border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-black tracking-tighter text-violet-600 dark:text-violet-400">Spark AI</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 dark:text-slate-400 hover:text-violet-500 transition-all duration-300" href="#">Missions</a>
+<a class="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-violet-700 dark:text-violet-300 border-b-2 border-violet-500 pb-1" href="#">Dashboard</a>
+<a class="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 dark:text-slate-400 hover:text-violet-500 transition-all duration-300" href="#">Library</a>
+<a class="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 dark:text-slate-400 hover:text-violet-500 transition-all duration-300" href="#">Explore</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-5 py-2 bg-primary rounded-full text-white font-bold text-sm scale-95 active:scale-90 transition-transform">Start Learning</button>
+<img alt="User profile" class="w-10 h-10 rounded-full border-2 border-primary-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8oMbqnP6OdEJ3vjfp_XmgPxXudVhYyjA0I_bkkCTQBe8hK-q6xtMfe8b38nDZGB5y2ixV7lEgpKvNfa_Pji628_erQxxQm9FH1I-TMXIhgn8bGjaz0BYO5uqJDfdzMUD8tFgSe-zwspQ4AIVISXpFQ61gq15JRI5QTiU2-MEaAATqQYI9J-vHf9QYaA4vWJFh1JEEe7lKa-KCck55vKFNRKYj3r4-XJom6UaA0_RgpwPdHM_BsdWdL4TYDQACSxLJjHLEC-Hsfo1G"/>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-6 py-12 pb-32">
+<!-- Hero Section -->
+<header class="mb-12 text-center md:text-left">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<span class="font-label-caps text-primary uppercase tracking-[0.2em] mb-2 block">Ævintýrið Bíður</span>
+<h1 class="font-h1 text-h1 text-on-surface mb-4">Verkefnakortið Þitt</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Kannaðu heim gervigreindar í gegnum 24 spennandi verkefni. Safnaðu XP og opnaðu nýja hæfileika!</p>
+</div>
+<div class="glass-card p-6 rounded-2xl flex gap-8 shadow-lg">
+<div class="text-center">
+<span class="block text-h3 font-h3 text-primary">1,240</span>
+<span class="text-xs font-bold text-slate-500 uppercase">XP Samtals</span>
+</div>
+<div class="text-center border-l border-slate-200 pl-8">
+<span class="block text-h3 font-h3 text-secondary">12/24</span>
+<span class="text-xs font-bold text-slate-500 uppercase">Lokið</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Category Filter Tabs -->
+<div class="flex flex-wrap gap-4 mb-12">
+<button class="px-6 py-3 rounded-full bg-primary text-white font-bold shadow-lg shadow-primary/20 hover:scale-105 transition-transform flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+                Öll Verkefni
+            </button>
+<button class="px-6 py-3 rounded-full glass-card text-on-surface-variant font-bold hover:bg-white transition-all flex items-center gap-2">
+<span class="material-symbols-outlined">assignment_ind</span>
+                Delegation
+            </button>
+<button class="px-6 py-3 rounded-full glass-card text-on-surface-variant font-bold hover:bg-white transition-all flex items-center gap-2">
+<span class="material-symbols-outlined">description</span>
+                Description
+            </button>
+<button class="px-6 py-3 rounded-full glass-card text-on-surface-variant font-bold hover:bg-white transition-all flex items-center gap-2">
+<span class="material-symbols-outlined">visibility</span>
+                Discernment
+            </button>
+<button class="px-6 py-3 rounded-full glass-card text-on-surface-variant font-bold hover:bg-white transition-all flex items-center gap-2">
+<span class="material-symbols-outlined">bolt</span>
+                Diligence
+            </button>
+</div>
+<!-- Mission Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Completed Mission -->
+<div class="group relative glass-card rounded-2xl p-1 overflow-hidden transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl">
+<div class="bg-white rounded-[14px] p-5 h-full flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            Lokið
+                        </span>
+<span class="text-primary font-bold text-sm">+50 XP</span>
+</div>
+<div class="mb-4 aspect-video rounded-xl overflow-hidden bg-slate-100 relative">
+<img class="w-full h-full object-cover" data-alt="A vibrant digital illustration of a friendly robot helping a child organize a futuristic workspace. The scene is bathed in soft neon purple and blue light, reflecting a high-tech yet playful atmosphere. High-key lighting creates a sense of optimism and clarity. The visual style is clean, modern, and glassmorphic with subtle glowing edges." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwlh62DXsKQ7EYZx7oW7I3q0wmYKjdo6qZ7g__UuYC_2RZoo1n4O8cYzTVzs-2P1-ng8vb58wJQesf-YHXg63gatXyZ3QxjXAXHR_sX6Kteu2nsYVYhNCzRN2hm70SfxiexqGEWHEveVii3f5kZJKmKIfqJHXFlrzcXkxwi-4xVcIZauxCqbvbJm3gyYUC13ee4LmilPptKLdDIflLUpRV4fV9yD3psFz0_LufbMA0elIPyXPj0OLwEWn1DfHy8C5rrPKL9bShb6cE"/>
+</div>
+<h3 class="font-h3 text-lg mb-2">Fyrstu Skrefin</h3>
+<p class="text-sm text-on-surface-variant mb-6 flex-grow">Lærðu að biðja gervigreindina um hjálp við heimanámið.</p>
+<div class="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+<span class="material-symbols-outlined text-sm">assignment_ind</span>
+                        Delegation
+                    </div>
+</div>
+</div>
+<!-- Active/Unlocked Mission -->
+<div class="group relative p-1 rounded-2xl overflow-hidden transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl bg-gradient-to-br from-primary to-secondary-container">
+<div class="bg-white rounded-[14px] p-5 h-full flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-violet-100 text-violet-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Opið</span>
+<span class="text-primary font-bold text-sm">+100 XP</span>
+</div>
+<div class="mb-4 aspect-video rounded-xl overflow-hidden bg-slate-100 relative">
+<img class="w-full h-full object-cover" data-alt="An imaginative scene showing a young student using a glowing tablet to describe a dream world to an AI artist. The environment is a clean, white minimalist room with floating glass elements. The color palette features pops of vibrant pink and deep violet. Lighting is airy and weightless, emphasizing a magical, tech-forward learning experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh2EYDOLybW_hJeEUEeXAXXvEb0AxhWfNLJ7DITjIv2EWy5xYG0ns_LI9t2OMvx4bXheHfFmbiBoEZh4SgylEcC-IQFezor0BVgdEdLzrYBXXktvz1Z-8EggwzzBQhTpn38oXdcFFrXRKspv3xy3e9QbUS1MuRTUIvOgbsw7YcCcy8p0Ta7zhRvEDMLUi0aB5emodeB6qUS9UKx146-n6yzqTbYtrr1ZOPul1qBaSdmts8KIUMaKzPYdBqH_ZssOXsNsg-csBIwm16"/>
+</div>
+<h3 class="font-h3 text-lg mb-2">Nákvæmar Lýsingar</h3>
+<p class="text-sm text-on-surface-variant mb-6 flex-grow">Hvernig á að lýsa hugmyndum þínum svo AI skilji þig fullkomlega.</p>
+<button class="w-full py-3 bg-primary text-white rounded-xl font-bold text-sm shadow-md group-hover:scale-[1.02] transition-transform active:scale-95">Byrja Núna</button>
+</div>
+</div>
+<!-- Locked Missions (Repeatable Structure) -->
+<div class="group relative glass-card rounded-2xl p-1 opacity-60">
+<div class="bg-white/50 rounded-[14px] p-5 h-full flex flex-col grayscale">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">lock</span>
+                            Læst
+                        </span>
+<span class="text-slate-400 font-bold text-sm">+150 XP</span>
+</div>
+<div class="mb-4 aspect-video rounded-xl overflow-hidden bg-slate-200 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400 text-4xl">lock</span>
+</div>
+<h3 class="font-h3 text-lg mb-2 text-slate-400">Gagnrýnin Hugsun</h3>
+<p class="text-sm text-slate-400 mb-6 flex-grow">Greindu hvað er satt og hvað er tilbúningur í svörum AI.</p>
+<div class="flex items-center gap-2 text-[10px] font-bold text-slate-300 uppercase tracking-widest">
+<span class="material-symbols-outlined text-sm">visibility</span>
+                        Discernment
+                    </div>
+</div>
+</div>
+<!-- More grid items for layout demo (4 columns) -->
+<div class="group relative glass-card rounded-2xl p-1 opacity-60">
+<div class="bg-white/50 rounded-[14px] p-5 h-full flex flex-col grayscale">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">lock</span>
+                            Læst
+                        </span>
+<span class="text-slate-400 font-bold text-sm">+200 XP</span>
+</div>
+<div class="mb-4 aspect-video rounded-xl overflow-hidden bg-slate-200 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400 text-4xl">lock</span>
+</div>
+<h3 class="font-h3 text-lg mb-2 text-slate-400">Siðferði í AI</h3>
+<p class="text-sm text-slate-400 mb-6 flex-grow">Hvernig við notum tæknina á ábyrgan hátt til góðs.</p>
+<div class="flex items-center gap-2 text-[10px] font-bold text-slate-300 uppercase tracking-widest">
+<span class="material-symbols-outlined text-sm">bolt</span>
+                        Diligence
+                    </div>
+</div>
+</div>
+<!-- Adding a few more to fill grid rows -->
+<!-- Item 5 -->
+<div class="group relative glass-card rounded-2xl p-1 opacity-60">
+<div class="bg-white/50 rounded-[14px] p-5 h-full flex flex-col grayscale">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">lock</span>
+                            Læst
+                        </span>
+<span class="text-slate-400 font-bold text-sm">+75 XP</span>
+</div>
+<div class="mb-4 aspect-video rounded-xl overflow-hidden bg-slate-200 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400 text-4xl">lock</span>
+</div>
+<h3 class="font-h3 text-lg mb-2 text-slate-400">Listsköpun</h3>
+<p class="text-sm text-slate-400 mb-6 flex-grow">Búðu til þitt fyrsta meistaraverk með myndvinnsluforriti.</p>
+<div class="flex items-center gap-2 text-[10px] font-bold text-slate-300 uppercase tracking-widest">
+<span class="material-symbols-outlined text-sm">description</span>
+                        Description
+                    </div>
+</div>
+</div>
+<!-- Item 6 (Active) -->
+<div class="group relative glass-card rounded-2xl p-1 overflow-hidden transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl">
+<div class="bg-white rounded-[14px] p-5 h-full flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-violet-100 text-violet-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Opið</span>
+<span class="text-primary font-bold text-sm">+120 XP</span>
+</div>
+<div class="mb-4 aspect-video rounded-xl overflow-hidden bg-slate-100 relative">
+<img class="w-full h-full object-cover" data-alt="A detailed macro shot of a complex circuit board illuminated by bioluminescent blue and violet fiber optic cables. The lighting is low and moody with sharp crystalline highlights. The image represents the inner logic of AI, styled as a premium, airy tech landscape with significant depth and soft background blurs." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATWQBwCqvPVVApBixrxi86U9lQds-uDnkgmvZZiE4YvGhRD-_raHwMM6n7dAfcEugG1WlpglxcouYAqhK-ROu_nsqA74yb_47MFuc6TxbyjKb2gwIcrqSoA1sVlgXs-pxHNRaGlHLpxEZzTVeEkniHvo8YjntW6cUGyC9a9bjwlJI3PJvw8bxxJTPXDrDYlChZ1yNVufeUOzQf1BZgjJRRrJKuQjGwM-WFWrKgyF05stqVuhTzdpzSJVqeMSFKYmhhpQeiL9AxkacC"/>
+</div>
+<h3 class="font-h3 text-lg mb-2">Gagna-njósnarinn</h3>
+<p class="text-sm text-on-surface-variant mb-6 flex-grow">Finndu falin mynstur í stórum gagnasöfnum.</p>
+<button class="w-full py-3 border-2 border-primary text-primary rounded-xl font-bold text-sm hover:bg-primary/5 transition-colors">Halda áfram</button>
+</div>
+</div>
+<!-- Item 7 -->
+<div class="group relative glass-card rounded-2xl p-1 opacity-60">
+<div class="bg-white/50 rounded-[14px] p-5 h-full flex flex-col grayscale">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">lock</span>
+                            Læst
+                        </span>
+<span class="text-slate-400 font-bold text-sm">+250 XP</span>
+</div>
+<div class="mb-4 aspect-video rounded-xl overflow-hidden bg-slate-200 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400 text-4xl">lock</span>
+</div>
+<h3 class="font-h3 text-lg mb-2 text-slate-400">AI Vinurinn</h3>
+<p class="text-sm text-slate-400 mb-6 flex-grow">Hvernig á að eiga örugg og skemmtileg samtöl við spjallmenni.</p>
+<div class="flex items-center gap-2 text-[10px] font-bold text-slate-300 uppercase tracking-widest">
+<span class="material-symbols-outlined text-sm">assignment_ind</span>
+                        Delegation
+                    </div>
+</div>
+</div>
+<!-- Item 8 (Completed) -->
+<div class="group relative glass-card rounded-2xl p-1 overflow-hidden transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl">
+<div class="bg-white rounded-[14px] p-5 h-full flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            Lokið
+                        </span>
+<span class="text-primary font-bold text-sm">+30 XP</span>
+</div>
+<div class="mb-4 aspect-video rounded-xl overflow-hidden bg-slate-100 relative">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist high-key laboratory setting where a child is inspecting a glowing holographic display of AI data paths. The mood is curious and academic but playful. Soft pastel purples and whites dominate the scene. Everything feels crystalline and light, with a strong focus on high-quality illumination and glass textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdsNVt566OANuJwmpkmNBG1FpdYJuGyLJEhUZG9iUbWlUj8UmmiD4PD1jMzUQ-nge1O4-SIWynKAEq7cw7137IcnAVgNs2YvS-ivLxMCwf4oAIh8R268sZJ-oN13h7NYS3Vlk4ur2dXhpro4jki70uJD1u6JOiDAmkZiqnNApKMPndA4V4mGWV9d1-YAAcZuiWUx_j0MYhO9jsnF2GImstWbiudNhEuhSK9R9H7gHXVZ8xvMk52-T3a_0Rze7iEf9CKa-haRSXSRcA"/>
+</div>
+<h3 class="font-h3 text-lg mb-2">Hvað er AI?</h3>
+<p class="text-sm text-on-surface-variant mb-6 flex-grow">Grunnhugtök og saga gervigreindar útskýrð á einfaldan hátt.</p>
+<div class="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+<span class="material-symbols-outlined text-sm">visibility</span>
+                        Discernment
+                    </div>
+</div>
+</div>
+<!-- Repeat logic for the remaining grid items... totaling 24 missions -->
+<!-- Placeholder for additional missions -->
+<div class="lg:col-span-3 xl:col-span-4 py-8 text-center">
+<button class="px-8 py-4 glass-card rounded-full font-bold text-primary hover:bg-white/90 transition-all">Sjá fleiri verkefni (16 enn ófundin)</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 md:hidden bg-white/80 backdrop-blur-2xl dark:bg-slate-900/80 border-t border-white/20 shadow-[0_-8px_30px_rgba(139,92,246,0.15)] rounded-t-[24px]">
+<div class="flex flex-col items-center justify-center bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white rounded-2xl p-3 shadow-lg shadow-violet-200 animate-bounce-short active:scale-95">
+<span class="material-symbols-outlined">rocket_launch</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-widest mt-1">Missions</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-2 hover:text-violet-500 transition-colors">
+<span class="material-symbols-outlined">map</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-widest mt-1">Map</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-2 hover:text-violet-500 transition-colors">
+<span class="material-symbols-outlined">military_tech</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-widest mt-1">Awards</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-2 hover:text-violet-500 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-widest mt-1">Settings</span>
+</div>
+</nav>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 full-width py-12 border-t border-slate-200 dark:border-slate-800">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto px-8">
+<div>
+<div class="text-lg font-bold text-slate-900 dark:text-white mb-4">Spark AI Fluency</div>
+<p class="font-['Plus_Jakarta_Sans'] text-xs text-slate-500 mb-4">© 2024 Spark AI Fluency. Empowering the next generation.</p>
+</div>
+<div class="flex flex-wrap gap-x-8 gap-y-4 md:justify-end">
+<a class="text-slate-400 hover:text-violet-500 transition-colors font-['Plus_Jakarta_Sans'] text-xs underline decoration-violet-500/30 underline-offset-4" href="#">Privacy Policy</a>
+<a class="text-slate-400 hover:text-violet-500 transition-colors font-['Plus_Jakarta_Sans'] text-xs underline decoration-violet-500/30 underline-offset-4" href="#">Terms of Service</a>
+<a class="text-slate-400 hover:text-violet-500 transition-colors font-['Plus_Jakarta_Sans'] text-xs underline decoration-violet-500/30 underline-offset-4" href="#">Parent Guide</a>
+<a class="text-slate-400 hover:text-violet-500 transition-colors font-['Plus_Jakarta_Sans'] text-xs underline decoration-violet-500/30 underline-offset-4" href="#">Help Center</a>
+</div>
+</div>
+</footer>
+</body></html>

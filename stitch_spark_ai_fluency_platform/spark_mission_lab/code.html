@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html lang="is"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#e9ddff",
+                        "on-tertiary-container": "#fffbff",
+                        "primary-container": "#8455ef",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#fef7ff",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "on-secondary-fixed": "#3e0022",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#d0bcff",
+                        "secondary-container": "#fd56a7",
+                        "surface-container-high": "#ede5f3",
+                        "secondary-fixed": "#ffd9e4",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#fffbff",
+                        "on-secondary-container": "#600037",
+                        "surface-tint": "#6d3bd7",
+                        "on-primary-fixed": "#23005c",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#a76500",
+                        "secondary-fixed-dim": "#ffb0cd",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#322f39",
+                        "outline": "#7b7486",
+                        "primary": "#6b38d4",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e7e0ed",
+                        "on-surface": "#1d1a23",
+                        "tertiary-fixed": "#ffdcbb",
+                        "surface-container-highest": "#e7e0ed",
+                        "inverse-on-surface": "#f5eefb",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#ffb869",
+                        "tertiary": "#855000",
+                        "surface-container": "#f3ebf8",
+                        "surface-dim": "#ded7e4",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#cbc3d7",
+                        "on-secondary-fixed-variant": "#8c0053",
+                        "surface-container-low": "#f8f1fe",
+                        "primary-fixed-dim": "#d0bcff",
+                        "on-background": "#1d1a23",
+                        "surface": "#fef7ff",
+                        "on-surface-variant": "#494454",
+                        "on-primary-fixed-variant": "#5516be",
+                        "secondary": "#b4136d",
+                        "on-tertiary-fixed": "#2c1700",
+                        "background": "#fef7ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "48px",
+                        "xl": "64px",
+                        "sm": "12px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "gutter": "16px",
+                        "margin-page": "32px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "h3": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "h1": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h1": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.1);
+        }
+        .glow-finish {
+            box-shadow: 0 0 40px rgba(132, 85, 239, 0.4);
+        }
+        .message-bubble-bot {
+            background: #ffffff;
+            border-bottom-left-radius: 4px;
+        }
+        .message-bubble-user {
+            background: linear-gradient(135deg, #8455ef, #fd56a7);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background min-h-screen pb-24 md:pb-0">
+<!-- TopNavBar -->
+<header class="bg-white/70 backdrop-blur-xl dark:bg-slate-900/70 border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] sticky top-0 z-50">
+<nav class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-black tracking-tighter text-violet-600 dark:text-violet-400">Spark AI</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-violet-700 dark:text-violet-300 border-b-2 border-violet-500 pb-1" href="#">Missions</a>
+<a class="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 dark:text-slate-400 hover:text-violet-500 transition-all" href="#">Dashboard</a>
+<a class="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 dark:text-slate-400 hover:text-violet-500 transition-all" href="#">Library</a>
+<a class="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 dark:text-slate-400 hover:text-violet-500 transition-all" href="#">Explore</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:block bg-primary text-on-primary px-4 py-2 rounded-xl font-semibold scale-95 active:scale-90 transition-transform">Start Learning</button>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white overflow-hidden border-2 border-white">
+<img alt="User profile" data-alt="A charming and colorful 3D avatar of a young student with bright eyes and a friendly smile. The character is set against a soft, out-of-focus background of a futuristic learning lab with floating holographic elements. The lighting is warm and inviting, using a palette of soft purples and magentas to match the Spark AI brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCusjSbA7iDgEqxjauAb8VzK9Pcyjr-wJ02BRvbkhxQKXUaJAEdP1vNcm4GXa2tsspQQB1D-VcCKTDZM6nMKmFUErxESo21jv59wAhE-bPfgBBL-yAs9u7NQ1AzShkyviCWTyIYOJFOV1qdo2fmFOSZ0SDXl0RqPpykp-LifLYh19LHJV7gQX5FezYKMXiRhhkczdHPKaaFhupiQL2qWzm_zJlGXe6rR3JSJ2aYMchrPX706dYKPf_3GXNoZx24f5YnbVCIzLxTbAxL"/>
+</div>
+</div>
+</nav>
+</header>
+<main class="max-w-4xl mx-auto px-gutter py-xl space-y-xl">
+<!-- Progress Header -->
+<div class="flex flex-col gap-sm">
+<div class="flex justify-between items-end">
+<h1 class="font-h2 text-h2 text-primary">Vélmennaævintýrið</h1>
+<span class="font-label-caps text-label-caps text-on-surface-variant bg-surface-container-high px-3 py-1 rounded-full">Phase 2: Lab Phase</span>
+</div>
+<div class="h-4 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary-container to-secondary-container w-2/3 relative">
+<div class="absolute right-0 top-0 h-full w-2 bg-white/40 blur-sm"></div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-lg">
+<!-- Phase 1: Hook Phase (Scenario Card) -->
+<section class="glass-card rounded-xl p-md space-y-md opacity-50 grayscale pointer-events-none">
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 bg-primary-fixed rounded-xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<h2 class="font-h3 text-h3">Hvað gerist næst?</h2>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Spark vantar hjálp við að flokka stjörnurnar! Hvernig eigum við að byrja?</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-sm">
+<button class="p-md border-2 border-primary-container rounded-xl text-left bg-white shadow-sm font-semibold flex items-center justify-between">
+                        Nota gervigreind
+                        <span class="material-symbols-outlined text-primary">check_circle</span>
+</button>
+<button class="p-md border-2 border-outline-variant rounded-xl text-left bg-white font-semibold">
+                        Gera það handvirkt
+                    </button>
+</div>
+</section>
+<!-- Phase 2: Lab Phase (Chat UI) -->
+<section class="glass-card rounded-xl flex flex-col h-[500px] shadow-lg">
+<div class="p-base border-b border-white/40 flex items-center gap-sm bg-white/30">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm">bolt</span>
+</div>
+<span class="font-bold text-primary">Spark AI</span>
+<span class="ml-auto flex gap-1">
+<span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+<span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Active</span>
+</span>
+</div>
+<div class="flex-1 overflow-y-auto p-md space-y-md">
+<!-- Bot Message -->
+<div class="flex gap-sm max-w-[85%]">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant overflow-hidden">
+<img alt="Spark icon" data-alt="A cute, friendly robot character with glowing purple eyes and a sleek white body. The robot is designed in a 3D claymorphism style, floating slightly in the air. The lighting is soft and ambient, with subtle neon purple highlights reflecting off its metallic surfaces, set against a clean, minimalist light-themed laboratory background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBea1MtH6J-BIt913pkOuA9EUIVWjQiJd9RqAIhcchMXjoX46oijW5EdW2lA25PliU5Yc5SeikL6HpBo8gYjjk54ECiKO4SP1WMQbCy5yFBMLuJ5rBZTl465yh40bKyYPhbiYoom0qdNg2rmglQN3eDvFyCmONOLDxHpQ_JHMc9PW3sWlI5rAb7KEIn9-QdntB9k6WOYMLP0CRmDr8fRcUvNZk9gdSZ2yPy9vg0pU7L3Nnx1vAeFQR5-UmQHhDPvjMK6iZmYNZr0m5q"/>
+</div>
+<div class="message-bubble-bot p-md rounded-2xl shadow-sm text-on-surface font-medium border border-surface-variant">
+                            Hæ! Ég er tilbúinn að læra. Geturðu útskýrt fyrir mér hvað er "kveikt" og "slökkt" í tölvumálum? 🤖
+                        </div>
+</div>
+<!-- User Message -->
+<div class="flex flex-row-reverse gap-sm max-w-[85%] ml-auto">
+<div class="message-bubble-user p-md rounded-2xl shadow-lg font-medium">
+                            Það er eins og ljósarofi! 1 er kveikt og 0 er slökkt.
+                        </div>
+</div>
+<!-- Bot Typing -->
+<div class="flex gap-sm items-center">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant overflow-hidden">
+<img alt="Spark icon" data-alt="A cute, friendly robot character with glowing purple eyes and a sleek white body. The robot is designed in a 3D claymorphism style, floating slightly in the air. The lighting is soft and ambient, with subtle neon purple highlights reflecting off its metallic surfaces, set against a clean, minimalist light-themed laboratory background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAwykgrb-2elNKiLcZqm7pN3V8DSXaG51LCMGJoxl4BilZDMbIFrcgCi_j5cG3oUQ8ffU4M4iy4rIO1fcQviFwfOKttN3mngqRkE544u6kWOCve85ijBlCm7OPcwwTM8Ko923alXa6481kNyJXvMuaIQLrxblipt01yXYdyJJIJh2Of6fR2ILy4UWKEaGDKj3OfmiAjcwTQYGmBdV_zlMaz_PGEDDNV4FuEOt_w83XZ5mLpJDkFi_7u5hmC8TdAQmYj2Fg-tTz2Blw"/>
+</div>
+<div class="bg-white/50 px-4 py-2 rounded-full flex gap-1">
+<span class="w-1.5 h-1.5 bg-primary-container rounded-full animate-bounce"></span>
+<span class="w-1.5 h-1.5 bg-primary-container rounded-full animate-bounce [animation-delay:0.2s]"></span>
+<span class="w-1.5 h-1.5 bg-primary-container rounded-full animate-bounce [animation-delay:0.4s]"></span>
+</div>
+</div>
+</div>
+<div class="p-md bg-white/50 border-t border-white/40">
+<div class="flex gap-sm bg-white rounded-full p-2 border border-outline-variant focus-within:ring-2 ring-primary-fixed transition-all">
+<input class="flex-1 bg-transparent border-none focus:ring-0 px-4 font-medium" placeholder="Skrifaðu svar hér..." type="text"/>
+<button class="w-10 h-10 bg-primary-container text-white rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Phase 3: Reflection Phase (Question Card) -->
+<section class="glass-card rounded-xl p-md space-y-md border-primary-container/20 border-2 relative overflow-hidden">
+<!-- Completion celebration subtle glow background -->
+<div class="absolute inset-0 bg-gradient-to-tr from-primary-container/5 to-secondary-container/5 pointer-events-none"></div>
+<div class="flex items-center gap-sm relative">
+<div class="w-12 h-12 bg-secondary-fixed rounded-xl flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-weight="fill">military_tech</span>
+</div>
+<h2 class="font-h3 text-h3">Lokaverkefni</h2>
+</div>
+<div class="space-y-sm relative">
+<label class="font-body-lg text-body-lg font-bold text-on-surface">Hvað lærðir þú um hvernig Spark hugsar?</label>
+<textarea class="w-full min-h-[120px] rounded-xl border-outline-variant bg-surface-container-low p-md font-body-md focus:border-primary focus:ring-primary-container focus:ring-1 transition-all" placeholder="Skrifaðu þínar hugsanir hér..."></textarea>
+</div>
+<button class="w-full bg-gradient-to-r from-primary to-secondary-container text-white font-h3 py-md rounded-2xl shadow-lg hover:scale-[1.02] active:scale-95 transition-all glow-finish">
+                    Klára Verkefni
+                </button>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 md:hidden bg-white/80 backdrop-blur-2xl border-t border-white/20 shadow-[0_-8px_30px_rgba(139,92,246,0.15)] rounded-t-[24px]">
+<a class="flex flex-col items-center justify-center bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white rounded-2xl p-3 shadow-lg shadow-violet-200" href="#">
+<span class="material-symbols-outlined">rocket_launch</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-widest mt-1">Missions</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 p-2" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-widest mt-1">Map</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 p-2" href="#">
+<span class="material-symbols-outlined">military_tech</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-widest mt-1">Awards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 p-2" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-widest mt-1">Settings</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 full-width py-12 border-t border-slate-200 dark:border-slate-800 mt-xl">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto px-8">
+<div class="space-y-4">
+<div class="text-lg font-bold text-slate-900 dark:text-white">Spark AI Fluency</div>
+<p class="font-['Plus_Jakarta_Sans'] text-xs text-slate-500 max-w-xs">© 2024 Spark AI Fluency. Empowering the next generation of digital thinkers with creativity and clarity.</p>
+</div>
+<div class="flex flex-wrap gap-x-8 gap-y-4 justify-start md:justify-end">
+<a class="font-['Plus_Jakarta_Sans'] text-xs text-slate-400 hover:text-violet-500 transition-colors underline decoration-violet-500/30 underline-offset-4" href="#">Privacy Policy</a>
+<a class="font-['Plus_Jakarta_Sans'] text-xs text-slate-400 hover:text-violet-500 transition-colors underline decoration-violet-500/30 underline-offset-4" href="#">Terms of Service</a>
+<a class="font-['Plus_Jakarta_Sans'] text-xs text-slate-400 hover:text-violet-500 transition-colors underline decoration-violet-500/30 underline-offset-4" href="#">Parent Guide</a>
+<a class="font-['Plus_Jakarta_Sans'] text-xs text-slate-400 hover:text-violet-500 transition-colors underline decoration-violet-500/30 underline-offset-4" href="#">Help Center</a>
+</div>
+</div>
+</footer>
+</body></html>
