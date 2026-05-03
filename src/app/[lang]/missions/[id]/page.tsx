@@ -146,7 +146,10 @@ export default function ActiveMissionPage() {
       {/* TopNavBar */}
       <header className="bg-white/70 backdrop-blur-xl dark:bg-slate-900/70 border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] sticky top-0 z-50">
         <nav className="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
-          <div className="text-2xl font-black tracking-tighter text-violet-600 dark:text-violet-400">Spark AI</div>
+          <div className="flex items-center gap-2">
+            <img src="/spark-icon.png" alt="" className="h-8 w-8 object-contain" />
+            <span className="text-2xl font-black tracking-tighter text-violet-600 dark:text-violet-400">Spark</span>
+          </div>
           <div className="hidden md:flex gap-8 items-center">
             <Link href={`/${lang}/missions`} className="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-violet-700 dark:text-violet-300 border-b-2 border-violet-500 pb-1">{t.nav.missions}</Link>
           </div>
@@ -210,7 +213,7 @@ export default function ActiveMissionPage() {
                   <span className="material-symbols-outlined text-white text-[24px]">bolt</span>
                 </div>
                 <div>
-                  <div className="font-bold text-primary text-lg leading-tight">Spark AI</div>
+                  <div className="font-bold text-primary text-lg leading-tight">Spark</div>
                   {phase === 'lab' && (
                     <div className="flex gap-1.5 items-center mt-1">
                       <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>

@@ -46,14 +46,18 @@ export default async function MethodologyPage(props: { params: Promise<{ lang: s
               </ul>
             </div>
             <div className="w-full md:w-1/2 h-64 md:h-full relative order-1 md:order-2">
-              <img className="absolute inset-0 w-full h-full object-cover rounded-2xl shadow-xl" alt="Delegation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD68FDU1kI3qnTAU3TNdrJtCcfl1a6595TPXnE7mt5sXMJt_B7wxjUD069rNrsn_R7NRXAoavQpazLG5B0yn4KWMxqQYuPPZ13iQWpZwqQIlQjlGzh4FhKjWkT2jgUrFdZ7W9WY_NfxOiU_OJL78W_HJUqpIApqTUoh4FA7nJsZEDFvAoEmWBxzLdszhH4I-nIcWHzI-HKcijjmpduKgZAAnpJ71Kejuez7ap8qyxj2fsTot6WJvqk4nNCS79pk3S0sWA4y6ktdlAFh"/>
+              <div className="absolute inset-0 w-full h-full rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-xl">
+                <span className="material-symbols-outlined text-white text-[72px] opacity-70">assignment_ind</span>
+              </div>
             </div>
           </div>
 
           {/* 2. Description */}
           <div className="md:col-span-4 glass-card rounded-[24px] p-md bg-gradient-to-br from-violet-50/50 to-white border border-white/40">
             <div className="w-full h-48 mb-6 overflow-hidden rounded-2xl">
-              <img className="w-full h-full object-cover" alt="Description" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3vKX4Nhjqdg4ew_Y1XWvjsqiPCRJ79UcGGv8pdpMabws97j5SVZtebC2tit6SZjIS8GxSvsjmVchgPcz_rEXByTZWo8zqAjpA_SF5xG9hgLuuJ59LzQQ7r8TeznIBBP798RVowFmeUmmh7tCE5G-ecQ6tInC5iVwNrDqf7YXMq9T3z8bVlv_ernsztVMH1yQsujR8eBRoTHS2JQI-lgtUZwJnP1sOWK2a3_97qvv_Up8PPwPO6hA7EwFSoB05QcYJ_W0rFQJLTlp5"/>
+              <div className="w-full h-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center rounded-2xl">
+                <span className="material-symbols-outlined text-white text-[72px] opacity-70">description</span>
+              </div>
             </div>
             <div className="space-y-4">
               <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center">
@@ -91,7 +95,9 @@ export default async function MethodologyPage(props: { params: Promise<{ lang: s
           {/* 4. Diligence */}
           <div className="md:col-span-8 glass-card rounded-[24px] p-md flex flex-col md:flex-row gap-8 items-center bg-white shadow-xl shadow-primary/5 border border-white/40">
             <div className="w-full md:w-2/5 h-64 md:h-full relative">
-              <img className="absolute inset-0 w-full h-full object-cover rounded-2xl" alt="Diligence" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0JB_viD8d-gt9Id37dxC0H1CIxp7rYBtbe09GRztQo2sefKHGJdmafepSn6GihTMz3xB2TG1THWsSwKkCBDpr1yJYdvgcm_12vY9tKwaYq35qSom3EHEGvxnSbJuM-UFn7ETDSYRH4-n124T-jb3z0ooYCxx8KIQE_rc_iWIsb1DfUAM80hYwpNzPQtXj7wXepdF7gnkKsjoqQDKXYnpVT4RMUTcwep0HX6G2C4_8EEhcMwV7S1Mhg2jJf66wBDAnRraM9l5YQqg7"/>
+              <div className="absolute inset-0 w-full h-full rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
+                <span className="material-symbols-outlined text-white text-[72px] opacity-70">bolt</span>
+              </div>
             </div>
             <div className="w-full md:w-3/5 space-y-4">
               <div className="w-12 h-12 rounded-2xl bg-primary-container/20 flex items-center justify-center">

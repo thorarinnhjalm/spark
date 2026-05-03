@@ -33,6 +33,7 @@ export default function MissionsMapPage() {
   const [completedMissions, setCompletedMissions] = useState<string[]>([]);
   const [isLoadingProgress, setIsLoadingProgress] = useState(true);
   const [totalXP, setTotalXP] = useState(0);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -79,9 +80,13 @@ export default function MissionsMapPage() {
       {/* TopNavBar */}
       <nav className="bg-white/70 backdrop-blur-xl dark:bg-slate-900/70 border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] sticky top-0 z-50">
         <div className="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
-          <div className="text-2xl font-black tracking-tighter text-violet-600 dark:text-violet-400">Spark AI</div>
+          <div className="flex items-center gap-2">
+            <img src="/spark-icon.png" alt="" className="h-8 w-8 object-contain" />
+            <span className="text-2xl font-black tracking-tighter text-violet-600 dark:text-violet-400">Spark</span>
+          </div>
           <div className="hidden md:flex gap-8 items-center">
             <Link href={`/${lang}/missions`} className="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-violet-700 dark:text-violet-300 border-b-2 border-violet-500 pb-1">{t.nav.missions}</Link>
+            <Link href={`/${lang}/library`} className="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 dark:text-slate-400 hover:text-violet-500 transition-colors">{t.nav.library}</Link>
           </div>
           <div className="flex items-center gap-4">
             <LanguageSwitcher />
@@ -123,14 +128,21 @@ export default function MissionsMapPage() {
           </div>
         </header>
 
-        {/* Category Filter Tabs (Visual Only for now) */}
+        {/* Category Filter Tabs */}
         <div className="flex flex-wrap gap-4 mb-12">
-          <button className="px-6 py-3 rounded-full bg-primary text-white font-bold shadow-lg shadow-primary/20 hover:scale-105 transition-transform flex items-center gap-2">
+          <button
+            onClick={() => setActiveCategory(null)}
+            className={`px-6 py-3 rounded-full font-bold shadow-lg transition-all flex items-center gap-2 ${!activeCategory ? 'bg-primary text-white shadow-primary/20 hover:scale-105' : 'glass-card text-on-surface-variant hover:bg-white'}`}
+          >
             <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>grid_view</span>
             {t.missions.allMissions}
           </button>
           {TAGS.map(tag => (
-            <button key={tag.name} className="px-6 py-3 rounded-full glass-card text-on-surface-variant font-bold hover:bg-white transition-all flex items-center gap-2">
+            <button
+              key={tag.name}
+              onClick={() => setActiveCategory(activeCategory === tag.name ? null : tag.name)}
+              className={`px-6 py-3 rounded-full font-bold transition-all flex items-center gap-2 ${activeCategory === tag.name ? 'bg-primary text-white shadow-lg shadow-primary/20 hover:scale-105' : 'glass-card text-on-surface-variant hover:bg-white'}`}
+            >
               <span className="material-symbols-outlined">{tag.icon}</span>
               {tag.name}
             </button>
@@ -140,9 +152,10 @@ export default function MissionsMapPage() {
         {/* Mission Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           
-          {missionsData.map((mission: Mission, index: number) => {
+          {missionsData.filter(m => !activeCategory || m.dCode === activeCategory).map((mission: Mission, index: number) => {
+            const globalIndex = missionsData.findIndex(m => m.missionId === mission.missionId);
             const isCompleted = completedMissions.includes(mission.missionId);
-            const isLocked = index > 0 && !completedMissions.includes(missionsData[index - 1].missionId);
+            const isLocked = globalIndex > 0 && !completedMissions.includes(missionsData[globalIndex - 1].missionId);
             const tag = TAGS.find(t => t.name === mission.dCode) ?? TAGS[0];
             const gradient = CATEGORY_GRADIENTS[mission.dCode] || CATEGORY_GRADIENTS['Delegation'];
 
@@ -235,8 +248,11 @@ export default function MissionsMapPage() {
       <footer className="bg-slate-50 dark:bg-slate-950 full-width py-12 border-t border-slate-200 dark:border-slate-800">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto px-8">
           <div>
-            <div className="text-lg font-bold text-slate-900 dark:text-white mb-4">Spark AI Fluency</div>
-            <p className="font-['Plus_Jakarta_Sans'] text-xs text-slate-500 mb-4">© 2026 Spark AI Fluency. Empowering the next generation.</p>
+            <div className="flex items-center gap-2 mb-4">
+              <img src="/spark-icon.png" alt="" className="h-6 w-6 object-contain" />
+              <span className="text-lg font-bold text-slate-900 dark:text-white">Spark</span>
+            </div>
+            <p className="font-['Plus_Jakarta_Sans'] text-xs text-slate-500 mb-4">© 2026 Spark by Antigravity.</p>
           </div>
         </div>
       </footer>

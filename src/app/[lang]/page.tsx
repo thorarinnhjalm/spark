@@ -16,7 +16,10 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
       {/* TopNavBar */}
       <nav className="bg-white/70 backdrop-blur-xl border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-2xl font-black tracking-tighter text-primary">Spark AI</div>
+          <div className="flex items-center gap-2">
+            <img src="/spark-icon.png" alt="" className="h-8 w-8 object-contain" />
+            <span className="text-2xl font-black tracking-tighter text-primary">Spark</span>
+          </div>
           
           <div className="hidden md:flex gap-8 items-center">
             <Link href={`/${lang}/methodology`} className="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 hover:text-primary transition-all duration-300">
@@ -79,12 +82,7 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
           
           {/* 3D Graphic Image in Bento Card */}
           <div className="relative w-full max-w-5xl mx-auto glass-card rounded-[40px] p-4 shadow-[0_30px_60px_rgba(139,92,246,0.15)]">
-            <div className="w-full h-auto rounded-[32px] overflow-hidden bg-gradient-to-b from-primary-fixed to-surface-container-low">
-              <img 
-                alt="Spark AI Interactive Graphic" 
-                className="w-full h-auto mix-blend-multiply opacity-90"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVyNuehyUyzFqbI9ypmfecIGq5aFTgjQNWxzQ5DyLaPESjS2CyvM951KIbm2Nb0BR3Qa0taSZIyMqY46drYcV1O6kFpGpNwImkncfc1B1Q0nAdjd986VppoN4YeseXqT-qf2oWjWrWzZ6JXrLYxV_5P8qe9IwQhaFqG5UVwBmVDR5iwNP-QfIltfTTEL5VEurDHxcXRUDkhyCHFSZX540i50_DmevlfosMH5sN2n6oRt6G6I7De0Wh1GAUSkIzlibZnQDd90ZP5801" 
-              />
+            <div className="w-full h-auto rounded-[32px] overflow-hidden bg-gradient-to-b from-primary-fixed to-surface-container-low" style={{ minHeight: '200px' }}>
             </div>
           </div>
         </section>
@@ -216,6 +214,32 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
           </div>
         </section>
 
+        {/* BEGIN: FAQ Section */}
+        <section className="mb-32">
+          <div className="text-center mb-16">
+            <h2 className="font-h2 text-4xl text-on-surface mb-4">{t.faqTitle}</h2>
+          </div>
+          
+          <div className="max-w-3xl mx-auto space-y-4">
+            {[
+              { q: t.faq1Q, a: t.faq1A },
+              { q: t.faq2Q, a: t.faq2A },
+              { q: t.faq3Q, a: t.faq3A },
+            ].map((faq, i) => (
+              <details key={i} className="group glass-card rounded-[24px] overflow-hidden">
+                <summary className="flex items-center justify-between cursor-pointer p-8 font-bold text-on-surface text-lg hover:text-primary transition-colors list-none [&::-webkit-details-marker]:hidden">
+                  <span>{faq.q}</span>
+                  <span className="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+                </summary>
+                <div className="px-8 pb-8 -mt-2 text-on-surface-variant leading-relaxed">
+                  {faq.a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+        {/* END: FAQ Section */}
+
       </main>
 
       {/* Footer */}
@@ -223,8 +247,9 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
             <div className="md:col-span-2">
-              <div className="flex items-center mb-6">
-                <span className="text-2xl font-black tracking-tighter text-primary">Spark AI Fluency</span>
+              <div className="flex items-center gap-2 mb-6">
+                <img src="/spark-icon.png" alt="" className="h-8 w-8 object-contain" />
+                <span className="text-2xl font-black tracking-tighter text-primary">Spark</span>
               </div>
               <p className="text-on-surface-variant text-xs">
                 {t.footer}
