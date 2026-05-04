@@ -14,8 +14,16 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const title = dict.metadata?.title || "Spark | Búðu barnið þitt undir framtíðina";
   const description = dict.metadata?.description || "Við undirbúum börn fyrir framtíðina með því að efla gagnrýna hugsun og stafrænt læsi í gegnum leik og uppgötvun.";
   
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL 
+    ? process.env.NEXT_PUBLIC_SITE_URL 
+    : process.env.VERCEL_PROJECT_PRODUCTION_URL 
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : process.env.VERCEL_URL 
+        ? `https://${process.env.VERCEL_URL}` 
+        : 'https://spark-ai.is';
+
   return {
-    metadataBase: new URL('https://spark-ai.is'),
+    metadataBase: new URL(baseUrl),
     title,
     description,
     alternates: {
@@ -27,7 +35,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     openGraph: {
       title,
       description,
-      url: 'https://spark-ai.is',
       siteName: 'Spark',
       locale: lang === 'is' ? 'is_IS' : 'en_US',
       type: 'website',
