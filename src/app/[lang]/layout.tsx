@@ -31,11 +31,20 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       siteName: 'Spark',
       locale: lang === 'is' ? 'is_IS' : 'en_US',
       type: 'website',
+      images: [
+        {
+          url: '/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: 'Spark AI',
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
+      images: ['/twitter-image.png'],
     },
   };
 }
