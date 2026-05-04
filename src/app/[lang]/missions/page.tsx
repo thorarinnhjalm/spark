@@ -90,7 +90,7 @@ export default function MissionsMapPage() {
       <nav className="bg-white/70 backdrop-blur-xl dark:bg-slate-900/70 border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] sticky top-0 z-50">
         <div className="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
           <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="Spark" className="h-12 w-auto object-contain mix-blend-multiply dark:invert dark:mix-blend-screen" />
+            <img src="/logo.png" alt="Spark" className="h-12 w-auto object-contain" />
           </div>
           <div className="hidden md:flex gap-8 items-center">
             <Link href={`/${lang}/missions`} className="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-violet-700 dark:text-violet-300 border-b-2 border-violet-500 pb-1">{t.nav.missions}</Link>
@@ -279,7 +279,7 @@ export default function MissionsMapPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto px-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <img src="/logo.png" alt="Spark" className="h-10 w-auto object-contain mix-blend-multiply dark:invert dark:mix-blend-screen" />
+              <img src="/logo.png" alt="Spark" className="h-10 w-auto object-contain" />
             </div>
             <p className="font-['Plus_Jakarta_Sans'] text-xs text-slate-500 mb-4">© 2026 Spark by Antigravity.</p>
           </div>

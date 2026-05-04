@@ -11,8 +11,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const dict = await getDictionary(lang);
   
   // Use translations or fallbacks
-  const title = dict.landing?.heroTitle1 ? `Spark | ${dict.landing.heroTitle1}` : "Spark AI Education";
-  const description = dict.landing?.footerMission || "AI Fluency for Kids. We prepare children for the future by fostering critical thinking and digital literacy through play and discovery.";
+  const title = dict.metadata?.title || "Spark | Búðu barnið þitt undir framtíðina";
+  const description = dict.metadata?.description || "Við undirbúum börn fyrir framtíðina með því að efla gagnrýna hugsun og stafrænt læsi í gegnum leik og uppgötvun.";
   
   return {
     metadataBase: new URL('https://spark-ai.is'),
@@ -29,14 +29,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description,
       url: 'https://spark-ai.is',
       siteName: 'Spark',
-      images: [
-        {
-          url: '/opengraph-image.png',
-          width: 1200,
-          height: 630,
-          alt: 'Spark AI Education',
-        },
-      ],
       locale: lang === 'is' ? 'is_IS' : 'en_US',
       type: 'website',
     },
@@ -44,7 +36,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       card: 'summary_large_image',
       title,
       description,
-      images: ['/twitter-image.png'],
     },
   };
 }
