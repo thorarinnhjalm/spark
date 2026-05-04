@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
-import { createParentDocument } from '@/lib/db';
+import { createParentDocument, getParentsCount } from '@/lib/db';
 import { Timestamp } from 'firebase/firestore';
 import { useAuth } from '@/context/AuthContext';
 import Link from 'next/link';
@@ -36,6 +36,10 @@ export default function LoginPage() {
 
     try {
       if (isRegistering) {
+        const count = await getParentsCount();
+        if (count >= 50) {
+          throw new Error(t.login.capacityReached);
+        }
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         await createParentDocument(userCredential.user.uid, userCredential.user.email, Timestamp.now());
       } else {
@@ -59,10 +63,24 @@ export default function LoginPage() {
     try {
       const result = await signInWithPopup(auth, provider);
       // Ensure parent doc exists or gets created
-      await createParentDocument(result.user.uid, result.user.email, Timestamp.now());
+      try {
+        await createParentDocument(result.user.uid, result.user.email, Timestamp.now());
+      } catch (err: any) {
+        if (err.message === 'CAPACITY_REACHED') {
+          await result.user.delete();
+          auth.signOut();
+          throw new Error(t.login.capacityReached);
+        }
+        throw err;
+      }
       router.push(`/${lang}/dashboard`);
     } catch (err: unknown) {
       if (err instanceof Error) {
+        // If the user closed the popup, don't show an error
+        if (err.message.includes('popup-closed-by-user')) {
+           setIsAuthenticating(false);
+           return;
+        }
         setError(err.message);
       } else {
         setError(t.common.error);

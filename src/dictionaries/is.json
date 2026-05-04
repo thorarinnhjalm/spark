@@ -36,7 +36,8 @@
     "termsText": "Með skráningu samþykkir þú",
     "termsLink": "skilmála þjónustunnar",
     "privacyLink": "persónuverndarstefnu",
-    "googleSignInBtn": "Halda áfram með Google"
+    "googleSignInBtn": "Halda áfram með Google",
+    "capacityReached": "Því miður höfum við náð hámarksfjölda prófenda (50) í bili. Fylgstu með næstu opnun!"
   },
   "join": {
     "brandSubtitle": "Lærðu að vinna með gervigreind!",

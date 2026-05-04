@@ -1,5 +1,5 @@
 import { db } from './firebase';
-import { doc, getDoc, setDoc, collection, query, where, getDocs, Timestamp } from 'firebase/firestore';
+import { doc, getDoc, setDoc, collection, query, where, getDocs, Timestamp, getCountFromServer } from 'firebase/firestore';
 
 // Býr til slembi-kóða fyrir foreldra, t.d. SPARK-A1B2
 function generateInviteCode(): string {
@@ -11,11 +11,22 @@ function generateInviteCode(): string {
   return result;
 }
 
+export async function getParentsCount(): Promise<number> {
+  const coll = collection(db, 'parents');
+  const snapshot = await getCountFromServer(coll);
+  return snapshot.data().count;
+}
+
 export async function createParentDocument(uid: string, email: string | null, gdprConsentAt?: ReturnType<typeof Timestamp.now>) {
   const parentRef = doc(db, 'parents', uid);
   const parentSnap = await getDoc(parentRef);
 
   if (!parentSnap.exists()) {
+    const count = await getParentsCount();
+    if (count >= 50) {
+      throw new Error('CAPACITY_REACHED');
+    }
+
     const inviteCode = generateInviteCode();
     await setDoc(parentRef, {
       uid,

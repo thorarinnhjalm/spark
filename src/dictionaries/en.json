@@ -36,7 +36,8 @@
     "termsText": "By signing up, you agree to our",
     "termsLink": "Terms of Service",
     "privacyLink": "Privacy Policy",
-    "googleSignInBtn": "Continue with Google"
+    "googleSignInBtn": "Continue with Google",
+    "capacityReached": "Unfortunately, we have reached the maximum number of testers (50) for now. Stay tuned for the next opening!"
   },
   "join": {
     "brandSubtitle": "Learn to work with AI!",
