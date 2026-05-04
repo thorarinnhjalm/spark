@@ -123,9 +123,10 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
             </div>
           </div>
 
-          <div className="text-center mb-12">
-            <h2 className="font-h2 text-4xl text-on-surface mb-4">{whyT.title}</h2>
-            <p className="font-body-lg text-on-surface-variant max-w-xl mx-auto">{whyT.subtitle}</p>
+          <div className="text-center mb-12 max-w-4xl mx-auto">
+            <h2 className="font-h2 text-3xl md:text-4xl text-on-surface leading-snug">
+              {whyT.title}
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
