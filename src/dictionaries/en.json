@@ -220,12 +220,12 @@
     "unlocked": "Unlocked"
   },
   "why": {
-    "title": "Your children are already using AI.",
-    "subtitle": "Give them the wisdom to do it well.",
+    "title": "AI is an amazing tool.",
+    "subtitle": "Let's help them master it.",
     "parentTitle": "As a parent",
-    "parentBody": "You can't stop it — but you can make sure your child rises to the challenge. Children who understand AI will have an enormous advantage over those who simply use it without thinking.",
+    "parentBody": "Technology opens incredible possibilities. Our role is to help children steer AI instead of letting it do all the work. Those who learn this skill will have a valuable advantage.",
     "childTitle": "What your child learns",
-    "childBody": "Spark teaches children to ask better questions, think critically about AI responses, and make responsible decisions — while playing and discovering for themselves."
+    "childBody": "Spark teaches kids to use the machine as a creative co-pilot, ask better questions, and think critically about the answers — all through fun and engaging play."
   },
   "credibility": {
     "badge": "Peer-reviewed methodology",
