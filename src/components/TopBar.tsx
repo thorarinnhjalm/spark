@@ -14,7 +14,7 @@ export default function TopBar() {
     <header className="py-4 border-b border-surface-variant bg-white/70 backdrop-blur-xl sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <Link href={`/${lang}`} className="flex items-center gap-2">
-          <img src="/logo.png" alt="Spark logo" className="h-12 w-auto object-contain" />
+          <img src="/logo.svg" alt="Spark logo" className="h-12 w-auto object-contain" />
         </Link>
         
         <div className="hidden md:flex gap-8 items-center">

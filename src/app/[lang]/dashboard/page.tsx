@@ -80,7 +80,7 @@ export default function DashboardPage() {
       <header className="bg-white/70 backdrop-blur-xl dark:bg-slate-900/70 border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] sticky top-0 z-50">
         <div className="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
           <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="Spark" className="h-12 w-auto object-contain" />
+            <img src="/logo.svg" alt="Spark" className="h-12 w-auto object-contain" />
           </div>
           <nav className="hidden md:flex items-center gap-8">
             <Link href={`/${lang}/dashboard`} className="text-violet-700 dark:text-violet-300 border-b-2 border-violet-500 pb-1 font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight">{t.nav.dashboard}</Link>
@@ -142,9 +142,9 @@ export default function DashboardPage() {
 
             {/* Social Proof / Review Collection Widget */}
             <iframe 
-              src={`https://umsognin.is/w/spark?lang=${lang}`}
+              src={`https://umsognin.is/w/spark?lang=${lang}&v=4`}
               width="100%" 
-              height="500px" 
+              height="550px" 
               style={{ border: 'none', borderRadius: '24px', overflow: 'hidden', maxWidth: '480px' }}
               title="Umsagnir viðskiptavina"
               className="shadow-md mx-auto"
@@ -231,7 +231,7 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto px-8">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <img src="/logo.png" alt="Spark" className="h-10 w-auto object-contain" />
+              <img src="/logo.svg" alt="Spark" className="h-10 w-auto object-contain" />
             </div>
             <p className="font-body-md text-xs text-slate-500">© 2026 Spark by Antigravity.</p>
           </div>

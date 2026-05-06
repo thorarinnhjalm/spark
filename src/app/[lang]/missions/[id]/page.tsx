@@ -153,7 +153,7 @@ export default function ActiveMissionPage() {
       <header className="bg-white/70 backdrop-blur-xl dark:bg-slate-900/70 border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] sticky top-0 z-50">
         <nav className="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
           <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="Spark" className="h-12 w-auto object-contain" />
+            <img src="/logo.svg" alt="Spark" className="h-12 w-auto object-contain" />
           </div>
           <div className="hidden md:flex gap-8 items-center">
             <Link href={`/${lang}/missions`} className="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-violet-700 dark:text-violet-300 border-b-2 border-violet-500 pb-1">{t.nav.missions}</Link>
