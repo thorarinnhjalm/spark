@@ -101,9 +101,9 @@ export default function LoginPage() {
     <>
       {/* Top Navigation (Shell Implementation) */}
       <header className="bg-white/70 backdrop-blur-xl dark:bg-slate-900/70 border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto sticky top-0 z-50">
-        <div className="flex items-center gap-2">
-          <img src="/logo.svg" alt="" className="h-12 w-auto object-contain" />
-        </div>
+        <Link href={`/${lang}`} className="flex items-center gap-2">
+            <img src="/logo.svg" alt="" className="h-12 w-auto object-contain" />
+          </Link>
         <div className="flex gap-4 items-center">
           <LanguageSwitcher />
           <Link href={`/${lang}/join`} className="text-slate-500 dark:text-slate-400 font-semibold text-sm hover:text-violet-500 transition-all flex items-center">
@@ -268,9 +268,9 @@ export default function LoginPage() {
       <footer className="bg-slate-50 dark:bg-slate-950 w-full py-12 border-t border-slate-200 dark:border-slate-800">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto px-8">
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <img src="/logo.svg" alt="Spark" className="h-10 w-auto object-contain" />
-            </div>
+            <Link href={`/${lang}`} className="flex items-center gap-2">
+            <img src="/logo.svg" alt="Spark" className="h-10 w-auto object-contain" />
+          </Link>
             <p className="font-body-md text-xs text-slate-500">© 2026 Spark by Antigravity.</p>
           </div>
           <div className="flex flex-wrap gap-x-8 gap-y-4 justify-start md:justify-end items-center">

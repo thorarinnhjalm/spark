@@ -90,9 +90,9 @@ export default function ChildProgressPage() {
     <div className="bg-background font-body-md text-on-background min-h-screen pb-24 md:pb-0">
       {/* Top Navigation Shell */}
       <nav className="bg-white/70 backdrop-blur-xl border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto sticky top-0 z-50">
-        <div className="flex items-center gap-2">
-          <img src="/logo.svg" alt="Spark" className="h-12 w-auto object-contain" />
-        </div>
+        <Link href={`/${lang}`} className="flex items-center gap-2">
+            <img src="/logo.svg" alt="Spark" className="h-12 w-auto object-contain" />
+          </Link>
         <div className="hidden md:flex gap-8 items-center">
           <Link href={`/${lang}/missions`} className="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 hover:text-violet-500 transition-all duration-300">
             {t.nav.missions}
@@ -280,9 +280,9 @@ export default function ChildProgressPage() {
       <footer className="bg-slate-50 border-t border-slate-200 py-12 mt-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto px-8">
           <div>
-            <div className="flex items-center gap-2 mb-2">
-              <img src="/logo.svg" alt="Spark" className="h-10 w-auto object-contain" />
-            </div>
+            <Link href={`/${lang}`} className="flex items-center gap-2 mb-2">
+            <img src="/logo.svg" alt="Spark" className="h-10 w-auto object-contain" />
+          </Link>
             <p className="font-['Plus_Jakarta_Sans'] text-xs text-slate-500">© 2026 Spark by Antigravity.</p>
           </div>
         </div>

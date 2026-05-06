@@ -35,9 +35,9 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
       {/* TopNavBar */}
       <nav className="bg-white/70 backdrop-blur-xl border-b border-white/40 shadow-[0_4px_20px_rgba(139,92,246,0.1)] sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-2">
+          <Link href={`/${lang}`} className="flex items-center gap-2">
             <img src="/logo.svg" alt="Spark logo" className="h-12 w-auto object-contain" />
-          </div>
+          </Link>
           
           <div className="hidden md:flex gap-8 items-center">
             <Link href={`/${lang}/methodology`} className="font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight text-slate-500 hover:text-primary transition-all duration-300">
@@ -299,9 +299,9 @@ export default async function LandingPage({ params }: { params: Promise<{ lang: 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
             {/* Brand Column */}
             <div className="md:col-span-5">
-              <div className="flex items-center gap-2 mb-6">
-                <img src="/logo.svg" alt="Spark" className="h-12 w-auto object-contain" />
-              </div>
+              <Link href={`/${lang}`} className="flex items-center gap-2 mb-6">
+            <img src="/logo.svg" alt="Spark" className="h-12 w-auto object-contain" />
+          </Link>
               <p className="text-on-surface-variant text-sm pr-8 leading-relaxed">
                 {t.footerMission}
               </p>

@@ -66,9 +66,9 @@ export default function JoinPage() {
       <main className="w-full max-w-2xl flex flex-col items-center">
         {/* Brand Logo */}
         <div className="mb-10 text-center">
-          <div className="flex items-center justify-center gap-3 mb-3">
+          <Link href={`/${lang}`} className="flex items-center justify-center gap-3 mb-3">
             <img src="/logo.svg" alt="" className="h-12 w-auto object-contain" />
-          </div>
+          </Link>
           <p className="text-lg text-on-surface-variant">{t.join.brandSubtitle}</p>
         </div>
 
