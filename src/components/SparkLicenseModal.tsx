@@ -36,7 +36,7 @@ export default function SparkLicenseModal({ onClose }: SparkLicenseModalProps) {
           </h2>
           
           <p className="font-body-lg text-lg text-on-surface-variant mb-8 leading-relaxed">
-            {t.missions.sparkLicenseDesc || 'Þú hefur klárað AI Fluency grunninn og hlotið Spark leyfið! Nú hefurðu opnað fyrir ný og spennandi verkefni í Skill Tree.'}
+            {t.missions.sparkLicenseDesc || 'Þú hefur klárað AI Fluency grunninn og fengið Spark leyfið! Nú hefurðu opnað fyrir ný og spennandi verkefni í Skill Tree.'}
           </p>
 
           <button 

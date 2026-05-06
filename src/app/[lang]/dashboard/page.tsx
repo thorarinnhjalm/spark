@@ -140,6 +140,24 @@ export default function DashboardPage() {
               </button>
             </div>
 
+            {/* Recommended Article */}
+            <div className="glass-card shadow-[0_8px_32px_rgba(139,92,246,0.08)] p-md rounded-2xl bg-gradient-to-br from-surface to-surface-container flex flex-col gap-4 border border-outline-variant">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="material-symbols-outlined text-secondary">menu_book</span>
+                <h3 className="font-h3 text-h3 text-on-surface">Lesefni fyrir þig</h3>
+              </div>
+              <p className="text-sm text-on-surface-variant leading-relaxed">
+                Kynntu þér hvernig gervigreind getur nýst sem einkakennari fyrir barnið þitt.
+              </p>
+              <Link 
+                href={`/${lang}/articles/gervigreind-sem-einkakennari`}
+                className="w-full py-3 px-4 rounded-xl bg-secondary text-white font-semibold text-sm flex items-center justify-center gap-2 hover:bg-secondary/90 transition-colors active:scale-95 mt-2"
+              >
+                Lesa grein
+                <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </Link>
+            </div>
+
             {/* Social Proof / Review Collection Widget */}
             <iframe 
               src={`https://umsognin.is/w/spark?lang=${lang}&v=4`}

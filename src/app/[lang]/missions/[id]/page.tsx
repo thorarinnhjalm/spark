@@ -56,7 +56,13 @@ export default function ActiveMissionPage() {
     }
   }, [chatHistory, phase]);
 
-  const handleStartLab = () => setPhase('lab');
+  const handleStartLab = (selectedOption: string) => {
+    setPhase('lab');
+    setChatHistory([{
+      role: 'ai',
+      text: `${t.lab.greatChoice} ("${selectedOption}"). ${t.lab.howToStart}`
+    }]);
+  };
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -212,7 +218,7 @@ export default function ActiveMissionPage() {
               {mission.phases.hook.options[lang as 'is' | 'en'].map((opt, i) => (
                 <button 
                   key={i} 
-                  onClick={handleStartLab}
+                  onClick={() => handleStartLab(opt)}
                   className="p-6 border-2 border-surface-variant hover:border-primary hover:text-primary hover:bg-primary-fixed/30 rounded-[24px] text-left bg-white font-bold transition-all flex items-center justify-between group shadow-sm hover:shadow-md"
                 >
                   <span className="text-lg">{opt}</span>
@@ -295,7 +301,18 @@ export default function ActiveMissionPage() {
               <div ref={chatEndRef} />
             </div>
 
-            <div className="p-6 bg-white/60 border-t border-white/40 backdrop-blur-md">
+            <div className="p-6 bg-white/60 border-t border-white/40 backdrop-blur-md flex flex-col gap-3">
+              {phase === 'lab' && (
+                <div className="flex justify-start">
+                  <button 
+                    onClick={() => setInputValue(t.lab.hintPrefix + " ")}
+                    disabled={isChatLoading || inputValue.length > 0}
+                    className="text-xs font-bold bg-surface-container-high hover:bg-primary-fixed text-primary px-4 py-2 rounded-full transition-colors flex items-center gap-1 disabled:opacity-50 disabled:pointer-events-none"
+                  >
+                    {t.lab.needHint}
+                  </button>
+                </div>
+              )}
               <form onSubmit={handleSendMessage} className="flex gap-2 bg-white rounded-full p-2 border-2 border-primary/10 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 transition-all shadow-sm">
                 <input 
                   className="flex-1 bg-transparent border-none focus:ring-0 px-6 py-2 text-lg font-medium outline-none disabled:opacity-50 text-on-surface placeholder:text-outline" 

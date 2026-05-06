@@ -18,7 +18,7 @@ export default function ChildProgressPage() {
   const { t, lang } = useTranslation();
 
   const [childData, setChildData] = useState<{ displayName: string, xp: number, rank: string, parentUid: string, streak?: number } | null>(null);
-  const [progressData, setProgressData] = useState<{ id: string, missionId: string, missionTitle: string, dCode: string, xpEarned: number, reflectionAnswer: string, completedAt: string }[]>([]);
+  const [progressData, setProgressData] = useState<{ id: string, missionId: string, missionTitle: string, dCode: string, learningGoal: string, xpEarned: number, reflectionAnswer: string, completedAt: string }[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -60,6 +60,7 @@ export default function ChildProgressPage() {
             missionId: data.missionId,
             missionTitle: missionInfo ? missionInfo.title[lang as 'is' | 'en'] : 'Unknown Mission',
             dCode: missionInfo ? missionInfo.dCode : '',
+            learningGoal: missionInfo ? missionInfo.learningGoal[lang as 'is' | 'en'] : '',
             xpEarned: data.xpEarned,
             reflectionAnswer: data.reflectionAnswer,
             completedAt: data.completedAt?.toDate()?.toLocaleDateString(lang === 'is' ? 'is-IS' : 'en-US') || 'Unknown Date'
@@ -85,6 +86,23 @@ export default function ChildProgressPage() {
   // Max XP scale for progress bar visual (10,000 XP)
   const xpPercentage = Math.min((childData.xp / 10000) * 100, 100);
   const xpNextRank = 2500; // Arbitrary for demo
+
+  // Calculate dynamic skills
+  const fluencyMissions = missionsData.filter(m => m.progressionPhase === 'fluency');
+  const totalDelegation = fluencyMissions.filter(m => m.dCode === 'Delegation').length || 1;
+  const totalDescription = fluencyMissions.filter(m => m.dCode === 'Description').length || 1;
+  const totalDiscernment = fluencyMissions.filter(m => m.dCode === 'Discernment').length || 1;
+  const totalDiligence = fluencyMissions.filter(m => m.dCode === 'Diligence').length || 1;
+
+  const completedDelegation = progressData.filter(p => p.dCode === 'Delegation').length;
+  const completedDescription = progressData.filter(p => p.dCode === 'Description').length;
+  const completedDiscernment = progressData.filter(p => p.dCode === 'Discernment').length;
+  const completedDiligence = progressData.filter(p => p.dCode === 'Diligence').length;
+
+  const delegationPct = Math.round((completedDelegation / totalDelegation) * 100);
+  const descriptionPct = Math.round((completedDescription / totalDescription) * 100);
+  const discernmentPct = Math.round((completedDiscernment / totalDiscernment) * 100);
+  const diligencePct = Math.round((completedDiligence / totalDiligence) * 100);
 
   return (
     <div className="bg-background font-body-md text-on-background min-h-screen pb-24 md:pb-0">
@@ -222,16 +240,26 @@ export default function ChildProgressPage() {
 
                   return (
                     <div key={prog.id} className="flex items-center gap-4 p-4 bg-white/40 rounded-2xl border border-white/60">
-                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${color}`}>
+                      <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 mt-1 self-start ${color}">
                         <span className="material-symbols-outlined">{icon}</span>
                       </div>
-                      <div className="flex-1">
-                        <p className="font-bold text-on-surface line-clamp-1">{prog.missionTitle}</p>
-                        <p className="text-xs text-slate-500">Klárað: {prog.completedAt}</p>
-                      </div>
-                      <div className="flex flex-col items-end">
-                        <span className="font-bold text-sm text-emerald-600">+{prog.xpEarned} XP</span>
-                        <span className="material-symbols-outlined text-emerald-500" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <p className="font-bold text-on-surface line-clamp-1">{prog.missionTitle}</p>
+                            <p className="text-xs text-slate-500 mb-2">Klárað: {prog.completedAt}</p>
+                          </div>
+                          <div className="flex flex-col items-end">
+                            <span className="font-bold text-sm text-emerald-600">+{prog.xpEarned} XP</span>
+                            <span className="material-symbols-outlined text-emerald-500" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
+                          </div>
+                        </div>
+                        {prog.reflectionAnswer && (
+                          <div className="mt-1 bg-surface p-3 rounded-xl border border-outline-variant text-sm italic text-on-surface-variant relative">
+                            <span className="absolute -top-3 -left-2 text-2xl text-slate-300">"</span>
+                            {prog.reflectionAnswer}
+                          </div>
+                        )}
                       </div>
                     </div>
                   );
@@ -242,37 +270,67 @@ export default function ChildProgressPage() {
 
           {/* Skills Analysis */}
           <div className="col-span-12 md:col-span-6 glass-card shadow-[0_8px_32px_rgba(139,92,246,0.1)] rounded-[24px] p-8 overflow-hidden relative">
-            <h3 className="font-h3 text-h3 text-on-surface mb-6">Hæfni þín</h3>
+            <h3 className="font-h3 text-h3 text-on-surface mb-6">Hæfni þín (4D Model)</h3>
             <div className="space-y-6">
               <div>
                 <div className="flex justify-between mb-2">
-                  <span className="font-bold text-slate-600">Skapandi hugsun</span>
-                  <span className="text-primary font-bold">85%</span>
+                  <span className="font-bold text-slate-600">Skapandi hugsun (Delegation)</span>
+                  <span className="text-primary font-bold">{delegationPct}%</span>
                 </div>
                 <div className="h-3 bg-slate-100 rounded-full">
-                  <div className="h-full bg-primary-container rounded-full" style={{ width: '85%' }}></div>
+                  <div className="h-full bg-primary-container rounded-full" style={{ width: `${delegationPct}%` }}></div>
                 </div>
               </div>
               <div>
                 <div className="flex justify-between mb-2">
-                  <span className="font-bold text-slate-600">Rökfræði</span>
-                  <span className="text-secondary font-bold">60%</span>
+                  <span className="font-bold text-slate-600">Skýrleiki (Description)</span>
+                  <span className="text-secondary font-bold">{descriptionPct}%</span>
                 </div>
                 <div className="h-3 bg-slate-100 rounded-full">
-                  <div className="h-full bg-secondary-container rounded-full" style={{ width: '60%' }}></div>
+                  <div className="h-full bg-secondary-container rounded-full" style={{ width: `${descriptionPct}%` }}></div>
                 </div>
               </div>
               <div>
                 <div className="flex justify-between mb-2">
-                  <span className="font-bold text-slate-600">Málskilningur</span>
-                  <span className="text-amber-500 font-bold">92%</span>
+                  <span className="font-bold text-slate-600">Rökfræði (Discernment)</span>
+                  <span className="text-emerald-500 font-bold">{discernmentPct}%</span>
                 </div>
                 <div className="h-3 bg-slate-100 rounded-full">
-                  <div className="h-full bg-amber-400 rounded-full" style={{ width: '92%' }}></div>
+                  <div className="h-full bg-emerald-400 rounded-full" style={{ width: `${discernmentPct}%` }}></div>
+                </div>
+              </div>
+              <div>
+                <div className="flex justify-between mb-2">
+                  <span className="font-bold text-slate-600">Ábyrgð (Diligence)</span>
+                  <span className="text-amber-500 font-bold">{diligencePct}%</span>
+                </div>
+                <div className="h-3 bg-slate-100 rounded-full">
+                  <div className="h-full bg-amber-400 rounded-full" style={{ width: `${diligencePct}%` }}></div>
                 </div>
               </div>
             </div>
           </div>
+          
+          {/* Conversation Starter */}
+          {progressData.length > 0 && (
+            <div className="col-span-12 bg-gradient-to-r from-secondary-container to-primary-container rounded-[24px] p-8 shadow-sm flex flex-col md:flex-row items-center gap-8 relative overflow-hidden mt-4 border-2 border-white">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-primary shadow-lg flex-shrink-0 z-10">
+                <span className="material-symbols-outlined text-[32px]">forum</span>
+              </div>
+              <div className="flex-1 z-10">
+                <h3 className="font-h3 text-xl text-on-surface mb-2">Ræðið heima!</h3>
+                <p className="text-on-surface font-medium text-lg mb-4">
+                  {childData.displayName} kláraði nýlega verkefnið <strong>"{progressData[0].missionTitle}"</strong> þar sem markmiðið var: <br/>
+                  <span className="italic text-primary">"{progressData[0].learningGoal}"</span>
+                </p>
+                <div className="bg-white/60 p-4 rounded-xl border border-white">
+                  <p className="font-bold text-sm text-slate-600 uppercase tracking-wider mb-1">Tilvalin spurning við kvöldmatinn:</p>
+                  <p className="text-on-surface-variant italic">"Hey, ég sá að þú varst að spila '{progressData[0].missionTitle}' í dag. Hvernig fórstu að þessu?"</p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </main>
 

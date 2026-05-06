@@ -85,7 +85,7 @@
     "skillSentinel": "Vörðurinn",
     "skillBuilder": "Smiðurinn",
     "sparkLicenseTitle": "Til hamingju!",
-    "sparkLicenseDesc": "Þú hefur klárað AI Fluency grunninn og hlotið Spark leyfið! Nú hefurðu opnað fyrir ný og spennandi verkefni í Skill Tree."
+    "sparkLicenseDesc": "Þú hefur klárað AI Fluency grunninn og fengið Spark leyfið! Nú hefurðu opnað fyrir ný og spennandi verkefni í Skill Tree."
   },
   "lab": {
     "objective": "Markmið:",
@@ -103,7 +103,11 @@
     "backToMap": "Til baka á verkefnakortið",
     "phase1Label": "Hluti 1: Atburðarás",
     "phase2Label": "Hluti 2: Tilraun",
-    "phase3Label": "Hluti 3: Ígrundun"
+    "phase3Label": "Hluti 3: Lærdómur",
+    "greatChoice": "Frábært val",
+    "howToStart": "Hvernig viltu byrja?",
+    "needHint": "💡 Vantar hjálp?",
+    "hintPrefix": "Spark, geturðu hjálpað mér að..."
   },
   "landing": {
     "heroBadge": "Gervigreind fyrir næstu kynslóð",
@@ -174,7 +178,7 @@
     "d1Desc": "Hvað á gervigreindin að gera og hvað á ég að gera sjálf(ur)? Barnið lærir að skipta verkum rétt — vélin hjálpar, en barnið stýrir.",
     "d1L1": "Hugmyndavinna",
     "d1L2": "Gagnavinnsla",
-    "d1L3": "Skapandi uppköst",
+    "d1L3": "Skapandi drög",
     "d2Title": "2. Description",
     "d2Desc": "Hvernig á ég að orða fyrirmæli? Skýrt mál gefur betri svör. Barnið æfir listina að tala við tæknina.",
     "d3Title": "3. Discernment",

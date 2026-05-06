@@ -103,7 +103,11 @@
     "backToMap": "Back to Mission Map",
     "phase1Label": "Part 1: Scenario",
     "phase2Label": "Part 2: Lab",
-    "phase3Label": "Part 3: Reflection"
+    "phase3Label": "Part 3: Reflection",
+    "greatChoice": "Great choice",
+    "howToStart": "How do you want to start?",
+    "needHint": "💡 Need a hint?",
+    "hintPrefix": "Spark, can you help me to..."
   },
   "landing": {
     "heroBadge": "AI for the next generation",

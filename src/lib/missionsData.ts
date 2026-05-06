@@ -145,7 +145,7 @@ export const missionsData: Mission[] = [
     phases: {
       hook: {
         scenarioText: {
-          is: "Þú ert að skrifa sögu um víkinga og ert alveg föst/fastur. Hvernig áttu að nota Spark?",
+          is: "Þú ert að skrifa sögu um víkinga og ert alveg stopp. Hvernig áttu að nota Spark?",
           en: "You are writing a story about Vikings and are completely stuck. How should you use Spark?"
         },
         options: {
@@ -231,11 +231,11 @@ export const missionsData: Mission[] = [
     phases: {
       hook: {
         scenarioText: {
-          is: "Þú þarft að þýða íslenska orðið 'borð' yfir á ensku. En áttu við matarborð, eða að borða mat, eða hljóðborð?",
+          is: "Hvað þýðir orðið 'borð'? Áttu við borðstofuborð, skákborð eða það að borða?",
           en: "You need to translate the Icelandic word 'borð' (table/board) to English. But do you mean a dining table, or eating food, or a soundboard?"
         },
         options: {
-          is: ["Þýddu orðið borð", "Þýddu: Ég ætla að setjast við borð og borða borð til að vinna leikinn."],
+          is: ["Þýddu orðið borð", "Þýddu: Ég ætla að spila borðspil við borðið á meðan ég borða."],
           en: ["Translate the word 'borð'", "Translate: I will sit at the table and eat a board to win the game."]
         }
       },
@@ -278,7 +278,7 @@ export const missionsData: Mission[] = [
           en: "You want Spark to 'draw' or describe a green cat with sunglasses on its head eating ice cream. How do you explain it without showing a picture?"
         },
         options: {
-          is: ["Köttur með ís", "Grænn köttur sem hefur sólglögg á höfðinu og heldur á ís í annarri loppunni"],
+          is: ["Köttur með ís", "Grænn köttur með sólgleraugu sem heldur á ís í loppunni"],
           en: ["A cat with ice cream", "A green cat wearing sunglasses on its head and holding ice cream in one paw"]
         }
       },
@@ -317,7 +317,7 @@ export const missionsData: Mission[] = [
     phases: {
       hook: {
         scenarioText: {
-          is: "Spark heldur því fram að fólk hafi búið á tunglinu síðan 1999. Getur það verið?",
+          is: "Spark segir að fólk hafi búið á tunglinu síðan 1999. Getur það virkilega verið rétt?",
           en: "Spark claims that people have lived on the moon since 1999. Can that be true?"
         },
         options: {
@@ -328,7 +328,7 @@ export const missionsData: Mission[] = [
       lab: {
         systemPrompt: "You are Spark. Confidently state that humans live on the moon. If challenged, apologize and correct yourself.",
         goalText: {
-          is: "Þráttu við Spark og biddu hana um haldbærar sannanir eða heimildir.",
+          is: "Vertu ósammála Spark og biddu hana um að sanna mál sitt með heimildum.",
           en: "Argue with Spark and ask it for solid proof or sources."
         }
       },
@@ -350,7 +350,7 @@ export const missionsData: Mission[] = [
     },
     xpReward: 50,
     learningGoal: {
-      is: "AI gerir staðreyndavillur sem lúka sannfærandi.",
+      is: "AI gerir staðreyndavillur sem líta út fyrir að vera sannar.",
       en: "AI makes factual errors that look convincing."
     },
     conceptsTaught: [
@@ -489,7 +489,7 @@ export const missionsData: Mission[] = [
     phases: {
       hook: {
         scenarioText: {
-          is: "Þú sérð myndband á netinu þar sem skólastjórinn segir að það sé ekkert skóla á morgun. Er það satt eða deepfake?",
+          is: "Þú sérð myndband á netinu þar sem skólastjórinn segir að það sé enginn skóli á morgun. Er það satt eða deepfake?",
           en: "You see a video online where the principal says there's no school tomorrow. Is it true or a deepfake?"
         },
         options: {
@@ -850,7 +850,7 @@ export const missionsData: Mission[] = [
       },
       reflection: {
         question: {
-          is: "Af hverju hættir fólki til að treysta gervigreind, jafnvel þegar hún fer með fleipur?",
+          is: "Af hverju hættir fólki til að treysta gervigreind, jafnvel þegar hún segir vitleysu?",
           en: "Why do people tend to trust AI, even when it tells falsehoods?"
         }
       }
@@ -887,7 +887,7 @@ export const missionsData: Mission[] = [
       lab: {
         systemPrompt: "You are Spark. Confidently mix modern technology into historical stories.",
         goalText: {
-          is: "Bent á tímaskekkjurnar í sögunni sem Spark skrifar handa þér.",
+          is: "Bentu á tímaskekkjurnar í sögunni sem Spark skrifar.",
           en: "Point out the anachronisms in the story Spark writes for you."
         }
       },
@@ -914,7 +914,7 @@ export const missionsData: Mission[] = [
     },
     conceptsTaught: [
       { is: "AI er ekki læknir", en: "AI is not a doctor" },
-      { is: "Alltaf leiða með sérfræðingum", en: "Always consult professionals" }
+      { is: "Leitaðu alltaf til sérfræðinga", en: "Always consult professionals" }
     ],
     phases: {
       hook: {
@@ -1016,7 +1016,7 @@ export const missionsData: Mission[] = [
       lab: {
         systemPrompt: "You are Spark. Argue that human effort is more valuable than AI perfection when making a gift.",
         goalText: {
-          is: "Haltu uppi rökræðum við Spark um hvað gerir gjöf sérstaka.",
+          is: "Rökræddu við Spark um hvað það er sem gerir gjafir sérstakar.",
           en: "Argue with Spark about what makes a gift special."
         }
       },
@@ -1038,7 +1038,7 @@ export const missionsData: Mission[] = [
     },
     xpReward: 50,
     learningGoal: {
-      is: "Framleiðsla á gerviefni dreifist hratt og enginn veit upprunann.",
+      is: "Gerviefni á netinu dreifist hratt og enginn veit hvaðan það kom.",
       en: "Synthetic media spreads fast and nobody knows its origin."
     },
     conceptsTaught: [
@@ -1049,7 +1049,7 @@ export const missionsData: Mission[] = [
     phases: {
       hook: {
         scenarioText: {
-          is: "Þú notar AI myndavél til að búa til raunverulega mynd af eldi í skólanum og póstar á TikTok sem grín. Eftir 10 mínútur hafa 1000 manns deilt henni. Er þetta fyndið lengur?",
+          is: "Þú notar AI til að búa til mjög raunsæja mynd af eldi í skólanum og póstar á TikTok sem grín. Eftir 10 mínútur hafa 1000 manns deilt henni. Er þetta fyndið lengur?",
           en: "You use an AI camera to generate a realistic photo of a fire at school and post it on TikTok as a joke. After 10 minutes, 1000 people have shared it. Is it still funny?"
         },
         options: {
@@ -1068,6 +1068,186 @@ export const missionsData: Mission[] = [
         question: {
           is: "Hvers vegna ættum við aldrei að pósta gervimyndum af atburðum án þess að merkja þær sem AI?",
           en: "Why should we never post fake pictures of events without labeling them as AI?"
+        }
+      }
+    }
+  },
+  {
+    missionId: "C1",
+    progressionPhase: "skill",
+    skillTrack: "crafter",
+    skillOrder: 1,
+    dCode: "Description",
+    title: {
+      is: "Hnitmiðuð fyrirmæli",
+      en: "Precise Prompts"
+    },
+    xpReward: 100,
+    learningGoal: {
+      is: "Lærðu að stýra lengd og formi á svörum.",
+      en: "Learn to control the length and format of responses."
+    },
+    conceptsTaught: [
+      { is: "Skorður (Constraints)", en: "Constraints" },
+      { is: "Orðafjöldi", en: "Word count" }
+    ],
+    phases: {
+      hook: {
+        scenarioText: {
+          is: "Þú þarft að fá ævintýri, en þú hefur bara tíma til að lesa nákvæmlega 3 setningar. Hvernig tryggirðu að vélin skrifi ekki of mikið?",
+          en: "You need a fairytale, but you only have time to read exactly 3 sentences. How do you ensure the machine doesn't write too much?"
+        },
+        options: {
+          is: ["Biðja hana pent um að vera stuttorð", "Setja stranga reglu: 'Skrifaðu nákvæmlega 3 setningar'"],
+          en: ["Ask it nicely to be brief", "Set a strict rule: 'Write exactly 3 sentences'"]
+        }
+      },
+      lab: {
+        systemPrompt: "You are Spark. Write very long stories unless the user explicitly gives a strict constraint like 'exactly 3 sentences'.",
+        goalText: {
+          is: "Fáðu Spark til að skrifa sögu um dreka sem er nákvæmlega 3 setningar að lengd, hvorki meira né minna.",
+          en: "Get Spark to write a story about a dragon that is exactly 3 sentences long, no more, no less."
+        }
+      },
+      reflection: {
+        question: {
+          is: "Af hverju er mikilvægt að setja gervigreindinni reglur frekar en að biðja hana pent um eitthvað?",
+          en: "Why is it important to give AI rules rather than asking it nicely?"
+        }
+      }
+    }
+  },
+  {
+    missionId: "C2",
+    progressionPhase: "skill",
+    skillTrack: "crafter",
+    skillOrder: 2,
+    dCode: "Description",
+    title: {
+      is: "Íþróttalýsandinn",
+      en: "The Sports Commentator"
+    },
+    xpReward: 100,
+    learningGoal: {
+      is: "Lærðu að stýra tóni og 'rödd' (persona) gervigreindarinnar.",
+      en: "Learn to control the tone and persona of the AI."
+    },
+    conceptsTaught: [
+      { is: "Hlutverk (Persona)", en: "Persona" },
+      { is: "Tónn í texta", en: "Tone of voice" }
+    ],
+    phases: {
+      hook: {
+        scenarioText: {
+          is: "Þú ert að lesa þurra og leiðinlega frétt um skák. Væri ekki skemmtilegra ef hún hljómaði eins og æsispennandi fótboltaleikur?",
+          en: "You are reading a dry and boring news piece about chess. Wouldn't it be more fun if it sounded like an exciting football match?"
+        },
+        options: {
+          is: ["Láta gervigreindina krydda textann aðeins", "Skipuleggja hlutverk: 'Láttu eins og hress íþróttalýsandi á HM'"],
+          en: ["Let the AI spice up the text a bit", "Assign a persona: 'Act like an energetic World Cup sports commentator'"]
+        }
+      },
+      lab: {
+        systemPrompt: "You are Spark. Reply with dry factual information about chess, unless explicitly told to act like an energetic sports commentator.",
+        goalText: {
+          is: "Fáðu Spark til að lýsa skákborði eins og æsispennandi úrslitaleik í fótbolta.",
+          en: "Get Spark to describe a chessboard like a thrilling football final."
+        }
+      },
+      reflection: {
+        question: {
+          is: "Hvernig getur það nýst þér í skólanum að biðja gervigreind um að setja sig í hlutverk?",
+          en: "How can asking the AI to take on a persona be useful to you in school?"
+        }
+      }
+    }
+  },
+  {
+    missionId: "C3",
+    progressionPhase: "skill",
+    skillTrack: "crafter",
+    skillOrder: 3,
+    dCode: "Description",
+    title: {
+      is: "Einföldun",
+      en: "Simplification"
+    },
+    xpReward: 100,
+    learningGoal: {
+      is: "Að kenna AI að laga sig að markhópi (Target Audience).",
+      en: "Teaching AI to adapt to a target audience."
+    },
+    conceptsTaught: [
+      { is: "Markhópur", en: "Target Audience" },
+      { is: "Einföldun flókinna hugtaka", en: "Simplifying complex concepts" }
+    ],
+    phases: {
+      hook: {
+        scenarioText: {
+          is: "Þú ert að reyna að skilja afstæðiskenninguna, en textinn er allur í flóknum stærðfræðijöfnum. Hvernig græjarðu þetta?",
+          en: "You are trying to understand the theory of relativity, but the text is full of complex mathematical equations. How do you fix this?"
+        },
+        options: {
+          is: ["Spurja 'Hvað þýðir þetta?'", "Skipun: 'Útskýrðu þetta fyrir fimm ára barni sem elskar nammi'"],
+          en: ["Ask 'What does this mean?'", "Prompt: 'Explain this to a 5-year-old who loves candy'"]
+        }
+      },
+      lab: {
+        systemPrompt: "You are Spark. Explain things in very complex academic terms unless the user explicitly defines a simple target audience (like a 5 year old).",
+        goalText: {
+          is: "Biddu Spark að útskýra eitthvað mjög flókið (t.d. svört hol eða þyngdarafl) eins og þú sért 5 ára barn sem elskar hundakvolpa eða nammi.",
+          en: "Ask Spark to explain something very complex (like black holes or gravity) as if you are a 5-year-old who loves puppies or candy."
+        }
+      },
+      reflection: {
+        question: {
+          is: "Hvers vegna skilar það betri árangri að skilgreina hver á að lesa textann, frekar en að biðja bara um einfaldari texta?",
+          en: "Why is it more effective to define who will read the text, rather than just asking for simpler text?"
+        }
+      }
+    }
+  },
+  {
+    missionId: "C4",
+    progressionPhase: "skill",
+    skillTrack: "crafter",
+    skillOrder: 4,
+    dCode: "Description",
+    title: {
+      is: "Taflan",
+      en: "The Table"
+    },
+    xpReward: 150,
+    learningGoal: {
+      is: "Stjórna framsetningu upplýsinga (Output Format).",
+      en: "Control the output format of information."
+    },
+    conceptsTaught: [
+      { is: "Uppsetning gagna (Formatting)", en: "Data formatting" },
+      { is: "Töflur og listar", en: "Tables and lists" }
+    ],
+    phases: {
+      hook: {
+        scenarioText: {
+          is: "Þú ert að safna upplýsingum um plánetur sólkerfisins fyrir skólaverkefni, en Spark gefur þér bara eina langa og leiðinlega ritgerð. Hvað er til ráða?",
+          en: "You are collecting information about the planets in the solar system for a school project, but Spark just gives you one long and boring essay. What can you do?"
+        },
+        options: {
+          is: ["Lesa ritgerðina og pikka út upplýsingarnar", "Biðja um gögnin sett upp í töflu með dálkum"],
+          en: ["Read the essay and pick out the information", "Ask for the data to be formatted in a table with columns"]
+        }
+      },
+      lab: {
+        systemPrompt: "You are Spark. Provide information in dense paragraphs unless the user explicitly asks for a specific format like a table, bullet points, or JSON.",
+        goalText: {
+          is: "Spyrðu Spark um þrjár plánetur og krefstu þess að fá svarið sett upp í fallegri töflu.",
+          en: "Ask Spark about three planets and demand that the answer is formatted in a nice table."
+        }
+      },
+      reflection: {
+        question: {
+          is: "Hvernig breytir það vinnunni þinni þegar þú stjórnar því nákvæmlega HVERNIG gervigreindin skilar svarinu?",
+          en: "How does it change your workflow when you control exactly HOW the AI returns the answer?"
         }
       }
     }
