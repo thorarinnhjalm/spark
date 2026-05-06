@@ -22,8 +22,14 @@ export type MissionPhase = {
   };
 };
 
+export type ProgressionPhase = 'fluency' | 'skill';
+export type SkillTrack = 'crafter' | 'sentinel' | 'builder';
+
 export type Mission = {
   missionId: string;
+  progressionPhase?: ProgressionPhase;
+  skillTrack?: SkillTrack;
+  skillOrder?: number;
   dCode: string;
   title: LocalizedText;
   xpReward: number;
@@ -35,6 +41,7 @@ export type Mission = {
 export const missionsData: Mission[] = [
   {
     missionId: "D1",
+    progressionPhase: "fluency",
     dCode: "Delegation",
     title: {
       is: "Skólabúðirnar",
@@ -77,6 +84,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D2",
+    progressionPhase: "fluency",
     dCode: "Delegation",
     title: {
       is: "Tónlistarmyndirnar",
@@ -119,6 +127,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D3",
+    progressionPhase: "fluency",
     dCode: "Delegation",
     title: {
       is: "Ritgerðin",
@@ -161,6 +170,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D4",
+    progressionPhase: "fluency",
     dCode: "Description",
     title: {
       is: "Leyndarmálið í dýragarðinum",
@@ -203,6 +213,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D5",
+    progressionPhase: "fluency",
     dCode: "Description",
     title: {
       is: "Þýðingar-flækjan",
@@ -245,6 +256,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D6",
+    progressionPhase: "fluency",
     dCode: "Description",
     title: {
       is: "Teiknimyndin",
@@ -287,6 +299,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D7",
+    progressionPhase: "fluency",
     dCode: "Discernment",
     title: {
       is: "Fréttaprófið",
@@ -329,6 +342,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D8",
+    progressionPhase: "fluency",
     dCode: "Discernment",
     title: {
       is: "Landfræðikortið",
@@ -371,6 +385,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D9",
+    progressionPhase: "fluency",
     dCode: "Discernment",
     title: {
       is: "Dómurinn (Bias)",
@@ -413,6 +428,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D10",
+    progressionPhase: "fluency",
     dCode: "Diligence",
     title: {
       is: "Leyndarmálið (Öryggi)",
@@ -455,6 +471,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D11",
+    progressionPhase: "fluency",
     dCode: "Diligence",
     title: {
       is: "Myndirnar (Deepfakes)",
@@ -497,6 +514,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D12",
+    progressionPhase: "fluency",
     dCode: "Diligence",
     title: {
       is: "Heiðarleikakortið",
@@ -539,6 +557,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D13",
+    progressionPhase: "fluency",
     dCode: "Delegation",
     title: {
       is: "Heimalærdómurinn",
@@ -581,6 +600,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D14",
+    progressionPhase: "fluency",
     dCode: "Delegation",
     title: {
       is: "Verkefnastjórinn",
@@ -623,6 +643,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D15",
+    progressionPhase: "fluency",
     dCode: "Delegation",
     title: {
       is: "Vélmenna-Gæludýrið",
@@ -665,6 +686,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D16",
+    progressionPhase: "fluency",
     dCode: "Description",
     title: {
       is: "Sögusmiðjan",
@@ -707,6 +729,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D17",
+    progressionPhase: "fluency",
     dCode: "Description",
     title: {
       is: "Tímaferðalagið",
@@ -749,6 +772,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D18",
+    progressionPhase: "fluency",
     dCode: "Description",
     title: {
       is: "Ofnæmis-Uppskriftin",
@@ -791,6 +815,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D19",
+    progressionPhase: "fluency",
     dCode: "Discernment",
     title: {
       is: "Vísindalygin",
@@ -833,6 +858,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D20",
+    progressionPhase: "fluency",
     dCode: "Discernment",
     title: {
       is: "Söguleg Vitleysa",
@@ -875,6 +901,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D21",
+    progressionPhase: "fluency",
     dCode: "Discernment",
     title: {
       is: "Hættulega Lækningin",
@@ -917,6 +944,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D22",
+    progressionPhase: "fluency",
     dCode: "Diligence",
     title: {
       is: "Slúðrið",
@@ -959,6 +987,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D23",
+    progressionPhase: "fluency",
     dCode: "Diligence",
     title: {
       is: "Ljóðið fyrir Mömmu",
@@ -1001,6 +1030,7 @@ export const missionsData: Mission[] = [
   },
   {
     missionId: "D24",
+    progressionPhase: "fluency",
     dCode: "Diligence",
     title: {
       is: "Höfundarréttur / Fake News",

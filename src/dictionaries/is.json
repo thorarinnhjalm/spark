@@ -77,7 +77,15 @@
     "missionLocked": "Læst",
     "startNow": "Byrja",
     "playingAs": "Spilar sem",
-    "stopPlayingAs": "Hætta að spila sem barn"
+    "stopPlayingAs": "Hætta að spila sem barn",
+    "phase1Title": "Hluti 1: AI Fluency",
+    "phase2Title": "Hluti 2: Skill Tree",
+    "phase2Locked": "Kláraðu öll AI Fluency verkefnin til að opna",
+    "skillCrafter": "Tæknisnillingur",
+    "skillSentinel": "Vörðurinn",
+    "skillBuilder": "Smiðurinn",
+    "sparkLicenseTitle": "Til hamingju!",
+    "sparkLicenseDesc": "Þú hefur klárað AI Fluency grunninn og hlotið Spark leyfið! Nú hefurðu opnað fyrir ný og spennandi verkefni í Skill Tree."
   },
   "lab": {
     "objective": "Markmið:",

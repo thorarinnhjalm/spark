@@ -77,7 +77,15 @@
     "missionLocked": "Locked",
     "startNow": "Start",
     "playingAs": "Playing as",
-    "stopPlayingAs": "Stop playing as child"
+    "stopPlayingAs": "Stop playing as child",
+    "phase1Title": "Part 1: AI Fluency",
+    "phase2Title": "Part 2: Skill Tree",
+    "phase2Locked": "Complete all AI Fluency missions to unlock",
+    "skillCrafter": "Prompt Crafter",
+    "skillSentinel": "The Sentinel",
+    "skillBuilder": "The Builder",
+    "sparkLicenseTitle": "Congratulations!",
+    "sparkLicenseDesc": "You have completed the AI Fluency basics and earned your Spark License! You've now unlocked new and exciting missions in the Skill Tree."
   },
   "lab": {
     "objective": "Objective:",
